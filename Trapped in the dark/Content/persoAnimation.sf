@@ -1,12 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Trapped_in_the_dark.Content
 {
-    class persoAnimation
-    {
+  "textureAtlas": {
+    "texture": "New Piskel.png",
+    "regionWidth": 32,
+    "regionHeight": 32
+  },
+  "cycles": {
+    "left": {
+        "frame": [4],
+        "isLooping": false,
+        "frameDuration": 0.1,
     }
+    "right": {
+        "frame": [1],
+        "isLooping": false,
+        "frameDuration": 0.1,
+    }
+    "up": {
+        "frame": [0],
+        "isLooping": false,
+        "frameDuration": 0.1,
+    }
+    "down": {
+        "frame": [2],
+        "isLooping": false,
+        "frameDuration": 0.1,
+    }
+  }
 }

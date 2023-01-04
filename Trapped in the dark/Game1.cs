@@ -36,6 +36,8 @@ namespace Trapped_in_the_dark
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _menu = new Menu(this);
+            _labyrinthe = new Labyrinthe(this);
+            _personnage = new Personnage(this);
 
             // TODO: use this.Content to load your game content here
         }
@@ -44,6 +46,8 @@ namespace Trapped_in_the_dark
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            // TODO: Add your update logic here
 
 
             KeyboardState keyboardState = Keyboard.GetState();
@@ -55,19 +59,17 @@ namespace Trapped_in_the_dark
                 Color.Black));
             }
 
-            if (keyboardState.IsKeyDown(Keys.F3))
+            else if (keyboardState.IsKeyDown(Keys.F3))
             {
                 _screenManager.LoadScreen(_labyrinthe, new FadeTransition(GraphicsDevice,
                 Color.Black));
             }
 
-            if (keyboardState.IsKeyDown(Keys.F4))
+            else if (keyboardState.IsKeyDown(Keys.F4))
             {
                 _screenManager.LoadScreen(_personnage, new FadeTransition(GraphicsDevice,
                 Color.Black));
             }
-
-            // TODO: Add your update logic here
 
             base.Update(gameTime);
         }
