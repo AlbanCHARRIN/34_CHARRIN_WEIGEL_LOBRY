@@ -21,7 +21,7 @@ public class Personnage : GameScreen
     { }
     public override void Draw(GameTime gameTime)
     {
-        _myGame.GraphicsDevice.Clear(Color.SaddleBrown); // on utilise la reference vers
+        _myGame.GraphicsDevice.Clear(Color.Gray); // on utilise la reference vers
                                                          // Game1 pour chnager le graphisme
     }
 }
