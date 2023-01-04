@@ -57,13 +57,13 @@ namespace Trapped_in_the_dark
 
             if (keyboardState.IsKeyDown(Keys.F3))
             {
-                _screenManager.LoadScreen(_menu, new FadeTransition(GraphicsDevice,
+                _screenManager.LoadScreen(_labyrinthe, new FadeTransition(GraphicsDevice,
                 Color.Black));
             }
 
             if (keyboardState.IsKeyDown(Keys.F4))
             {
-                _screenManager.LoadScreen(_menu, new FadeTransition(GraphicsDevice,
+                _screenManager.LoadScreen(_personnage, new FadeTransition(GraphicsDevice,
                 Color.Black));
             }
 

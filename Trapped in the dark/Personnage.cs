@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Screens;
+using MonoGame.Extended.Animations;
 
 
 public class Personnage : GameScreen
@@ -18,7 +19,9 @@ public class Personnage : GameScreen
         base.LoadContent();
     }
     public override void Update(GameTime gameTime)
-    { }
+    {
+        
+    }
     public override void Draw(GameTime gameTime)
     {
         _myGame.GraphicsDevice.Clear(Color.Gray); // on utilise la reference vers
