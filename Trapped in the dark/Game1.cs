@@ -12,6 +12,7 @@ namespace Trapped_in_the_dark
         private GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch { get; set; }
         private ScreenManager _screenManager;
+        private Menu _menu;
 
 
         public Game1()
@@ -32,6 +33,7 @@ namespace Trapped_in_the_dark
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+            _menu = new Menu(this);
 
             // TODO: use this.Content to load your game content here
         }
@@ -40,6 +42,16 @@ namespace Trapped_in_the_dark
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+
+            KeyboardState keyboardState = Keyboard.GetState();
+
+
+            if (keyboardState.IsKeyDown(Keys.Left))
+            {
+                _screenManager.LoadScreen(_menu, new FadeTransition(GraphicsDevice,
+                Color.Black));
+            }
 
             // TODO: Add your update logic here
 
