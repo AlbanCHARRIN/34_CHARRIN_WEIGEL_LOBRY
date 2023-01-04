@@ -19,7 +19,7 @@ public class Menu : GameScreen
     }
     public override void LoadContent()
     {
-        _background = Content.Load<Texture2D>("background.jpg");
+        _background = Content.Load<Texture2D>("background");
         base.LoadContent();
     }
     public override void Update(GameTime gameTime)
