@@ -22,9 +22,9 @@ public class Personnage : GameScreen
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        _positionPerso = new Vector2(400,400);
+        _positionPerso = new Vector2(1000,500);
 
-        SpriteSheet spriteSheet = Content.Load<SpriteSheet>("animation.sf", new JsonContentLoader());
+        SpriteSheet spriteSheet = Content.Load<SpriteSheet>("persoAnimation.sf", new JsonContentLoader());
         _perso = new AnimatedSprite(spriteSheet);
 
         base.LoadContent();
@@ -32,6 +32,7 @@ public class Personnage : GameScreen
     public override void Update(GameTime gameTime)
     {
         _perso.Play("left"); // une des animations définies dans « animation.sf »
+        _perso.Update(gameTime);
     }
     public override void Draw(GameTime gameTime)
     {

@@ -30,7 +30,7 @@ namespace Trapped_in_the_dark
             _graphics.PreferredBackBufferWidth = 1920;
             _graphics.PreferredBackBufferHeight = 1080;
 
-            _graphics.ToggleFullScreen();
+            //_graphics.ToggleFullScreen();
             _screenManager = new ScreenManager();
             Components.Add(_screenManager);
             base.Initialize();
