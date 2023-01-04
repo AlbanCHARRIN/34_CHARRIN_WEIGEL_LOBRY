@@ -28,10 +28,10 @@ namespace Trapped_in_the_dark
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            _graphics.PreferredBackBufferWidth = 1366;
-            _graphics.PreferredBackBufferHeight = 768;
+            _graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            _graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
 
-             //_graphics.ToggleFullScreen();
+            //_graphics.ToggleFullScreen();
             _screenManager = new ScreenManager();
             Components.Add(_screenManager);
             _graphics.ApplyChanges();
