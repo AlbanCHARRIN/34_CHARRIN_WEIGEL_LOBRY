@@ -9,16 +9,17 @@ namespace Trapped_in_the_dark
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch { get; set; }
         private ScreenManager _screenManager;
         private Menu _menu;
         private Labyrinthe _labyrinthe;
         private Personnage _personnage;
+        public GraphicsDeviceManager _graphics;
 
 
         public Game1()
         {
+           
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -27,12 +28,14 @@ namespace Trapped_in_the_dark
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            _graphics.PreferredBackBufferWidth = 1920;
-            _graphics.PreferredBackBufferHeight = 1080;
+            _graphics.PreferredBackBufferWidth = 1366;
+            _graphics.PreferredBackBufferHeight = 768;
 
-            //_graphics.ToggleFullScreen();
+
+             //_graphics.ToggleFullScreen();
             _screenManager = new ScreenManager();
             Components.Add(_screenManager);
+            _graphics.ApplyChanges();
             base.Initialize();
         }
 
