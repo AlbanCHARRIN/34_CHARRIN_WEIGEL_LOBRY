@@ -10,7 +10,9 @@ namespace Trapped_in_the_dark
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        public SpriteBatch _spriteBatch { get; set; }
+        private ScreenManager _screenManager;
+
 
         public Game1()
         {
@@ -22,7 +24,8 @@ namespace Trapped_in_the_dark
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            _screenManager = new ScreenManager();
+            Components.Add(_screenManager);
             base.Initialize();
         }
 
