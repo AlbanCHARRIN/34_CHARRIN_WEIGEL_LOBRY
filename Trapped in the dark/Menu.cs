@@ -7,24 +7,31 @@ using MonoGame.Extended.Screens;
 public class Menu : GameScreen
 {
     private Game _myGame;
-    private SpriteBatch _spriteBatch;
+    private SpriteBatch _spriteBatch { get; set; }
     private Texture2D _background;
+
+
+
 
     // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est
     // défini dans Game1
     public Menu(Game game) : base(game)
     {
         _myGame = game;
+    
 
     }
+   
     public override void LoadContent()
     {
+        _spriteBatch = new SpriteBatch(GraphicsDevice);
+
         _background = Content.Load<Texture2D>("background");
         base.LoadContent();
     }
+   
     public override void Update(GameTime gameTime)
     {
-        _spriteBatch = new SpriteBatch(GraphicsDevice);
     }
     public override void Draw(GameTime gameTime)
     {
