@@ -60,7 +60,7 @@ namespace Trapped_in_the_dark
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Teal);
+            GraphicsDevice.Clear(Color.Salmon);
 
             // TODO: Add your drawing code here
 
