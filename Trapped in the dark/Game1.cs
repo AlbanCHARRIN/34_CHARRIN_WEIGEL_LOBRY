@@ -13,6 +13,8 @@ namespace Trapped_in_the_dark
         public SpriteBatch _spriteBatch { get; set; }
         private ScreenManager _screenManager;
         private Menu _menu;
+        private Labyrinthe _labyrinthe;
+        private Personnage _personnage;
 
 
         public Game1()
@@ -47,7 +49,19 @@ namespace Trapped_in_the_dark
             KeyboardState keyboardState = Keyboard.GetState();
 
 
-            if (keyboardState.IsKeyDown(Keys.Left))
+            if (keyboardState.IsKeyDown(Keys.F2))
+            {
+                _screenManager.LoadScreen(_menu, new FadeTransition(GraphicsDevice,
+                Color.Black));
+            }
+
+            if (keyboardState.IsKeyDown(Keys.F3))
+            {
+                _screenManager.LoadScreen(_menu, new FadeTransition(GraphicsDevice,
+                Color.Black));
+            }
+
+            if (keyboardState.IsKeyDown(Keys.F4))
             {
                 _screenManager.LoadScreen(_menu, new FadeTransition(GraphicsDevice,
                 Color.Black));
