@@ -17,6 +17,8 @@ public class Personnage : GameScreen
     const int _width = 41;
     const int _height = 49;
 
+    //Collisions
+    int _collision = 1;
     //Joueur Rouge
     private Vector2 _positionPersoRed;
     private AnimatedSprite _persoRed;
@@ -59,13 +61,82 @@ public class Personnage : GameScreen
     }
     public override void Update(GameTime gameTime)
     {
-        KeyboardState keyboardState = Keyboard.GetState();
-        
-
-        //Joueur Rouge
-
+        //variables personnage rouge
         positionPersoRedY = 0;
         positionPersoRedX = 0;
+
+        //variables personnage bleu
+        positionPersoBlueY = 0;
+        positionPersoBlueX = 0;
+
+
+        //Colisions
+
+        //coin haut droit
+        if (_positionPersoBlue.X + _width >= _positionPersoRed.X && _positionPersoBlue.X + _width <= _positionPersoRed.X + _width && _positionPersoBlue.Y >= _positionPersoRed.Y && _positionPersoBlue.Y <= _positionPersoRed.Y + _height)
+        {
+            _collision = 0;
+            _positionPersoBlue += new Vector2(-10,10);
+            _positionPersoRed += new Vector2(10,-10);
+        }
+        if (_positionPersoRed.X + _width >= _positionPersoBlue.X && _positionPersoRed.X + _width <= _positionPersoBlue.X + _width && _positionPersoRed.Y >= _positionPersoBlue.Y && _positionPersoRed.Y <= _positionPersoBlue.Y + _height)
+        {
+            _collision = 0;
+            _positionPersoBlue += new Vector2(10, -10);
+            _positionPersoRed += new Vector2(-10, 10);
+        }
+
+        //coin haut gauche
+        if (_positionPersoBlue.X >= _positionPersoRed.X && _positionPersoBlue.X <= _positionPersoRed.X + _width && _positionPersoBlue.Y >= _positionPersoRed.Y && _positionPersoBlue.Y <= _positionPersoRed.Y + _height)
+        {
+            _collision = 0;
+            _positionPersoBlue += new Vector2(10, 10);
+            _positionPersoRed += new Vector2(-10, -10);
+        }
+        if (_positionPersoRed.X >= _positionPersoBlue.X && _positionPersoRed.X <= _positionPersoBlue.X + _width && _positionPersoRed.Y >= _positionPersoBlue.Y && _positionPersoRed.Y <= _positionPersoBlue.Y + _height)
+        {
+            _collision = 0;
+            _positionPersoBlue += new Vector2(-10, -10);
+            _positionPersoRed += new Vector2(10, 10);
+        }
+
+        //coin bas droit
+        if (_positionPersoBlue.X + _width >= _positionPersoRed.X && _positionPersoBlue.X + _width <= _positionPersoRed.X + _width && _positionPersoBlue.Y + _height >= _positionPersoRed.Y && _positionPersoBlue.Y + _height <= _positionPersoRed.Y + _height)
+        {
+            _collision = 0;
+            _positionPersoBlue += new Vector2(-10, -10);
+            _positionPersoRed += new Vector2(10, 10);
+        }
+        if (_positionPersoRed.X + _width >= _positionPersoBlue.X && _positionPersoRed.X + _width <= _positionPersoBlue.X + _width && _positionPersoRed.Y + _height >= _positionPersoBlue.Y && _positionPersoRed.Y + _height <= _positionPersoBlue.Y + _height)
+        {
+            _collision = 0;
+            _positionPersoBlue += new Vector2(10, 10);
+            _positionPersoRed += new Vector2(-10, -10);
+        }
+
+        //coin bas gauche
+        if (_positionPersoBlue.X >= _positionPersoRed.X && _positionPersoBlue.X <= _positionPersoRed.X + _width && _positionPersoBlue.Y + _height >= _positionPersoRed.Y && _positionPersoBlue.Y + _height <= _positionPersoRed.Y + _height)
+        {
+            _collision = 0;
+            _positionPersoBlue += new Vector2(10, -10);
+            _positionPersoRed += new Vector2(-10, 10);
+        }
+        if (_positionPersoRed.X >= _positionPersoBlue.X && _positionPersoRed.X <= _positionPersoBlue.X + _width && _positionPersoRed.Y + _height >= _positionPersoBlue.Y && _positionPersoRed.Y + _height <= _positionPersoBlue.Y + _height)
+        {
+            _collision = 0;
+            _positionPersoBlue += new Vector2(-10, 10);
+            _positionPersoRed += new Vector2(10, -10);
+        }
+
+        else
+        {
+            _collision = 1;
+        }
+
+
+        KeyboardState keyboardState = Keyboard.GetState();
+        
+        //Joueur Rouge
 
         if (keyboardState.IsKeyDown(Keys.Left))
         {
@@ -111,7 +182,7 @@ public class Personnage : GameScreen
 
         _persoRed.Update(gameTime);
 
-        _positionPersoRed += new Vector2((float)accelerationRed * (float)positionPersoRedX, (float)accelerationRed * (float)positionPersoRedY);
+        _positionPersoRed += new Vector2((float)accelerationRed * (float)positionPersoRedX * _collision, (float)accelerationRed * (float)positionPersoRedY * _collision);
 
         //Joueur Bleu
 
@@ -150,11 +221,11 @@ public class Personnage : GameScreen
             _persoBlue.Play("idle");
         }
 
-        if (keyboardState.IsKeyDown(Keys.NumPad1))
+        if (keyboardState.IsKeyDown(Keys.LeftShift))
         {
             accelerationBlue = 1.5;
         }
-        else if (keyboardState.IsKeyUp(Keys.NumPad1))
+        else if (keyboardState.IsKeyUp(Keys.LeftShift))
         {
             accelerationBlue = 1;
         }
@@ -162,13 +233,8 @@ public class Personnage : GameScreen
 
         _persoBlue.Update(gameTime);
 
-        _positionPersoBlue += new Vector2((float)accelerationBlue * (float)positionPersoBlueX, (float)accelerationBlue * (float)positionPersoBlueY);
-        // Collisions
+        _positionPersoBlue += new Vector2((float)accelerationBlue * (float)positionPersoBlueX * _collision, (float)accelerationBlue * (float)positionPersoBlueY * _collision);
 
-        if (_positionPersoBlue.X + _width >= _positionPersoRed.X)
-        {
-            positionPersoBlueX -= 10;
-        }
 
     }
     public override void Draw(GameTime gameTime)
