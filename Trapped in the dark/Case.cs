@@ -8,7 +8,7 @@ namespace Trapped_in_the_dark
 {
     internal class Case
     {
-        private const int dimension = 3;
+        private const int dimension = 12;
         private bool nord, est, ouest, sud;
         private int valeurcase;
 

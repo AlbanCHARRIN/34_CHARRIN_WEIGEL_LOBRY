@@ -32,8 +32,6 @@ public class Menu : GameScreen
     public Menu(Game game) : base(game)
     {
         _myGame = game;
-
-
     }
     public override void Initialize()
     {
