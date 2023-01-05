@@ -85,7 +85,7 @@ namespace Trapped_in_the_dark
             GraphicsDevice.Clear(Color.Salmon);
 
             // TODO: Add your drawing code here
-
+            
             base.Draw(gameTime);
         }
     }
