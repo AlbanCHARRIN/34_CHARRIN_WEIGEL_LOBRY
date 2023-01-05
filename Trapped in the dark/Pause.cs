@@ -4,12 +4,12 @@ using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Screens;
 
 
-public class Labyrinthe : GameScreen
+public class Pause : GameScreen
 {
     private Game _myGame;
     // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est
     // défini dans Game1
-    public Labyrinthe(Game game) : base(game)
+    public Pause(Game game) : base(game)
     {
         _myGame = game;
     }
