@@ -1,6 +1,6 @@
 {
   "textureAtlas": {
-    "texture": "image(4).png",
+    "texture": "image(5).png",
     "regionWidth": 41,
     "regionHeight": 49
   },
@@ -21,12 +21,12 @@
       "frameDuration": 0.05
     },
     "up": {
-      "frames": [18,19,20,21,22,23,24,25],
+      "frames": [17,18,19,20,21,22,23],
       "isLooping": false,
       "frameDuration": 0.05
     },
     "down": {
-      "frames": [30,27,28,29,30,31,32,33],
+      "frames": [27,24,25,26,27,28,29,30],
       "isLooping": false,
       "frameDuration": 0.05
     }

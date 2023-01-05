@@ -10,13 +10,29 @@ public class Personnage : GameScreen
 {
     private Game _myGame;
     private SpriteBatch _spriteBatch { get; set; }
-    private Vector2 _positionPerso;
-    private AnimatedSprite _perso;
     // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est
     // défini dans Game1
-    private double acceleration = 1;
-    private double positionPersoX = 0;
-    private double positionPersoY = 0;
+
+    //constante
+    const int _width = 41;
+    const int _height = 49;
+
+    //Joueur Rouge
+    private Vector2 _positionPersoRed;
+    private AnimatedSprite _persoRed;
+
+    private double accelerationRed = 1;
+    private double positionPersoRedX = 0;
+    private double positionPersoRedY = 0;
+
+
+    //Jouruer Bleu
+    private Vector2 _positionPersoBlue;
+    private AnimatedSprite _persoBlue;
+
+    private double accelerationBlue = 1;
+    private double positionPersoBlueX = 0;
+    private double positionPersoBlueY = 0;
 
     public Personnage(Game game) : base(game)
     {
@@ -26,72 +42,142 @@ public class Personnage : GameScreen
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        _positionPerso = new Vector2(1000,500);
 
-        SpriteSheet spriteSheet = Content.Load<SpriteSheet>("persoAnimation.sf", new JsonContentLoader());
-        _perso = new AnimatedSprite(spriteSheet);
+        //Joueur Rouge
+        _positionPersoRed = new Vector2(1000,500);
+
+        SpriteSheet spriteSheetRed = Content.Load<SpriteSheet>("persoAnimation.sf", new JsonContentLoader());
+        _persoRed = new AnimatedSprite(spriteSheetRed);
+
+        //Joueur Bleu
+        _positionPersoBlue = new Vector2(500, 500);
+
+        SpriteSheet spriteSheetBlue = Content.Load<SpriteSheet>("persoPrincipaleAnimation.sf", new JsonContentLoader());
+        _persoBlue = new AnimatedSprite(spriteSheetBlue);
 
         base.LoadContent();
     }
     public override void Update(GameTime gameTime)
     {
         KeyboardState keyboardState = Keyboard.GetState();
+        
 
-        positionPersoX = 0;
-        positionPersoY = 0;
+        //Joueur Rouge
+
+        positionPersoRedY = 0;
+        positionPersoRedX = 0;
 
         if (keyboardState.IsKeyDown(Keys.Left))
         {
-            _perso.Play("left");
-            positionPersoX = 0;
-            positionPersoY = -10;
+            _persoRed.Play("left");
+            positionPersoRedY = 0;
+            positionPersoRedX = -10;
 
         }
 
         else if (keyboardState.IsKeyDown(Keys.Right))
         {
-            _perso.Play("right");
-            positionPersoX = 0;
-            positionPersoY = 10;
+            _persoRed.Play("right");
+            positionPersoRedY = 0;
+            positionPersoRedX = 10;
         }
 
         else if (keyboardState.IsKeyDown(Keys.Up))
         {
-            _perso.Play("up");
-            positionPersoX = -10;
-            positionPersoY = 0;
+            _persoRed.Play("up");
+            positionPersoRedY = -10;
+            positionPersoRedX = 0;
         }
         else if (keyboardState.IsKeyDown(Keys.Down))
         {
-            _perso.Play("down");
-            positionPersoX = 10;
-            positionPersoY = 0;
+            _persoRed.Play("down");
+            positionPersoRedY = 10;
+            positionPersoRedX = 0;
         }
         else
         {
-            _perso.Play("idle");
+            _persoRed.Play("idle");
         }
 
-        if (keyboardState.IsKeyDown(Keys.LeftShift))
+        if (keyboardState.IsKeyDown(Keys.NumPad1))
         {
-            acceleration = 1.5;
+            accelerationRed = 1.5;
         }
-        else if (keyboardState.IsKeyUp(Keys.LeftShift))
+        else if (keyboardState.IsKeyUp(Keys.NumPad1))
         {
-            acceleration = 1;
+            accelerationRed = 1;
         }
 
 
-        _perso.Update(gameTime);
+        _persoRed.Update(gameTime);
 
-        _positionPerso += new Vector2((float)acceleration * (float)positionPersoY, (float)acceleration * (float)positionPersoX);
+        _positionPersoRed += new Vector2((float)accelerationRed * (float)positionPersoRedX, (float)accelerationRed * (float)positionPersoRedY);
+
+        //Joueur Bleu
+
+        positionPersoBlueY = 0;
+        positionPersoBlueX = 0;
+
+        if (keyboardState.IsKeyDown(Keys.Q))
+        {
+            _persoBlue.Play("left");
+            positionPersoBlueY = 0;
+            positionPersoBlueX = -10;
+
+        }
+
+        else if (keyboardState.IsKeyDown(Keys.D))
+        {
+            _persoBlue.Play("right");
+            positionPersoBlueY = 0;
+            positionPersoBlueX = 10;
+        }
+
+        else if (keyboardState.IsKeyDown(Keys.Z))
+        {
+            _persoBlue.Play("up");
+            positionPersoBlueY = -10;
+            positionPersoBlueX = 0;
+        }
+        else if (keyboardState.IsKeyDown(Keys.S))
+        {
+            _persoBlue.Play("down");
+            positionPersoBlueY = 10;
+            positionPersoBlueX = 0;
+        }
+        else
+        {
+            _persoBlue.Play("idle");
+        }
+
+        if (keyboardState.IsKeyDown(Keys.NumPad1))
+        {
+            accelerationBlue = 1.5;
+        }
+        else if (keyboardState.IsKeyUp(Keys.NumPad1))
+        {
+            accelerationBlue = 1;
+        }
+
+
+        _persoBlue.Update(gameTime);
+
+        _positionPersoBlue += new Vector2((float)accelerationBlue * (float)positionPersoBlueX, (float)accelerationBlue * (float)positionPersoBlueY);
+        // Collisions
+
+        if (_positionPersoBlue.X + _width >= _positionPersoRed.X)
+        {
+            positionPersoBlueX -= 10;
+        }
+
     }
     public override void Draw(GameTime gameTime)
     {
         _myGame.GraphicsDevice.Clear(Color.Gray); // on utilise la reference vers
                                                   // Game1 pour chnager le graphisme
         _spriteBatch.Begin();
-        _spriteBatch.Draw(_perso, _positionPerso);
+        _spriteBatch.Draw(_persoRed, _positionPersoRed);
+        _spriteBatch.Draw(_persoBlue, _positionPersoBlue);
 
         _spriteBatch.End();
     }
