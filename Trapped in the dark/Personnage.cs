@@ -17,6 +17,13 @@ public class Personnage : GameScreen
     const int _width = 37;
     const int _height = 37;
 
+    //Fond noir
+    private Texture2D _fondNoirBlue;
+    private Vector2 _positionFondBlue;
+
+    private Texture2D _fondNoirRed;
+    private Vector2 _positionFondRed;
+
     //Collisions
     int _collision = 1;
     //Joueur Rouge
@@ -54,7 +61,6 @@ public class Personnage : GameScreen
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
         //Joueur Rouge
         _positionPersoRed = new Vector2(1000,500);
 
@@ -79,6 +85,13 @@ public class Personnage : GameScreen
         vieBlue = 3;
         _positionCoeurBlue = _positionPersoBlue + new Vector2(0, -20);
 
+        //Fond noir
+        _fondNoirBlue = Content.Load<Texture2D>("New Piskel(11)");
+        _positionFondBlue = _positionPersoBlue + new Vector2(-_fondNoirBlue.Width / 2 + 10, -_fondNoirBlue.Height / 2 + 10);
+
+        _fondNoirRed = Content.Load<Texture2D>("New Piskel(11)");
+        _positionFondRed = _positionPersoRed + new Vector2(-_fondNoirRed.Width / 2 + 10, -_fondNoirRed.Height / 2 + 10);
+
         base.LoadContent();
     }
     public override void Update(GameTime gameTime)
@@ -91,6 +104,12 @@ public class Personnage : GameScreen
         positionPersoBlueY = 0;
         positionPersoBlueX = 0;
 
+        //Position Fond Noir
+        _positionFondBlue = _positionPersoBlue + new Vector2(-_fondNoirBlue.Width / 2 + 10, -_fondNoirBlue.Height / 2 + 10);
+        _positionFondRed = _positionPersoRed + new Vector2(-_fondNoirRed.Width / 2 + 10, -_fondNoirRed.Height / 2 + 10);
+
+
+        
         // Colisions
 
         //collisions avec décor infligeant des dégats
@@ -269,12 +288,15 @@ public class Personnage : GameScreen
         _positionCoeurBlue = _positionPersoBlue + new Vector2(0, -20);
 
 
+
     }
     public override void Draw(GameTime gameTime)
     {
-        _myGame.GraphicsDevice.Clear(Color.Gray); // on utilise la reference vers
+        _myGame.GraphicsDevice.Clear(Color.Aqua); // on utilise la reference vers
                                                   // Game1 pour chnager le graphisme
         _spriteBatch.Begin();
+        _spriteBatch.Draw(_fondNoirBlue, _positionFondBlue, Microsoft.Xna.Framework.Color.White);
+        _spriteBatch.Draw(_fondNoirRed, _positionFondRed, Microsoft.Xna.Framework.Color.White);
         _spriteBatch.Draw(_persoRed, _positionPersoRed);
         _spriteBatch.Draw(_persoBlue, _positionPersoBlue);
         _spriteBatch.Draw(_CoeurBlue, _positionCoeurBlue);
