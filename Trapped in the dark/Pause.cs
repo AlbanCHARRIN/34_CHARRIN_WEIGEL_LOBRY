@@ -21,7 +21,7 @@ public class Pause : GameScreen
     { }
     public override void Draw(GameTime gameTime)
     {
-        _myGame.GraphicsDevice.Clear(Color.SaddleBrown); // on utilise la reference vers
+        _myGame.GraphicsDevice.Clear(Color.DarkGray); // on utilise la reference vers
                                                          // Game1 pour chnager le graphisme
     }
 }

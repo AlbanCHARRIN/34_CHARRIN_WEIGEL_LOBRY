@@ -12,7 +12,7 @@ namespace Trapped_in_the_dark
         public SpriteBatch _spriteBatch { get; set; }
         private ScreenManager _screenManager;
         private Menu _menu;
-        private Labyrinthe _labyrinthe;
+        private Pause _pause;
         private Personnage _personnage;
         public GraphicsDeviceManager _graphics;
 
@@ -42,7 +42,7 @@ namespace Trapped_in_the_dark
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _menu = new Menu(this);
-            _labyrinthe = new Labyrinthe(this);
+            _pause = new Pause(this);
             _personnage = new Personnage(this);
 
             // TODO: use this.Content to load your game content here
@@ -67,7 +67,7 @@ namespace Trapped_in_the_dark
 
             else if (keyboardState.IsKeyDown(Keys.F3))
             {
-                _screenManager.LoadScreen(_labyrinthe, new FadeTransition(GraphicsDevice,
+                _screenManager.LoadScreen(_pause, new FadeTransition(GraphicsDevice,
                 Color.Black));
             }
 
