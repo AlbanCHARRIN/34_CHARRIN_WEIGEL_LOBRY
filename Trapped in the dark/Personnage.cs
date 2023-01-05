@@ -14,8 +14,8 @@ public class Personnage : GameScreen
     // défini dans Game1
 
     //constante
-    const int _width = 41;
-    const int _height = 49;
+    const int _width = 37;
+    const int _height = 37;
 
     //Collisions
     int _collision = 1;
