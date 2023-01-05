@@ -27,14 +27,24 @@ public class Personnage : GameScreen
     private double positionPersoRedX = 0;
     private double positionPersoRedY = 0;
 
+    //Coeur 
+    private AnimatedSprite _CoeurRed;
+    int vieRed;
+    private Vector2 _positionCoeurRed;
 
-    //Jouruer Bleu
+    //Joueur Bleu
     private Vector2 _positionPersoBlue;
     private AnimatedSprite _persoBlue;
 
     private double accelerationBlue = 1;
     private double positionPersoBlueX = 0;
     private double positionPersoBlueY = 0;
+
+    //Coeur 
+    private AnimatedSprite _CoeurBlue;
+    int vieBlue;
+    private Vector2 _positionCoeurBlue;
+
 
     public Personnage(Game game) : base(game)
     {
@@ -51,11 +61,23 @@ public class Personnage : GameScreen
         SpriteSheet spriteSheetRed = Content.Load<SpriteSheet>("persoAnimation.sf", new JsonContentLoader());
         _persoRed = new AnimatedSprite(spriteSheetRed);
 
+        //Coeur
+        SpriteSheet spriteSheetCoeurRed = Content.Load<SpriteSheet>("coeurPerso.sf", new JsonContentLoader());
+        _CoeurRed = new AnimatedSprite(spriteSheetCoeurRed);
+        vieRed = 3;
+        _positionCoeurRed = _positionPersoRed + new Vector2(0, -20);
+
         //Joueur Bleu
         _positionPersoBlue = new Vector2(500, 500);
 
         SpriteSheet spriteSheetBlue = Content.Load<SpriteSheet>("persoPrincipaleAnimation.sf", new JsonContentLoader());
         _persoBlue = new AnimatedSprite(spriteSheetBlue);
+
+        //Coeur
+        SpriteSheet spriteSheetCoeurBlue = Content.Load<SpriteSheet>("coeurPersoPrincipale.sf", new JsonContentLoader());
+        _CoeurBlue = new AnimatedSprite(spriteSheetCoeurBlue);
+        vieBlue = 3;
+        _positionCoeurBlue = _positionPersoBlue + new Vector2(0, -20);
 
         base.LoadContent();
     }
@@ -69,8 +91,13 @@ public class Personnage : GameScreen
         positionPersoBlueY = 0;
         positionPersoBlueX = 0;
 
+        // Colisions
 
-        //Colisions
+        //collisions avec décor infligeant des dégats
+
+        //collisions avec décor
+
+        //Colisions entre joueur
 
         //coin haut droit
         if (_positionPersoBlue.X + _width >= _positionPersoRed.X && _positionPersoBlue.X + _width <= _positionPersoRed.X + _width && _positionPersoBlue.Y >= _positionPersoRed.Y && _positionPersoBlue.Y <= _positionPersoRed.Y + _height)
@@ -78,6 +105,8 @@ public class Personnage : GameScreen
             _collision = 0;
             _positionPersoBlue += new Vector2(-10,10);
             _positionPersoRed += new Vector2(10,-10);
+            vieRed -= 1;
+            vieBlue -= 1;
         }
         if (_positionPersoRed.X + _width >= _positionPersoBlue.X && _positionPersoRed.X + _width <= _positionPersoBlue.X + _width && _positionPersoRed.Y >= _positionPersoBlue.Y && _positionPersoRed.Y <= _positionPersoBlue.Y + _height)
         {
@@ -236,6 +265,10 @@ public class Personnage : GameScreen
         _positionPersoBlue += new Vector2((float)accelerationBlue * (float)positionPersoBlueX * _collision, (float)accelerationBlue * (float)positionPersoBlueY * _collision);
 
 
+        _positionCoeurRed = _positionPersoRed + new Vector2(0, -20);
+        _positionCoeurBlue = _positionPersoBlue + new Vector2(0, -20);
+
+
     }
     public override void Draw(GameTime gameTime)
     {
@@ -244,6 +277,8 @@ public class Personnage : GameScreen
         _spriteBatch.Begin();
         _spriteBatch.Draw(_persoRed, _positionPersoRed);
         _spriteBatch.Draw(_persoBlue, _positionPersoBlue);
+        _spriteBatch.Draw(_CoeurBlue, _positionCoeurBlue);
+        _spriteBatch.Draw(_CoeurRed, _positionCoeurRed);
 
         _spriteBatch.End();
     }
