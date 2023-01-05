@@ -87,7 +87,7 @@ namespace Trapped_in_the_dark
         }
         public static int[,] GenerateurDuTileset()
         {
-            int[,] tilesets = new int[4 * dimension + 2, 4 * dimension + 2];
+            int[,] tilesets = new int[4 * dimension + 1, 4 * dimension + 1];
             Case[,] tileset = new Case[dimension, dimension];
             int compteur = 0;
             int compteurvaleur = 0;
@@ -148,17 +148,18 @@ namespace Trapped_in_the_dark
                     }
                 }
             }
-            for (int i = 0; i < 4 * dimension + 2; i++)
+            for (int i = 0; i < 4 * dimension; i++)
             {
-                for (int j = 0; j < 4 * dimension + 2; j++)
+                for (int j = 0; j < 4 * dimension; j++)
                     tilesets[i, j] = 0;
             }
-            for (int k = 0; k < 4 * dimension + 2; k++)
+            for (int k = 0; k < 4 * dimension; k++)
             {
                 tilesets[k, 0] = 1;
                 tilesets[0, k] = 1;
-                tilesets[4 * dimension + 1, k] = 1;
-                tilesets[k, 4 * dimension + 1] = 1;
+                tilesets[4 * dimension, k] = 1;
+                tilesets[k, 4 * dimension] = 1;
+                tilesets[4 * dimension, 4 * dimension] = 1;
             }
             for (int i = 1; i < dimension; i++)
             {
@@ -166,37 +167,37 @@ namespace Trapped_in_the_dark
                 {
                     if (tileset[i - 1, j - 1].Est == true)
                     {
-                        tilesets[i * 3 + 1, j * 3 + 1] = 1;
-                        tilesets[i * 3 + 1, j * 3 + 2] = 1;
-                        tilesets[i * 3 + 1, j * 3 + 3] = 1;
-                        tilesets[i * 3 + 1, j * 3 + 4] = 1;
+                        tilesets[i * 4, j * 4 + 1] = 1;
+                        tilesets[i * 4 + 1, j * 4 + 1] = 1;
+                        tilesets[i * 4 + 2, j * 4 + 1] = 1;
+                        tilesets[i * 4 + 3, j * 4 + 1] = 1;
                     }
                     if (tileset[i - 1, j - 1].Sud == true)
                     {
-                        tilesets[i * 3 + 1, j * 3 + 1] = 1;
-                        tilesets[i * 3 + 2, j * 3 + 1] = 1;
-                        tilesets[i * 3 + 3, j * 3 + 1] = 1;
-                        tilesets[i * 3 + 4, j * 3 + 1] = 1;
+                        tilesets[i * 4 + 1, j * 4 + 1] = 1;
+                        tilesets[i * 4 + 1, j * 4 + 2] = 1;
+                        tilesets[i * 4 + 1, j * 4 + 3] = 1;
+                        tilesets[i * 4 + 1, j * 4 + 4] = 1;
                     }
                     if (tileset[i - 1, j - 1].Nord == true)
                     {
-                        tilesets[i * 3 + 1, j * 3 - 1] = 1;
-                        tilesets[i * 3 + 2, j * 3 - 1] = 1;
-                        tilesets[i * 3 + 3, j * 3 - 1] = 1;
-                        tilesets[i * 3 + 4, j * 3 - 1] = 1;
+                        tilesets[i * 3, j * 4] = 1;
+                        tilesets[i * 3, j * 4 + 1] = 1;
+                        tilesets[i * 3, j * 4 + 2] = 1;
+                        tilesets[i * 3, j * 4 + 3] = 1;
                     }
                     if (tileset[i - 1, j - 1].Ouest == true)
                     {
-                        tilesets[i * 3 - 1, j * 3 + 1] = 1;
-                        tilesets[i * 3 - 1, j * 3 + 2] = 1;
-                        tilesets[i * 3 - 1, j * 3 + 3] = 1;
-                        tilesets[i * 3 - 1, j * 3 + 4] = 1;
+                        tilesets[i * 4, j * 3] = 1;
+                        tilesets[i * 4 + 1, j * 3] = 1;
+                        tilesets[i * 4 + 2, j * 3] = 1;
+                        tilesets[i * 4 + 3, j * 3] = 1;
                     }
                 }
             }
             return tilesets;
         }
-        public void AfficheTileset(int[,] tileset)
+        public static void AfficheTileset(int[,] tileset)
         {
             for (int i = 0; i < tileset.GetLength(0); i++)
             {
