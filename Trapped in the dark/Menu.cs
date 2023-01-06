@@ -6,11 +6,11 @@ using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
 using System;
 using System.Threading;
-
+using Trapped_in_the_dark;
 
 public class Menu : GameScreen
 {
-    private Game _myGame;
+    private Game1 _myGame;
     private SpriteBatch _spriteBatch { get; set; }
 
     private Texture2D _background;
@@ -32,17 +32,18 @@ public class Menu : GameScreen
     private ScreenManager _screenManager;
 
 
+   
 
 
     public const int TAILLE_LOGO = 500;
 
-
+    
 
 
 
     // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est
     // défini dans Game1
-    public Menu(Game game) : base(game)
+    public Menu(Game1 game) : base(game)
     {
         _myGame = game;
     }
@@ -58,6 +59,8 @@ public class Menu : GameScreen
 
         _screenManager = new ScreenManager();
         _myGame.Components.Add(_screenManager);
+
+     
 
         base.Initialize();
     }
@@ -93,14 +96,13 @@ public class Menu : GameScreen
 
         if (_positionLogo.Y >= 0 && _positionLogo.Y < 20)
             _positionLogo.Y = _positionLogo.Y + 1;
-
-
+      
+        
         if (_rSouris.Intersects(_recBoutonQuitter))
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
 
-                _screenManager.LoadScreen(_personnage, new FadeTransition(GraphicsDevice,
-                Color.Black));
+                _myGame.Etat = Game1.Etats.Play;
             }
         //_myGame.Exit();
 
