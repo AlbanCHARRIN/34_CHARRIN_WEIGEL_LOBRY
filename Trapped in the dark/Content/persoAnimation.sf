@@ -8,27 +8,27 @@
     "idle": {
       "frames": [0],
       "isLooping": false,
-      "frameDuration": 0.10
+      "frameDuration": 0.01
     },
     "left": {
       "frames": [1,2,3,4,5,6,7,8],
       "isLooping": false,
-      "frameDuration": 0.10
+      "frameDuration": 0.01
     },
     "right": {
       "frames": [9,10,11,12,13,14,15,16],
       "isLooping": false,
-      "frameDuration": 0.10
+      "frameDuration": 0.01
     },
     "up": {
       "frames": [18,19,20,21,22,23,24,25],
       "isLooping": false,
-      "frameDuration": 0.10
+      "frameDuration": 0.01
     },
     "down": {
       "frames": [30,27,28,29,30,31,32,33],
       "isLooping": false,
-      "frameDuration": 0.10
+      "frameDuration": 0.01
     }
   }
 }
