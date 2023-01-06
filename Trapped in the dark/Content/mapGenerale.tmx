@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down"
-width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="1">
-<tileset firstgid="1" name="env" tilewidth="16" tileheight="16" tilecount="350" columns="25">
-<image source="mapGenerale_Tuiles.png" width="400" height="224"/>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="1">
+ <tileset firstgid="1" name="env" tilewidth="16" tileheight="16" tilecount="350" columns="25">
+  <image source="mapGeneraleTuiles.png" width="400" height="224"/>
  </tileset>
  <layer id="1" name="sol" width="50" height="40">
   <data encoding="csv">
