@@ -18,6 +18,7 @@ public class Personnage : GameScreen
     // Map
     private TiledMap _tiledMap;
     private TiledMapRenderer _tiledMapRenderer;
+    private TiledMapTileLayer mapLayer;
 
     //constante
     const int _width = 37;
