@@ -209,6 +209,7 @@ public class Personnage : GameScreen
             {
                 _collisionVectorRed = new Vector2(0, -10);
                 _directioncollison = "down";
+                _tiledMap.Properties.Clear();
             }
 
         }
