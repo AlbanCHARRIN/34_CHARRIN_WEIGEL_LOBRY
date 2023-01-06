@@ -9,7 +9,7 @@ namespace Trapped_in_the_dark
     internal class Case
     {
         private const int dimensionx = 3;
-        private const int dimensiony = 6;
+        private const int dimensiony = 3;
         private bool nord, est, ouest, sud;
         private int valeurcase;
 
@@ -86,12 +86,19 @@ namespace Trapped_in_the_dark
             return obj is Case @case &&
                    Valeurcase == @case.Valeurcase;
         }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Valeurcase);
+        }
         public static int[,] GenerateurDuTileset()
         {
             int[,] tilesets = new int[4 * dimensionx + 1, 4 * dimensiony + 1];
             Case[,] tileset = new Case[dimensionx, dimensiony];
             int compteur = 0;
             int compteurvaleur = 0;
+            Random rand = new Random();
+            Random rand2 = new Random();
+            Random direction = new Random();
             for (int i = 0; i < dimensionx; i++)
             {
                 for (int j = 0; j < dimensiony; j++)
@@ -102,12 +109,9 @@ namespace Trapped_in_the_dark
             }
             while (compteur < dimensionx * dimensiony - 1)
             {
-                Random rand = new Random();
-                Random rand2 = new Random();
-                Random direction = new Random();
                 int randnext = rand.Next(1, dimensionx - 1);
                 int rand2next = rand2.Next(1, dimensiony - 1);
-                int directionnext = direction.Next(0, 4);
+                int directionnext = direction.Next(1, 4);
                 if (directionnext == 1)
                 {
                     if (tileset[randnext, rand2next] != tileset[randnext, rand2next - 1])
@@ -116,14 +120,14 @@ namespace Trapped_in_the_dark
                         {
                             for (int l = 0; l < dimensiony; l++)
                             {
-                                if (tileset[k, l].Valeurcase == tileset[randnext, rand2next - 1].Valeurcase)
+                                if (tileset[k, l] == tileset[randnext, rand2next - 1])
                                 {
                                     tileset[k, l].Valeurcase = tileset[randnext, rand2next].Valeurcase;
                                 }
                             }
                         }
-                        tileset[randnext, rand2next - 1].Nord = true;
-                        tileset[randnext, rand2next].Sud = true;
+                        tileset[randnext, rand2next + 1].Sud = true;
+                        tileset[randnext, rand2next].Nord = true;
                         compteur++;
                     }
                 }
@@ -135,7 +139,7 @@ namespace Trapped_in_the_dark
                         {
                             for (int l = 0; l < dimensiony; l++)
                             {
-                                if (tileset[k, l].Valeurcase == tileset[randnext + 1, rand2next].Valeurcase)
+                                if (tileset[k, l] == tileset[randnext + 1, rand2next])
                                 {
                                     tileset[k, l].Valeurcase = tileset[randnext, rand2next].Valeurcase;
                                 }
@@ -154,14 +158,14 @@ namespace Trapped_in_the_dark
                         {
                             for (int l = 0; l < dimensiony; l++)
                             {
-                                if (tileset[k, l].Valeurcase == tileset[randnext, rand2next + 1].Valeurcase)
+                                if (tileset[k, l] == tileset[randnext, rand2next + 1])
                                 {
                                     tileset[k, l].Valeurcase = tileset[randnext, rand2next].Valeurcase;
                                 }
                             }
                         }
                         tileset[randnext, rand2next + 1].Sud = true;
-                        tileset[randnext + 1, rand2next].Nord = true;
+                        tileset[randnext, rand2next].Nord = true;
                         compteur++;
                     }
                 }
@@ -173,14 +177,14 @@ namespace Trapped_in_the_dark
                         {
                             for (int l = 0; l < dimensiony; l++)
                             {
-                                if (tileset[k, l].Valeurcase == tileset[randnext - 1, rand2next].Valeurcase)
+                                if (tileset[k, l] == tileset[randnext - 1, rand2next])
                                 {
                                     tileset[k, l].Valeurcase = tileset[randnext, rand2next].Valeurcase;
                                 }
                             }
                         }
-                        tileset[randnext - 1, rand2next].Ouest = true;
-                        tileset[randnext, rand2next].Est = true;
+                        tileset[randnext - 1, rand2next].Est = true;
+                        tileset[randnext, rand2next].Ouest = true;
                         compteur++;
                     }
                 }
@@ -201,9 +205,9 @@ namespace Trapped_in_the_dark
                     tilesets[4 * dimensionx, 4 * dimensiony] = 1;
                 }
             }
-            for (int i = 1; i < dimensionx; i++)
+            for (int i = 1; i < dimensionx + 1; i++)
             {
-                for (int j = 1; j < dimensiony; j++)
+                for (int j = 1; j < dimensiony + 1; j++)
                 {
                     if (tileset[i - 1, j - 1].Est == false)
                     {
@@ -237,6 +241,7 @@ namespace Trapped_in_the_dark
             }
             return tilesets;
         }
+
         public static void AfficheTileset(int[,] tileset)
         {
             for (int i = 0; i < tileset.GetLength(0); i++)
@@ -246,5 +251,7 @@ namespace Trapped_in_the_dark
                 Console.WriteLine("\n");
             }
         }
+
+        
     }
 }
