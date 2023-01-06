@@ -20,6 +20,7 @@ public class Personnage : GameScreen
     private TiledMap _tiledMap;
     private TiledMapRenderer _tiledMapRenderer;
     private TiledMapTileLayer mapLayer;
+    private TiledMapTileset tileset;
 
     //constante
     const int _width = 37;
@@ -75,6 +76,10 @@ public class Personnage : GameScreen
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+
+        // colision
+
+        _directioncollison = "idle";
         //tileMap
         _tiledMap = Content.Load<TiledMap>("mapGenerale");
         _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
@@ -161,8 +166,9 @@ public class Personnage : GameScreen
             ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorRed = new Vector2(10, 0);
-                _directioncollison = "left";
+                _collisionVectorRed = new Vector2(11, 0);
+                if (_directioncollison == "idle")
+                    _directioncollison = "left";
             }
 
 
@@ -177,8 +183,9 @@ public class Personnage : GameScreen
             ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorRed = new Vector2(-10,0);
-                _directioncollison = "right";
+                _collisionVectorRed = new Vector2(-11,0);
+                if (_directioncollison == "idle")
+                    _directioncollison = "right";
             }
             
 
@@ -194,8 +201,9 @@ public class Personnage : GameScreen
 
             if (IsCollision(tx, ty))
             {
-                _collisionVectorRed = new Vector2(0, 10);
-                _directioncollison = "up";
+                _collisionVectorRed = new Vector2(0, 11);
+                if (_directioncollison == "idle")
+                    _directioncollison = "up";
             }
         }
         else if (keyboardState.IsKeyDown(Keys.Down))
@@ -207,9 +215,9 @@ public class Personnage : GameScreen
             ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorRed = new Vector2(0, -10);
-                _directioncollison = "down";
-                _tiledMap.Properties.Clear();
+                _collisionVectorRed = new Vector2(0, -11);
+                if (_directioncollison == "idle")
+                    _directioncollison = "down";
             }
 
         }
@@ -236,6 +244,7 @@ public class Personnage : GameScreen
                 {
                     _collisionVectorRed = new Vector2(0, -10);
                 }
+                _directioncollison = "idle";
             }
         }
 
