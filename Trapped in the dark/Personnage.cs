@@ -5,6 +5,8 @@ using MonoGame.Extended.Content;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.Serialization;
 using MonoGame.Extended.Sprites;
+using MonoGame.Extended.Tiled;
+using MonoGame.Extended.Tiled.Renderers;
 
 public class Personnage : GameScreen
 {
@@ -13,13 +15,17 @@ public class Personnage : GameScreen
     // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est
     // défini dans Game1
 
+    // Map
+    private TiledMap _tiledMap;
+    private TiledMapRenderer _tiledMapRenderer;
+
     //constante
     const int _width = 37;
     const int _height = 37;
 
-    //Fond noir
+    /*Fond noir
     private Texture2D _fondNoirBlue;
-    private Vector2 _positionFondBlue;
+    private Vector2 _positionFondBlue;*/
 
     private Texture2D _fondNoirRed;
     private Vector2 _positionFondRed;
