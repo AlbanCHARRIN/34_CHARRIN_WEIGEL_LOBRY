@@ -26,6 +26,7 @@ public class Menu : GameScreen
     private Rectangle _recBoutonQuitter;
     private Rectangle _recBoutonJouer;
 
+    private Texture2D _RectangleHover;
 
     private MouseState _mouseState;
     private Rectangle _rSouris;
@@ -81,6 +82,8 @@ public class Menu : GameScreen
 
         _font = Content.Load<SpriteFont>("PixelFont");
 
+        _RectangleHover = Content.Load <Texture2D>("Carre");
+
         //_personnage = new Personnage(this);
 
 
@@ -130,6 +133,8 @@ public class Menu : GameScreen
 
 
         if (_rSouris.Intersects(_recBoutonQuitter))
+
+
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
                 _myGame.Etat = Game1.Etats.Quit;
@@ -163,7 +168,12 @@ public class Menu : GameScreen
             _spriteBatch.DrawString(_font, "Quitter", _positionBoutonQuitter, Microsoft.Xna.Framework.Color.White);
 
 
-            _spriteBatch.End();
+            if (_rSouris.Intersects(_recBoutonQuitter))
+            {
+                _spriteBatch.Draw(_RectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2)-200, 700), Microsoft.Xna.Framework.Color.White);
+            }
+
+                _spriteBatch.End();
 
         }
 
