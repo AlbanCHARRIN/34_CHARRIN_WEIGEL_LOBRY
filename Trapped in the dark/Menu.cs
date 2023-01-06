@@ -56,7 +56,7 @@ public class Menu : GameScreen
         _positionBoutonOptions = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 143, 600);
         _positionBoutonQuitter = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 141, 700);
 
-        _recBoutonJouer = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - 120, 500, 245, 50);
+        _recBoutonJouer = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - 120, 515, 245, 50);
         _recBoutonQuitter = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - 150, 700, 300, 70);
 
 
