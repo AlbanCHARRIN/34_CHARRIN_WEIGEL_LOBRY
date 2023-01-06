@@ -8,7 +8,7 @@ namespace Trapped_in_the_dark
 {
     internal class Case
     {
-        private const int dimension = 12;
+        private const int dimension = 6;
         private bool nord, est, ouest, sud;
         private int valeurcase;
 
@@ -165,33 +165,33 @@ namespace Trapped_in_the_dark
             {
                 for (int j = 1; j < dimension; j++)
                 {
-                    if (tileset[i - 1, j - 1].Est == true)
+                    if (tileset[i - 1, j - 1].Est == false)
                     {
-                        tilesets[i * 4, j * 4 + 1] = 1;
-                        tilesets[i * 4 + 1, j * 4 + 1] = 1;
-                        tilesets[i * 4 + 2, j * 4 + 1] = 1;
-                        tilesets[i * 4 + 3, j * 4 + 1] = 1;
+                        tilesets[i * 4, j * 4] = 1;
+                        tilesets[i * 4 - 1, j * 4] = 1;
+                        tilesets[i * 4 - 2, j * 4] = 1;
+                        tilesets[i * 4 - 3, j * 4] = 1;
                     }
-                    if (tileset[i - 1, j - 1].Sud == true)
+                    if (tileset[i - 1, j - 1].Sud == false)
                     {
-                        tilesets[i * 4 + 1, j * 4 + 1] = 1;
-                        tilesets[i * 4 + 1, j * 4 + 2] = 1;
-                        tilesets[i * 4 + 1, j * 4 + 3] = 1;
-                        tilesets[i * 4 + 1, j * 4 + 4] = 1;
+                        tilesets[i * 4, j * 4] = 1;
+                        tilesets[i * 4, j * 4 - 1] = 1;
+                        tilesets[i * 4, j * 4 - 2] = 1;
+                        tilesets[i * 4, j * 4 - 3] = 1;
                     }
-                    if (tileset[i - 1, j - 1].Nord == true)
+                    if (tileset[i - 1, j - 1].Nord == false)
                     {
-                        tilesets[i * 3, j * 4] = 1;
-                        tilesets[i * 3, j * 4 + 1] = 1;
-                        tilesets[i * 3, j * 4 + 2] = 1;
-                        tilesets[i * 3, j * 4 + 3] = 1;
+                        tilesets[(i - 1) * 4, j * 4] = 1;
+                        tilesets[(i - 1) * 4, j * 4 - 1] = 1;
+                        tilesets[(i - 1) * 4, j * 4 - 2] = 1;
+                        tilesets[(i - 1) * 4, j * 4 - 3] = 1;
                     }
-                    if (tileset[i - 1, j - 1].Ouest == true)
+                    if (tileset[i - 1, j - 1].Ouest == false)
                     {
-                        tilesets[i * 4, j * 3] = 1;
-                        tilesets[i * 4 + 1, j * 3] = 1;
-                        tilesets[i * 4 + 2, j * 3] = 1;
-                        tilesets[i * 4 + 3, j * 3] = 1;
+                        tilesets[i * 4, (j - 1) * 4] = 1;
+                        tilesets[i * 4 - 1, (j - 1) * 4] = 1;
+                        tilesets[i * 4 - 2, (j - 1) * 4] = 1;
+                        tilesets[i * 4 - 3, (j - 1) * 4] = 1;
                     }
                 }
             }
