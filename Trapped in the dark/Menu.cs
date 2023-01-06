@@ -21,10 +21,12 @@ public class Menu : GameScreen
 
     private SpriteFont _font;
     private Vector2 _positionBoutonJouer;
-    private Vector2 _positionBoutonOptions;
+    private Vector2 _positionBoutonControles;
     private Vector2 _positionBoutonQuitter;
     private Rectangle _recBoutonQuitter;
     private Rectangle _recBoutonJouer;
+    private Rectangle _recBoutonControles;
+
 
     private Texture2D _RectangleHover;
 
@@ -40,7 +42,13 @@ public class Menu : GameScreen
 
     public const int TAILLE_LOGO = 500;
 
+    public const int POSISTION_BOUTON_JOUER_CENTRER = 115;
+    public const int POSISTION_RECTANGLE_JOUER_CENTRER = 120;
 
+    public const int POSISTION_BOUTON_CONTROLES_CENTRER = 207;
+
+    public const int POSISTION_BOUTON_QUITTER_CENTRER = 141;
+    public const int POSISTION_RECTANGLE_QUITTER_CENTRER = 150;
 
 
 
@@ -53,12 +61,12 @@ public class Menu : GameScreen
     public override void Initialize()
     {
 
-        _positionBoutonJouer = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 115, 500);
-        _positionBoutonOptions = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 143, 600);
-        _positionBoutonQuitter = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 141, 700);
+        _positionBoutonJouer = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - POSISTION_BOUTON_JOUER_CENTRER, 500);
+        _positionBoutonControles = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - POSISTION_BOUTON_CONTROLES_CENTRER, 600);
+        _positionBoutonQuitter = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - POSISTION_BOUTON_QUITTER_CENTRER, 700);
 
-        _recBoutonJouer = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - 120, 515, 245, 50);
-        _recBoutonQuitter = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - 150, 700, 300, 70);
+        _recBoutonJouer = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - POSISTION_RECTANGLE_JOUER_CENTRER, 515, 245, 50);
+        _recBoutonQuitter = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - POSISTION_RECTANGLE_QUITTER_CENTRER, 700, 300, 70);
 
 
         _positionLogo = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - (TAILLE_LOGO / 2), 0);
@@ -76,7 +84,7 @@ public class Menu : GameScreen
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        _background = Content.Load<Texture2D>("background");
+        _background = Content.Load<Texture2D>("background2");
 
         _logo = Content.Load<Texture2D>("Logo");
 
@@ -164,16 +172,20 @@ public class Menu : GameScreen
             _spriteBatch.Draw(_logo, _positionLogo, Microsoft.Xna.Framework.Color.White);
 
             _spriteBatch.DrawString(_font, "Jouer", _positionBoutonJouer, Microsoft.Xna.Framework.Color.White);
-            _spriteBatch.DrawString(_font, "Options", _positionBoutonOptions, Microsoft.Xna.Framework.Color.White);
+            _spriteBatch.DrawString(_font, "Controles", _positionBoutonControles, Microsoft.Xna.Framework.Color.White);
             _spriteBatch.DrawString(_font, "Quitter", _positionBoutonQuitter, Microsoft.Xna.Framework.Color.White);
 
 
             if (_rSouris.Intersects(_recBoutonQuitter))
             {
-                _spriteBatch.Draw(_RectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2)-200, 700), Microsoft.Xna.Framework.Color.White);
+                _spriteBatch.Draw(_RectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2)-200, 695), Microsoft.Xna.Framework.Color.White);
+            }
+            if (_rSouris.Intersects(_recBoutonJouer))
+            {
+                _spriteBatch.Draw(_RectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 495), Microsoft.Xna.Framework.Color.White);
             }
 
-                _spriteBatch.End();
+            _spriteBatch.End();
 
         }
 
