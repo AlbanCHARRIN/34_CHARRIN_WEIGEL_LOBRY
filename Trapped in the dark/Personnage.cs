@@ -7,6 +7,7 @@ using MonoGame.Extended.Serialization;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
+using System;
 
 public class Personnage : GameScreen
 {
@@ -32,7 +33,13 @@ public class Personnage : GameScreen
     private Vector2 _positionFondRed;*/
 
     //Collisions
-    int _collision = 1;
+    bool _collision = false;
+    string _directioncollison;
+    Vector2 _collisionVectorPersonnageRed;
+    Vector2 _collisionVectorPersonnageBlue;
+    Vector2 _collisionVectorRed;
+    Vector2 _collisionVectorBlue;
+
     //Joueur Rouge
     private Vector2 _positionPersoRed;
     private AnimatedSprite _persoRed;
@@ -74,8 +81,10 @@ public class Personnage : GameScreen
 
         GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
+        mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("obstacles");
+
         //Joueur Rouge
-        _positionPersoRed = new Vector2(1000,500);
+        _positionPersoRed = new Vector2(400,500);
 
         SpriteSheet spriteSheetRed = Content.Load<SpriteSheet>("persoAnimation.sf", new JsonContentLoader());
         _persoRed = new AnimatedSprite(spriteSheetRed);
@@ -122,8 +131,9 @@ public class Personnage : GameScreen
         _positionFondRed = _positionPersoRed + new Vector2(-_fondNoirRed.Width / 2 + 10, -_fondNoirRed.Height / 2 + 10);*/
 
 
-        
+
         // Colisions
+
 
         //collisions avec décor infligeant des dégats
 
@@ -131,72 +141,15 @@ public class Personnage : GameScreen
 
         //Colisions entre joueur
 
-        //coin haut droit
-        if (_positionPersoBlue.X + _width >= _positionPersoRed.X && _positionPersoBlue.X + _width <= _positionPersoRed.X + _width && _positionPersoBlue.Y >= _positionPersoRed.Y && _positionPersoBlue.Y <= _positionPersoRed.Y + _height)
-        {
-            _collision = 0;
-            _positionPersoBlue += new Vector2(-10,10);
-            _positionPersoRed += new Vector2(10,-10);
-            vieRed -= 1;
-            vieBlue -= 1;
-        }
-        if (_positionPersoRed.X + _width >= _positionPersoBlue.X && _positionPersoRed.X + _width <= _positionPersoBlue.X + _width && _positionPersoRed.Y >= _positionPersoBlue.Y && _positionPersoRed.Y <= _positionPersoBlue.Y + _height)
-        {
-            _collision = 0;
-            _positionPersoBlue += new Vector2(10, -10);
-            _positionPersoRed += new Vector2(-10, 10);
-        }
+        _collisionVectorPersonnageRed = CollisionAvecUnPersonnage(_positionPersoRed, _positionPersoBlue);
+        _collisionVectorPersonnageBlue = CollisionAvecUnPersonnage(_positionPersoBlue, _positionPersoRed);
 
-        //coin haut gauche
-        if (_positionPersoBlue.X >= _positionPersoRed.X && _positionPersoBlue.X <= _positionPersoRed.X + _width && _positionPersoBlue.Y >= _positionPersoRed.Y && _positionPersoBlue.Y <= _positionPersoRed.Y + _height)
-        {
-            _collision = 0;
-            _positionPersoBlue += new Vector2(10, 10);
-            _positionPersoRed += new Vector2(-10, -10);
-        }
-        if (_positionPersoRed.X >= _positionPersoBlue.X && _positionPersoRed.X <= _positionPersoBlue.X + _width && _positionPersoRed.Y >= _positionPersoBlue.Y && _positionPersoRed.Y <= _positionPersoBlue.Y + _height)
-        {
-            _collision = 0;
-            _positionPersoBlue += new Vector2(-10, -10);
-            _positionPersoRed += new Vector2(10, 10);
-        }
-
-        //coin bas droit
-        if (_positionPersoBlue.X + _width >= _positionPersoRed.X && _positionPersoBlue.X + _width <= _positionPersoRed.X + _width && _positionPersoBlue.Y + _height >= _positionPersoRed.Y && _positionPersoBlue.Y + _height <= _positionPersoRed.Y + _height)
-        {
-            _collision = 0;
-            _positionPersoBlue += new Vector2(-10, -10);
-            _positionPersoRed += new Vector2(10, 10);
-        }
-        if (_positionPersoRed.X + _width >= _positionPersoBlue.X && _positionPersoRed.X + _width <= _positionPersoBlue.X + _width && _positionPersoRed.Y + _height >= _positionPersoBlue.Y && _positionPersoRed.Y + _height <= _positionPersoBlue.Y + _height)
-        {
-            _collision = 0;
-            _positionPersoBlue += new Vector2(10, 10);
-            _positionPersoRed += new Vector2(-10, -10);
-        }
-
-        //coin bas gauche
-        if (_positionPersoBlue.X >= _positionPersoRed.X && _positionPersoBlue.X <= _positionPersoRed.X + _width && _positionPersoBlue.Y + _height >= _positionPersoRed.Y && _positionPersoBlue.Y + _height <= _positionPersoRed.Y + _height)
-        {
-            _collision = 0;
-            _positionPersoBlue += new Vector2(10, -10);
-            _positionPersoRed += new Vector2(-10, 10);
-        }
-        if (_positionPersoRed.X >= _positionPersoBlue.X && _positionPersoRed.X <= _positionPersoBlue.X + _width && _positionPersoRed.Y + _height >= _positionPersoBlue.Y && _positionPersoRed.Y + _height <= _positionPersoBlue.Y + _height)
-        {
-            _collision = 0;
-            _positionPersoBlue += new Vector2(-10, 10);
-            _positionPersoRed += new Vector2(10, -10);
-        }
-
-        else
-        {
-            _collision = 1;
-        }
+        //collision avec le monde
 
 
+        float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
         KeyboardState keyboardState = Keyboard.GetState();
-        
+
         //Joueur Rouge
 
         if (keyboardState.IsKeyDown(Keys.Left))
@@ -204,6 +157,14 @@ public class Personnage : GameScreen
             _persoRed.Play("left");
             positionPersoRedY = 0;
             positionPersoRedX = -10;
+            ushort tx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
+            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
+            if (IsCollision(tx, ty))
+            {
+                _collisionVectorRed = new Vector2(10, 0);
+                _directioncollison = "left";
+            }
+
 
         }
 
@@ -212,23 +173,69 @@ public class Personnage : GameScreen
             _persoRed.Play("right");
             positionPersoRedY = 0;
             positionPersoRedX = 10;
+            ushort tx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
+            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
+            if (IsCollision(tx, ty))
+            {
+                _collisionVectorRed = new Vector2(-10,0);
+                _directioncollison = "right";
+            }
+            
+
         }
 
         else if (keyboardState.IsKeyDown(Keys.Up))
         {
+            ushort tx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
+            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
             _persoRed.Play("up");
             positionPersoRedY = -10;
             positionPersoRedX = 0;
+
+            if (IsCollision(tx, ty))
+            {
+                _collisionVectorRed = new Vector2(0, 10);
+                _directioncollison = "up";
+            }
         }
         else if (keyboardState.IsKeyDown(Keys.Down))
         {
             _persoRed.Play("down");
             positionPersoRedY = 10;
             positionPersoRedX = 0;
+            ushort tx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
+            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
+            if (IsCollision(tx, ty))
+            {
+                _collisionVectorRed = new Vector2(0, -10);
+                _directioncollison = "down";
+            }
+
         }
         else
         {
             _persoRed.Play("idle");
+            ushort tx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
+            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
+            if (IsCollision(tx, ty))
+            {
+                if (_directioncollison == "left")
+                {
+                    _collisionVectorRed = new Vector2(10, 0);
+                }
+                else if (_directioncollison == "right")
+                {
+                    _collisionVectorRed = new Vector2(-10, 0);
+                }
+                else if (_directioncollison == "up")
+                {
+                    _collisionVectorRed = new Vector2(0, 10);
+                }
+                else if (_directioncollison == "down")
+                {
+                    _collisionVectorRed = new Vector2(0, -10);
+                }
+            }
         }
 
         if (keyboardState.IsKeyDown(Keys.NumPad1))
@@ -241,9 +248,6 @@ public class Personnage : GameScreen
         }
 
 
-        _persoRed.Update(gameTime);
-
-        _positionPersoRed += new Vector2((float)accelerationRed * (float)positionPersoRedX * _collision, (float)accelerationRed * (float)positionPersoRedY * _collision);
 
         //Joueur Bleu
 
@@ -291,11 +295,29 @@ public class Personnage : GameScreen
             accelerationBlue = 1;
         }
 
-
+        _persoRed.Update(gameTime);
         _persoBlue.Update(gameTime);
 
-        _positionPersoBlue += new Vector2((float)accelerationBlue * (float)positionPersoBlueX * _collision, (float)accelerationBlue * (float)positionPersoBlueY * _collision);
+        if (_collision == false)
+        {
+            _positionPersoBlue += new Vector2((float)accelerationBlue * (float)positionPersoBlueX, (float)accelerationBlue * (float)positionPersoBlueY);
+            _positionPersoRed += new Vector2((float)accelerationRed * (float)positionPersoRedX, (float)accelerationRed * (float)positionPersoRedY);
+            _collision = true;
+            _positionPersoBlue += _collisionVectorPersonnageBlue;
+        }
+        else if (_collision == true)
+        {
+            _positionPersoRed += new Vector2((float)accelerationRed * (float)positionPersoRedX, (float)accelerationRed * (float)positionPersoRedY);
+            _positionPersoBlue += new Vector2((float)accelerationBlue * (float)positionPersoBlueX, (float)accelerationBlue * (float)positionPersoBlueY);
+            _collision = false;
+            _positionPersoRed += _collisionVectorPersonnageRed;
+        }
 
+        _positionPersoBlue += _collisionVectorBlue;
+        _positionPersoRed += _collisionVectorRed;
+
+        _collisionVectorBlue = new Vector2(0,0);
+        _collisionVectorRed = new Vector2(0,0);
 
         _positionCoeurRed = _positionPersoRed + new Vector2(0, -20);
         _positionCoeurBlue = _positionPersoBlue + new Vector2(0, -20);
@@ -318,4 +340,49 @@ public class Personnage : GameScreen
 
         _spriteBatch.End();
     }
+
+
+    private bool IsCollision(ushort x, ushort y)
+    {
+        // définition de tile qui peut être null (?)
+        TiledMapTile? tile;
+        if (mapLayer.TryGetTile(x, y, out tile) == false)
+            return false;
+        if (!tile.Value.IsBlank)
+            return true;
+        return false;
+    }
+
+    private Vector2 CollisionAvecUnPersonnage(Vector2 positionPersonnage, Vector2 positionAutre)
+    {
+        Vector2 recul = new Vector2(0,0);
+        //coin haut droit
+        if (positionPersonnage.X + _width >= positionAutre.X && positionPersonnage.X + _width <= positionAutre.X + _width && positionPersonnage.Y >= positionAutre.Y && positionPersonnage.Y <= positionAutre.Y + _height)
+        {
+            return recul = new Vector2(-10, 10);
+        }
+
+        //coin haut gauche
+        if (positionPersonnage.X >= positionAutre.X && positionPersonnage.X <= positionAutre.X + _width && positionPersonnage.Y >= positionAutre.Y && positionPersonnage.Y <= positionAutre.Y + _height)
+        {
+            return recul = new Vector2(10, 10);
+        }
+
+        //coin bas droit
+        if (positionPersonnage.X + _width >= positionAutre.X && positionPersonnage.X + _width <= positionAutre.X + _width && positionPersonnage.Y + _height >= positionAutre.Y && positionPersonnage.Y + _height <= positionAutre.Y + _height)
+        {
+            return recul = new Vector2(-10, -10);
+        }
+
+        //coin bas gauche
+        if (positionPersonnage.X >= positionAutre.X && positionPersonnage.X <= positionAutre.X + _width && positionPersonnage.Y + _height >= positionAutre.Y && positionPersonnage.Y + _height <= positionAutre.Y + _height)
+        {
+            return recul = new Vector2(10, -10);
+        }
+        else
+        {
+            return recul;
+        }
+    }
+
 }

@@ -24,20 +24,22 @@ public class Menu : GameScreen
     private Vector2 _positionBoutonOptions;
     private Vector2 _positionBoutonQuitter;
     private Rectangle _recBoutonQuitter;
+    private Rectangle _recBoutonJouer;
+
 
     private MouseState _mouseState;
     private Rectangle _rSouris;
 
-    private Personnage _personnage;
+
     private ScreenManager _screenManager;
 
 
-   
+    private int etatMouvement = 0;
 
 
     public const int TAILLE_LOGO = 500;
 
-    
+
 
 
 
@@ -50,17 +52,20 @@ public class Menu : GameScreen
     public override void Initialize()
     {
 
-        _positionBoutonJouer = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 120, 500);
-        _positionBoutonOptions = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 130, 600);
-        _positionBoutonQuitter = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 130, 700);
-        _recBoutonQuitter = new Rectangle(0, 0, 50, 50);
+        _positionBoutonJouer = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 115, 500);
+        _positionBoutonOptions = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 143, 600);
+        _positionBoutonQuitter = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 141, 700);
+
+        _recBoutonJouer = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - 120, 500, 245, 50);
+        _recBoutonQuitter = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - 150, 700, 300, 70);
+
 
         _positionLogo = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - (TAILLE_LOGO / 2), 0);
 
         _screenManager = new ScreenManager();
         _myGame.Components.Add(_screenManager);
 
-     
+
 
         base.Initialize();
     }
@@ -94,17 +99,51 @@ public class Menu : GameScreen
         _rSouris.X = _mouseState.X;
         _rSouris.Y = _mouseState.Y;
 
-        if (_positionLogo.Y >= 0 && _positionLogo.Y < 20)
-            _positionLogo.Y = _positionLogo.Y + 1;
-      
-        
+        /*if (_positionLogo.Y >= 0 && _positionLogo.Y <= 20)
+            _positionLogo.Y = _positionLogo.Y + 1;*/
+
+
+
+        if (_positionLogo.Y < 0)
+        {
+            etatMouvement = 0;
+        }
+        if (_positionLogo.Y > 20)
+            etatMouvement = 1;
+
+
+
+        if (etatMouvement == 0)
+        {
+            _positionLogo.Y = _positionLogo.Y + (float)0.3;
+
+        }
+
+
+
+
+        if (etatMouvement == 1)
+            _positionLogo.Y = _positionLogo.Y - (float)0.3;
+
+
+
+
+
         if (_rSouris.Intersects(_recBoutonQuitter))
+            if (_mouseState.LeftButton == ButtonState.Pressed)
+            {
+                _myGame.Etat = Game1.Etats.Quit;
+
+            }
+
+        if (_rSouris.Intersects(_recBoutonJouer))
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
 
                 _myGame.Etat = Game1.Etats.Play;
             }
-        //_myGame.Exit();
+
+
 
     }
     public override void Draw(GameTime gameTime)

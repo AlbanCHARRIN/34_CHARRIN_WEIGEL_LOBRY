@@ -39,11 +39,11 @@ namespace Trapped_in_the_dark
 
         public Game1()
         {
-           
+
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-           
+
             _menu = new Menu(this);
             _pause = new Pause(this);
             _personnage = new Personnage(this);
@@ -88,8 +88,15 @@ namespace Trapped_in_the_dark
                 if (this.Etat == Etats.Play)
                     _screenManager.LoadScreen(_personnage, new FadeTransition(GraphicsDevice, Color.Black));
 
+
+
+                else if (this.Etat == Etats.Quit)
+                    Exit();
+
             }
-                if (keyboardState.IsKeyDown(Keys.F2))
+
+
+            if (keyboardState.IsKeyDown(Keys.F2))
             {
                 _screenManager.LoadScreen(_menu, new FadeTransition(GraphicsDevice,
                 Color.Black));
@@ -115,7 +122,7 @@ namespace Trapped_in_the_dark
             GraphicsDevice.Clear(Color.Salmon);
 
             // TODO: Add your drawing code here
-            
+
             base.Draw(gameTime);
         }
     }
