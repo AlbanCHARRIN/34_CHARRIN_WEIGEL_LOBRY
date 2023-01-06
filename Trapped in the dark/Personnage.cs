@@ -5,6 +5,8 @@ using MonoGame.Extended.Content;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.Serialization;
 using MonoGame.Extended.Sprites;
+using MonoGame.Extended.Tiled;
+using MonoGame.Extended.Tiled.Renderers;
 
 public class Personnage : GameScreen
 {
@@ -13,16 +15,20 @@ public class Personnage : GameScreen
     // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est
     // défini dans Game1
 
+    // Map
+    private TiledMap _tiledMap;
+    private TiledMapRenderer _tiledMapRenderer;
+
     //constante
     const int _width = 37;
     const int _height = 37;
 
-    //Fond noir
+    /*Fond noir
     private Texture2D _fondNoirBlue;
     private Vector2 _positionFondBlue;
 
     private Texture2D _fondNoirRed;
-    private Vector2 _positionFondRed;
+    private Vector2 _positionFondRed;*/
 
     //Collisions
     int _collision = 1;
@@ -61,6 +67,12 @@ public class Personnage : GameScreen
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+        //tileMap
+        _tiledMap = Content.Load<TiledMap>("mapGenerale");
+        _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
+
+        GraphicsDevice.BlendState = BlendState.AlphaBlend;
+
         //Joueur Rouge
         _positionPersoRed = new Vector2(1000,500);
 
@@ -85,12 +97,12 @@ public class Personnage : GameScreen
         vieBlue = 3;
         _positionCoeurBlue = _positionPersoBlue + new Vector2(0, -20);
 
-        //Fond noir
+        /*Fond noir
         _fondNoirBlue = Content.Load<Texture2D>("New Piskel(11)");
         _positionFondBlue = _positionPersoBlue + new Vector2(-_fondNoirBlue.Width / 2 + 10, -_fondNoirBlue.Height / 2 + 10);
 
         _fondNoirRed = Content.Load<Texture2D>("New Piskel(11)");
-        _positionFondRed = _positionPersoRed + new Vector2(-_fondNoirRed.Width / 2 + 10, -_fondNoirRed.Height / 2 + 10);
+        _positionFondRed = _positionPersoRed + new Vector2(-_fondNoirRed.Width / 2 + 10, -_fondNoirRed.Height / 2 + 10);*/
 
         base.LoadContent();
     }
@@ -104,9 +116,9 @@ public class Personnage : GameScreen
         positionPersoBlueY = 0;
         positionPersoBlueX = 0;
 
-        //Position Fond Noir
+        /*Position Fond Noir
         _positionFondBlue = _positionPersoBlue + new Vector2(-_fondNoirBlue.Width / 2 + 10, -_fondNoirBlue.Height / 2 + 10);
-        _positionFondRed = _positionPersoRed + new Vector2(-_fondNoirRed.Width / 2 + 10, -_fondNoirRed.Height / 2 + 10);
+        _positionFondRed = _positionPersoRed + new Vector2(-_fondNoirRed.Width / 2 + 10, -_fondNoirRed.Height / 2 + 10);*/
 
 
         
@@ -287,7 +299,7 @@ public class Personnage : GameScreen
         _positionCoeurRed = _positionPersoRed + new Vector2(0, -20);
         _positionCoeurBlue = _positionPersoBlue + new Vector2(0, -20);
 
-
+        _tiledMapRenderer.Update(gameTime);
 
     }
     public override void Draw(GameTime gameTime)
@@ -295,8 +307,9 @@ public class Personnage : GameScreen
         _myGame.GraphicsDevice.Clear(Color.Aqua); // on utilise la reference vers
                                                   // Game1 pour chnager le graphisme
         _spriteBatch.Begin();
-        _spriteBatch.Draw(_fondNoirBlue, _positionFondBlue, Microsoft.Xna.Framework.Color.White);
-        _spriteBatch.Draw(_fondNoirRed, _positionFondRed, Microsoft.Xna.Framework.Color.White);
+        _tiledMapRenderer.Draw();
+        /*_spriteBatch.Draw(_fondNoirBlue, _positionFondBlue, Microsoft.Xna.Framework.Color.White);
+        _spriteBatch.Draw(_fondNoirRed, _positionFondRed, Microsoft.Xna.Framework.Color.White);*/
         _spriteBatch.Draw(_persoRed, _positionPersoRed);
         _spriteBatch.Draw(_persoBlue, _positionPersoBlue);
         _spriteBatch.Draw(_CoeurBlue, _positionCoeurBlue);
