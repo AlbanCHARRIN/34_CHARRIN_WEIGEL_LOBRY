@@ -272,7 +272,7 @@ public class Personnage : GameScreen
             positionPersoBlueY = 0;
             positionPersoBlueX = -10;
             ushort tx = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
-            ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight - 1);
+            ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
             if (IsCollision(tx, ty))
             {
                 _collisionVectorBlue = new Vector2(10, 0);
@@ -288,7 +288,7 @@ public class Personnage : GameScreen
             positionPersoBlueY = 0;
             positionPersoBlueX = 10;
             ushort tx = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
-            ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight - 1);
+            ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
             if (IsCollision(tx, ty))
             {
                 _collisionVectorBlue = new Vector2( - 10, 0);
@@ -303,7 +303,7 @@ public class Personnage : GameScreen
             positionPersoBlueY = -10;
             positionPersoBlueX = 0;
             ushort tx = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
-            ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight - 1);
+            ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
             if (IsCollision(tx, ty))
             {
                 _collisionVectorBlue = new Vector2(0, 10);
@@ -317,7 +317,7 @@ public class Personnage : GameScreen
             positionPersoBlueY = 10;
             positionPersoBlueX = 0;
             ushort tx = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
-            ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight - 1);
+            ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
             if (IsCollision(tx, ty))
             {
                 _collisionVectorBlue = new Vector2(0, -10);
@@ -329,7 +329,7 @@ public class Personnage : GameScreen
         {
             _persoBlue.Play("idle");
             ushort tx = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
-            ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight - 1);
+            ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
             if (IsCollision(tx, ty))
             {
                 if (_directioncollisionBlue == "left")
