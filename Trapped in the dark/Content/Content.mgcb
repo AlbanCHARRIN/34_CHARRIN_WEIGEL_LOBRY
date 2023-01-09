@@ -10,11 +10,11 @@
 
 #-------------------------------- References --------------------------------#
 
-/reference:..\..\..\..\..\.nuget\packages\monogame.extended.content.pipeline\3.8.0\tools\MonoGame.Extended.Content.Pipeline.dll
-/reference:..\..\..\..\..\.nuget\packages\monogame.extended.content.pipeline\3.8.0\tools\MonoGame.Extended.dll
-/reference:..\..\..\..\..\.nuget\packages\monogame.extended.content.pipeline\3.8.0\tools\MonoGame.Extended.Graphics.dll
-/reference:..\..\..\..\..\.nuget\packages\monogame.extended.content.pipeline\3.8.0\tools\MonoGame.Extended.Tiled.dll
-/reference:..\..\..\..\..\.nuget\packages\monogame.extended.content.pipeline\3.8.0\tools\Newtonsoft.Json.dll
+/reference:..\..\..\..\..\..\.nuget\packages\monogame.extended.content.pipeline\3.8.0\tools\MonoGame.Extended.Content.Pipeline.dll
+/reference:..\..\..\..\..\..\.nuget\packages\monogame.extended.content.pipeline\3.8.0\tools\MonoGame.Extended.dll
+/reference:..\..\..\..\..\..\.nuget\packages\monogame.extended.content.pipeline\3.8.0\tools\MonoGame.Extended.Graphics.dll
+/reference:..\..\..\..\..\..\.nuget\packages\monogame.extended.content.pipeline\3.8.0\tools\MonoGame.Extended.Tiled.dll
+/reference:..\..\..\..\..\..\.nuget\packages\monogame.extended.content.pipeline\3.8.0\tools\Newtonsoft.Json.dll
 
 #---------------------------------- Content ---------------------------------#
 
@@ -90,12 +90,7 @@
 /processorParam:TextureFormat=Color
 /build:Logo.png
 
-#begin mapGenerale.tmx
-/importer:TiledMapImporter
-/processor:TiledMapProcessor
-/build:mapGenerale.tmx
-
-#begin New Piskel(11).png
+#begin Map.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -105,7 +100,12 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:New Piskel(11).png
+/build:Map.png
+
+#begin Map.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Map.tmx
 
 #begin PersoBleu.png
 /importer:TextureImporter
