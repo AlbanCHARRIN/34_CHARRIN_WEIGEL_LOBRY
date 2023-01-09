@@ -22,6 +22,7 @@ public class Menu : GameScreen
 
     private Texture2D _parametres;
     private Vector2 _positionBoutonParametres;
+    private Rectangle _recBoutonParametres;
 
     private Texture2D _RectangleHover;
 
@@ -30,14 +31,18 @@ public class Menu : GameScreen
 
     
     private Vector2 _positionBoutonJouer;
-    private Vector2 _positionBoutonControles;
-    private Vector2 _positionBoutonQuitter;
-
-
-    private Rectangle _recBoutonQuitter;
     private Rectangle _recBoutonJouer;
+
+    private Vector2 _positionBoutonControles;
     private Rectangle _recBoutonControles;
-    private Rectangle _recBoutonParametres;
+
+    private Vector2 _positionBoutonQuitter;
+    private Rectangle _recBoutonQuitter;
+
+
+   
+    
+   
     
 
 
@@ -82,6 +87,9 @@ public class Menu : GameScreen
 
         _positionLogo = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - (TAILLE_LOGO / 2), 0);
 
+        _positionBoutonParametres = new Vector2((GraphicsDevice.DisplayMode.Width )-200, 0);
+        _recBoutonParametres = new Rectangle((GraphicsDevice.DisplayMode.Width) - 200, 0, 200, 200);
+
         _screenManager = new ScreenManager();
         _myGame.Components.Add(_screenManager);
 
@@ -103,7 +111,7 @@ public class Menu : GameScreen
 
         _RectangleHover = Content.Load <Texture2D>("Carre");
 
-        _parametres = Content.Load<Texture2D>("Parametres");
+        //_parametres = Content.Load<Texture2D>("Parametres");
 
 
         base.LoadContent();
