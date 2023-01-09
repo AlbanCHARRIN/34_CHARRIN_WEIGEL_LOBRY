@@ -17,11 +17,13 @@ public class Personnage : GameScreen
     // défini dans Game1
 
     // Map
-    private TiledMap _tiledMap;
-    private TiledMapRenderer _tiledMapRenderer;
-    private TiledMapTileLayer mapLayer;
-    private TiledMapTileset tileset;
+    public TiledMap _tiledMap;
+    public TiledMapRenderer _tiledMapRenderer;
+    public TiledMapTileLayer mapLayer;
+    public TiledMapTileset _tileset;
     private Vector2 _positionMap;
+
+
 
     //constante
     const int _width = 37;
@@ -134,18 +136,8 @@ public class Personnage : GameScreen
         positionPersoBlueY = 0;
         positionPersoBlueX = 0;
 
-        /*Position Fond Noir
-        _positionFondBlue = _positionPersoBlue + new Vector2(-_fondNoirBlue.Width / 2 + 10, -_fondNoirBlue.Height / 2 + 10);
-        _positionFondRed = _positionPersoRed + new Vector2(-_fondNoirRed.Width / 2 + 10, -_fondNoirRed.Height / 2 + 10);*/
-
-
-
-        // Colisions
-
-
-        //collisions avec décor infligeant des dégats
-
-        //collisions avec décor
+        //Map aléatoire
+        
 
         //Colisions entre joueur
 
@@ -454,12 +446,6 @@ public class Personnage : GameScreen
         TiledMapTile valeurTile = mapLayer.GetTile(x, y);
         if (mapLayer.TryGetTile(x, y, out tile) == false)
             return false;
-        /*else
-        {
-            if (valeurTile = 14)
-                vieRed--;
-        }
-        */
         if (!tile.Value.IsBlank)
             return true;
         
@@ -497,5 +483,17 @@ public class Personnage : GameScreen
             return recul;
         }
     }
+
+   /* private void MapAléatoire()
+    {
+        // définition de tile qui peut être null (?)
+        TiledMapTile? tile;
+        TiledMapTile valeurTile = mapLayer.GetTile(x, y);
+
+        for (int i; i <)
+        if (mapLayer.GetTileIndex(x, y) == 1)
+            mapLayer.SetTile(x, y, 1);
+        
+    }*/
 
 }
