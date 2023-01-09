@@ -24,7 +24,7 @@ public class Menu : GameScreen
     private Vector2 _positionBoutonParametres;
     private Rectangle _recBoutonParametres;
 
-    private Texture2D _RectangleHover;
+    private Texture2D _rectangleHover;
 
 
     private SpriteFont _font;
@@ -109,9 +109,9 @@ public class Menu : GameScreen
 
         _font = Content.Load<SpriteFont>("PixelFont");
 
-        _RectangleHover = Content.Load <Texture2D>("Carre");
+        _rectangleHover = Content.Load <Texture2D>("Carre");
 
-        //_parametres = Content.Load<Texture2D>("Parametres");
+        _parametres = Content.Load<Texture2D>("Parametres");
 
 
         base.LoadContent();
@@ -172,7 +172,12 @@ public class Menu : GameScreen
 
                 _myGame.Etat = Game1.Etats.Play;
             }
+        if (_rSouris.Intersects(_recBoutonParametres))
+            if (_mouseState.LeftButton == ButtonState.Pressed)
+            {
 
+                _myGame.Etat = Game1.Etats.Play;
+            }
 
 
     }
@@ -195,12 +200,14 @@ public class Menu : GameScreen
 
             if (_rSouris.Intersects(_recBoutonQuitter))
             {
-                _spriteBatch.Draw(_RectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2)-200, 695), Microsoft.Xna.Framework.Color.White);
+                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2)-200, 695), Microsoft.Xna.Framework.Color.White);
             }
             if (_rSouris.Intersects(_recBoutonJouer))
             {
-                _spriteBatch.Draw(_RectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 495), Microsoft.Xna.Framework.Color.White);
+                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 495), Microsoft.Xna.Framework.Color.White);
             }
+
+            _spriteBatch.Draw(_parametres, new Vector2((GraphicsDevice.DisplayMode.Width )-200,0), Microsoft.Xna.Framework.Color.White);
 
             _spriteBatch.End();
 
