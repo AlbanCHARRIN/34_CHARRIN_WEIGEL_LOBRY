@@ -171,6 +171,11 @@ public class Personnage : GameScreen
                 _collisionVectorRed = new Vector2(10, 0);
                 if (_directioncollisonRed == "idle")
                     _directioncollisonRed = "left";
+                if (_directioncollisonRed != "left")
+                {
+                    positionPersoRedY = 0;
+                    positionPersoRedX = -10;
+                }
             }
 
 
@@ -188,6 +193,11 @@ public class Personnage : GameScreen
                 _collisionVectorRed = new Vector2(-10,0);
                 if (_directioncollisonRed == "idle")
                     _directioncollisonRed = "right";
+                if (_directioncollisonRed != "right")
+                {
+                    positionPersoRedY = 0;
+                    positionPersoRedX = 10;
+                }
             }
             
 
@@ -206,6 +216,9 @@ public class Personnage : GameScreen
                 _collisionVectorRed = new Vector2(0, 10);
                 if (_directioncollisonRed == "idle")
                     _directioncollisonRed = "up";
+                if (_directioncollisonRed != "up")
+                    positionPersoRedY = -10;
+                    positionPersoRedX = 0;
             }
         }
         else if (keyboardState.IsKeyDown(Keys.Down))
@@ -220,6 +233,11 @@ public class Personnage : GameScreen
                 _collisionVectorRed = new Vector2(0, -10);
                 if (_directioncollisonRed == "idle")
                     _directioncollisonRed = "down";
+                if (_directioncollisonRed != "down")
+                {
+                    positionPersoRedY = 10;
+                    positionPersoRedX = 0;
+                }
             }
 
         }
