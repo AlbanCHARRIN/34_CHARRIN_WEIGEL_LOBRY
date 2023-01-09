@@ -102,7 +102,7 @@ public class Personnage : GameScreen
         _positionCoeurRed = _positionPersoRed + new Vector2(0, -20);
 
         //Joueur Bleu
-        _positionPersoBlue = new Vector2(500, 500);
+        _positionPersoBlue = new Vector2(450, 500);
 
         SpriteSheet spriteSheetBlue = Content.Load<SpriteSheet>("persoPrincipaleAnimation.sf", new JsonContentLoader());
         _persoBlue = new AnimatedSprite(spriteSheetBlue);
@@ -167,7 +167,7 @@ public class Personnage : GameScreen
             ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorRed = new Vector2(11, 0);
+                _collisionVectorRed = new Vector2(10, 0);
                 if (_directioncollisonRed == "idle")
                     _directioncollisonRed = "left";
             }
@@ -184,7 +184,7 @@ public class Personnage : GameScreen
             ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorRed = new Vector2(-11,0);
+                _collisionVectorRed = new Vector2(-10,0);
                 if (_directioncollisonRed == "idle")
                     _directioncollisonRed = "right";
             }
@@ -202,7 +202,7 @@ public class Personnage : GameScreen
 
             if (IsCollision(tx, ty))
             {
-                _collisionVectorRed = new Vector2(0, 11);
+                _collisionVectorRed = new Vector2(0, 10);
                 if (_directioncollisonRed == "idle")
                     _directioncollisonRed = "up";
             }
@@ -216,7 +216,7 @@ public class Personnage : GameScreen
             ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorRed = new Vector2(0, -11);
+                _collisionVectorRed = new Vector2(0, -10);
                 if (_directioncollisonRed == "idle")
                     _directioncollisonRed = "down";
             }
@@ -274,7 +274,7 @@ public class Personnage : GameScreen
             ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight - 1);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorBlue = new Vector2(11, 0);
+                _collisionVectorBlue = new Vector2(10, 0);
                 if (_directioncollisionBlue == "idle")
                     _directioncollisionBlue = "left";
             }
@@ -290,9 +290,9 @@ public class Personnage : GameScreen
             ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight - 1);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorBlue = new Vector2( - 11, 0);
+                _collisionVectorBlue = new Vector2( - 10, 0);
                 if (_directioncollisionBlue == "idle")
-                    _directioncollisionBlue = "left";
+                    _directioncollisionBlue = "right";
             }
         }
 
@@ -305,9 +305,9 @@ public class Personnage : GameScreen
             ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight - 1);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorBlue = new Vector2(0, 11);
+                _collisionVectorBlue = new Vector2(0, 10);
                 if (_directioncollisionBlue == "idle")
-                    _directioncollisionBlue = "left";
+                    _directioncollisionBlue = "up";
             }
         }
         else if (keyboardState.IsKeyDown(Keys.S))
@@ -319,14 +319,36 @@ public class Personnage : GameScreen
             ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight - 1);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorBlue = new Vector2(0, -11);
+                _collisionVectorBlue = new Vector2(0, -10);
                 if (_directioncollisionBlue == "idle")
-                    _directioncollisionBlue = "left";
+                    _directioncollisionBlue = "down";
             }
         }
         else
         {
             _persoBlue.Play("idle");
+            ushort tx = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
+            ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight - 1);
+            if (IsCollision(tx, ty))
+            {
+                if (_directioncollisionBlue == "left")
+                {
+                    _collisionVectorBlue = new Vector2(10, 0);
+                }
+                else if (_directioncollisionBlue == "right")
+                {
+                    _collisionVectorBlue = new Vector2(-10, 0);
+                }
+                else if (_directioncollisionBlue == "up")
+                {
+                    _collisionVectorBlue = new Vector2(0, 10);
+                }
+                else if (_directioncollisionBlue == "down")
+                {
+                    _collisionVectorBlue = new Vector2(0, -10);
+                }
+                _directioncollisionBlue = "idle";
+            }
         }
 
         if (keyboardState.IsKeyDown(Keys.LeftShift))
