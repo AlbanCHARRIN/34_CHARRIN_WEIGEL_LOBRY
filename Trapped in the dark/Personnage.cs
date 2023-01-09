@@ -82,6 +82,7 @@ public class Personnage : GameScreen
         // colision
 
         _directioncollisonRed = "idle";
+        _directioncollisionBlue = "idle";
         //tileMap
         _tiledMap = Content.Load<TiledMap>("Map");
         _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
@@ -268,7 +269,7 @@ public class Personnage : GameScreen
             }
         }
 
-        if (keyboardState.IsKeyDown(Keys.NumPad1))
+        /*if (keyboardState.IsKeyDown(Keys.NumPad1))
         {
             accelerationRed = 1.5;
         }
@@ -276,7 +277,7 @@ public class Personnage : GameScreen
         {
             accelerationRed = 1;
         }
-
+        */
 
 
         //Joueur Bleu
@@ -296,6 +297,11 @@ public class Personnage : GameScreen
                 _collisionVectorBlue = new Vector2(10, 0);
                 if (_directioncollisionBlue == "idle")
                     _directioncollisionBlue = "left";
+                if (_directioncollisionBlue != "left")
+                {
+                    positionPersoBlueY = 0;
+                    positionPersoBlueX = -10;
+                }
             }
 
         }
@@ -312,6 +318,11 @@ public class Personnage : GameScreen
                 _collisionVectorBlue = new Vector2( - 10, 0);
                 if (_directioncollisionBlue == "idle")
                     _directioncollisionBlue = "right";
+                if (_directioncollisionBlue != "right")
+                {
+                    positionPersoBlueY = 0;
+                    positionPersoBlueX = 10;
+                }
             }
         }
 
@@ -327,6 +338,11 @@ public class Personnage : GameScreen
                 _collisionVectorBlue = new Vector2(0, 10);
                 if (_directioncollisionBlue == "idle")
                     _directioncollisionBlue = "up";
+                if (_directioncollisionBlue != "up")
+                {
+                    positionPersoBlueY = -10;
+                    positionPersoBlueX = 0;
+                }
             }
         }
         else if (keyboardState.IsKeyDown(Keys.S))
@@ -341,6 +357,11 @@ public class Personnage : GameScreen
                 _collisionVectorBlue = new Vector2(0, -10);
                 if (_directioncollisionBlue == "idle")
                     _directioncollisionBlue = "down";
+                if (_directioncollisionBlue != "down")
+                {
+                    positionPersoBlueY = 10;
+                    positionPersoBlueX = 0;
+                }
             }
         }
         else
@@ -369,7 +390,7 @@ public class Personnage : GameScreen
                 _directioncollisionBlue = "idle";
             }
         }
-
+        /*
         if (keyboardState.IsKeyDown(Keys.LeftShift))
         {
             accelerationBlue = 1.5;
@@ -378,14 +399,14 @@ public class Personnage : GameScreen
         {
             accelerationBlue = 1;
         }
-
+        */
         _persoRed.Update(gameTime);
         _persoBlue.Update(gameTime);
 
         if (_collision == false)
         {
-            _positionPersoBlue += new Vector2((float)accelerationBlue * (float)positionPersoBlueX, (float)accelerationBlue * (float)positionPersoBlueY);
-            _positionPersoRed += new Vector2((float)accelerationRed * (float)positionPersoRedX, (float)accelerationRed * (float)positionPersoRedY);
+            _positionPersoBlue += new Vector2( (float)positionPersoBlueX,  (float)positionPersoBlueY);
+            _positionPersoRed += new Vector2( (float)positionPersoRedX,  (float)positionPersoRedY);
             _collision = true;
             _positionPersoBlue += _collisionVectorPersonnageBlue;
         }
@@ -430,10 +451,18 @@ public class Personnage : GameScreen
     {
         // définition de tile qui peut être null (?)
         TiledMapTile? tile;
+        TiledMapTile valeurTile = mapLayer.GetTile(x, y);
         if (mapLayer.TryGetTile(x, y, out tile) == false)
             return false;
+        /*else
+        {
+            if (valeurTile = 14)
+                vieRed--;
+        }
+        */
         if (!tile.Value.IsBlank)
             return true;
+        
         return false;
     }
 
