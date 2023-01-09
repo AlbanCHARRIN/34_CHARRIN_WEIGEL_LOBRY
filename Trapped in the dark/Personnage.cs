@@ -21,6 +21,7 @@ public class Personnage : GameScreen
     private TiledMapRenderer _tiledMapRenderer;
     private TiledMapTileLayer mapLayer;
     private TiledMapTileset tileset;
+    private Vector2 _positionMap;
 
     //constante
     const int _width = 37;
@@ -82,13 +83,13 @@ public class Personnage : GameScreen
 
         _directioncollisonRed = "idle";
         //tileMap
-        _tiledMap = Content.Load<TiledMap>("mapGenerale");
+        _tiledMap = Content.Load<TiledMap>("Map");
         _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
 
         GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
-        mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("obstacles");
-
+        mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("Obstacle");
+        
         //Joueur Rouge
         _positionPersoRed = new Vector2(400,500);
 
@@ -164,10 +165,10 @@ public class Personnage : GameScreen
             positionPersoRedY = 0;
             positionPersoRedX = -10;
             ushort tx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
-            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
+            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorRed = new Vector2(11, 0);
+                _collisionVectorRed = new Vector2(10, 0);
                 if (_directioncollisonRed == "idle")
                     _directioncollisonRed = "left";
             }
@@ -181,10 +182,10 @@ public class Personnage : GameScreen
             positionPersoRedY = 0;
             positionPersoRedX = 10;
             ushort tx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
-            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
+            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorRed = new Vector2(-11,0);
+                _collisionVectorRed = new Vector2(-10,0);
                 if (_directioncollisonRed == "idle")
                     _directioncollisonRed = "right";
             }
@@ -195,14 +196,14 @@ public class Personnage : GameScreen
         else if (keyboardState.IsKeyDown(Keys.Up))
         {
             ushort tx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
-            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
+            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
             _persoRed.Play("up");
             positionPersoRedY = -10;
             positionPersoRedX = 0;
 
             if (IsCollision(tx, ty))
             {
-                _collisionVectorRed = new Vector2(0, 11);
+                _collisionVectorRed = new Vector2(0, 10);
                 if (_directioncollisonRed == "idle")
                     _directioncollisonRed = "up";
             }
@@ -213,10 +214,10 @@ public class Personnage : GameScreen
             positionPersoRedY = 10;
             positionPersoRedX = 0;
             ushort tx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
-            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
+            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorRed = new Vector2(0, -11);
+                _collisionVectorRed = new Vector2(0, -10);
                 if (_directioncollisonRed == "idle")
                     _directioncollisonRed = "down";
             }
@@ -226,7 +227,7 @@ public class Personnage : GameScreen
         {
             _persoRed.Play("idle");
             ushort tx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
-            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight - 1);
+            ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
             if (IsCollision(tx, ty))
             {
                 if (_directioncollisonRed == "left")
@@ -274,7 +275,7 @@ public class Personnage : GameScreen
             ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight - 1);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorBlue = new Vector2(11, 0);
+                _collisionVectorBlue = new Vector2(10, 0);
                 if (_directioncollisionBlue == "idle")
                     _directioncollisionBlue = "left";
             }
@@ -290,7 +291,7 @@ public class Personnage : GameScreen
             ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight - 1);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorBlue = new Vector2( - 11, 0);
+                _collisionVectorBlue = new Vector2( - 10, 0);
                 if (_directioncollisionBlue == "idle")
                     _directioncollisionBlue = "left";
             }
@@ -305,7 +306,7 @@ public class Personnage : GameScreen
             ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight - 1);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorBlue = new Vector2(0, 11);
+                _collisionVectorBlue = new Vector2(0, 10);
                 if (_directioncollisionBlue == "idle")
                     _directioncollisionBlue = "left";
             }
@@ -319,7 +320,7 @@ public class Personnage : GameScreen
             ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight - 1);
             if (IsCollision(tx, ty))
             {
-                _collisionVectorBlue = new Vector2(0, -11);
+                _collisionVectorBlue = new Vector2(0, -10);
                 if (_directioncollisionBlue == "idle")
                     _directioncollisionBlue = "left";
             }
@@ -370,7 +371,7 @@ public class Personnage : GameScreen
     }
     public override void Draw(GameTime gameTime)
     {
-        _myGame.GraphicsDevice.Clear(Color.Aqua); // on utilise la reference vers
+        _myGame.GraphicsDevice.Clear(Color.Black); // on utilise la reference vers
                                                   // Game1 pour chnager le graphisme
         _spriteBatch.Begin();
         _tiledMapRenderer.Draw();

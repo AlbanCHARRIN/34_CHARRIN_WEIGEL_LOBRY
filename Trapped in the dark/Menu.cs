@@ -103,7 +103,7 @@ public class Menu : GameScreen
 
         _RectangleHover = Content.Load <Texture2D>("Carre");
 
-        _parametres = Content.Load<Texture2D>("Parametres");
+        //_parametres = Content.Load<Texture2D>("Parametres");
 
 
         base.LoadContent();
