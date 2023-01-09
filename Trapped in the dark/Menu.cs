@@ -25,7 +25,7 @@ public class Menu : GameScreen
     private Rectangle _recBoutonParametres;
 
     private Texture2D _rectangleHover;
-
+    private Texture2D _rectangleHover2;
 
     private SpriteFont _font;
 
@@ -38,12 +38,6 @@ public class Menu : GameScreen
 
     private Vector2 _positionBoutonQuitter;
     private Rectangle _recBoutonQuitter;
-
-
-   
-    
-   
-    
 
 
     private MouseState _mouseState;
@@ -82,8 +76,8 @@ public class Menu : GameScreen
         _positionBoutonQuitter = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - POSISTION_BOUTON_QUITTER_CENTRER, 700);
 
         _recBoutonJouer = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - POSISTION_RECTANGLE_JOUER_CENTRER, 515, 245, 50);
-        _recBoutonQuitter = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - POSISTION_RECTANGLE_QUITTER_CENTRER, 700, 300, 70);
-
+        _recBoutonQuitter = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - POSISTION_RECTANGLE_QUITTER_CENTRER, 720, 300, 50);
+        _recBoutonControles = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - 210, 620, 425, 50);
 
         _positionLogo = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - (TAILLE_LOGO / 2), 0);
 
@@ -110,6 +104,8 @@ public class Menu : GameScreen
         _font = Content.Load<SpriteFont>("PixelFont");
 
         _rectangleHover = Content.Load <Texture2D>("Carre");
+
+        _rectangleHover2 = Content.Load<Texture2D>("Carre2");
 
         _parametres = Content.Load<Texture2D>("Parametres");
 
@@ -205,6 +201,10 @@ public class Menu : GameScreen
             if (_rSouris.Intersects(_recBoutonJouer))
             {
                 _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 495), Microsoft.Xna.Framework.Color.White);
+            }
+            if (_rSouris.Intersects(_recBoutonControles))
+            {
+                _spriteBatch.Draw(_rectangleHover2, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 245, 595), Microsoft.Xna.Framework.Color.White);
             }
 
             _spriteBatch.Draw(_parametres, new Vector2((GraphicsDevice.DisplayMode.Width )-200,0), Microsoft.Xna.Framework.Color.White);
