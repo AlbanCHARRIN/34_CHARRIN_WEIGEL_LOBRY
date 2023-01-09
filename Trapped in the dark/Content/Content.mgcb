@@ -54,6 +54,18 @@
 /processorParam:TextureFormat=Color
 /build:Carre.png
 
+#begin Carre2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Carre2.png
+
 #begin CoeurBleu.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -106,18 +118,6 @@
 /importer:TiledMapImporter
 /processor:TiledMapProcessor
 /build:Map.tmx
-
-#begin Parametres.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Parametres.png
 
 #begin Parametres.png
 /importer:TextureImporter

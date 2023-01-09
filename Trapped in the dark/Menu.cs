@@ -88,7 +88,7 @@ public class Menu : GameScreen
         _positionLogo = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - (TAILLE_LOGO / 2), 0);
 
         _positionBoutonParametres = new Vector2((GraphicsDevice.DisplayMode.Width )-200, 0);
-        _recBoutonParametres = new Rectangle((GraphicsDevice.DisplayMode.Width) - 200, 0, 200, 200);
+        _recBoutonParametres = new Rectangle((GraphicsDevice.DisplayMode.Width) - 200, 0, 200, 160);
 
         _screenManager = new ScreenManager();
         _myGame.Components.Add(_screenManager);
