@@ -15,20 +15,31 @@ public class Menu : GameScreen
 
     private Texture2D _background;
 
+
     private Texture2D _logo;
     private Vector2 _positionLogo;
 
 
+    private Texture2D _parametres;
+    private Vector2 _positionBoutonParametres;
+
+    private Texture2D _RectangleHover;
+
+
     private SpriteFont _font;
+
+    
     private Vector2 _positionBoutonJouer;
     private Vector2 _positionBoutonControles;
     private Vector2 _positionBoutonQuitter;
+
+
     private Rectangle _recBoutonQuitter;
     private Rectangle _recBoutonJouer;
     private Rectangle _recBoutonControles;
+    private Rectangle _recBoutonParametres;
+    
 
-
-    private Texture2D _RectangleHover;
 
     private MouseState _mouseState;
     private Rectangle _rSouris;
@@ -92,7 +103,7 @@ public class Menu : GameScreen
 
         _RectangleHover = Content.Load <Texture2D>("Carre");
 
-        //_personnage = new Personnage(this);
+        _parametres = Content.Load<Texture2D>("Parametres");
 
 
         base.LoadContent();
@@ -110,8 +121,6 @@ public class Menu : GameScreen
         _rSouris.X = _mouseState.X;
         _rSouris.Y = _mouseState.Y;
 
-        /*if (_positionLogo.Y >= 0 && _positionLogo.Y <= 20)
-            _positionLogo.Y = _positionLogo.Y + 1;*/
 
 
 
