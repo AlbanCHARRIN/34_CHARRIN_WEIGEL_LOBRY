@@ -33,6 +33,8 @@ namespace Trapped_in_the_dark
 
         private Etats etat;
 
+        public enum Options{ PleinEcran, Son, Fenetre}
+        private Options option;
 
 
 
@@ -47,6 +49,11 @@ namespace Trapped_in_the_dark
             {
                 this.etat = value;
             }
+        }
+        public Options Option
+        {
+            get { return this.option; }
+            set { this.option = value; }
         }
 
         public Game1()
@@ -73,7 +80,9 @@ namespace Trapped_in_the_dark
             Components.Add(_screenManager);
             _graphics.ApplyChanges();
 
+
             Etat = Etats.Menu;
+            Option = Options.Fenetre;
 
             _tableauMur = Case.GenerateurDuTileset();
             base.Initialize();
@@ -111,7 +120,17 @@ namespace Trapped_in_the_dark
                     Exit();
 
             }
-
+            //if (_mouseState.RightButton == ButtonState.Pressed)
+            //{
+                if (this.Option == Options.PleinEcran)
+                {
+                    _graphics.IsFullScreen = true;
+                    _graphics.ApplyChanges();
+                }
+                 if (this.Option == Options.Fenetre)
+                    _graphics.IsFullScreen = false;
+                    _graphics.ApplyChanges();
+            //}
 
             if (keyboardState.IsKeyDown(Keys.F2))
             {

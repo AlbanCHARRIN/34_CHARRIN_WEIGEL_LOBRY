@@ -13,7 +13,7 @@ public class Menu : GameScreen
 {
     private Game1 _myGame;
     private SpriteBatch _spriteBatch { get; set; }
-
+   
     private Texture2D _background;
 
 
@@ -24,6 +24,9 @@ public class Menu : GameScreen
     private Texture2D _parametres;
     private Vector2 _positionBoutonParametres;
     private Rectangle _recBoutonParametres;
+    private Rectangle _recCroixParametres;
+    private bool _parametresEtat;
+
 
     private Texture2D _rectangleHover;
     private Texture2D _rectangleHover2;
@@ -39,6 +42,13 @@ public class Menu : GameScreen
     private Vector2 _positionBoutonControles;
     private Rectangle _recBoutonControles;
     private Texture2D _controles;
+    private bool _controlesEtat;
+
+    private Rectangle _recCroixPleinEcran;
+    private bool _pleinEcranEtat;
+    private bool _fenetreEtat ;
+
+    private Rectangle _recCroixControles;
 
     private Vector2 _positionBoutonQuitter;
     private Rectangle _recBoutonQuitter;
@@ -72,6 +82,7 @@ public class Menu : GameScreen
     // défini dans Game1
     public Menu(Game1 game) : base(game)
     {
+
         _myGame = game;
     }
     public override void Initialize()
@@ -89,8 +100,14 @@ public class Menu : GameScreen
 
         _positionBoutonParametres = new Vector2((GraphicsDevice.DisplayMode.Width )-200, 0);
         _recBoutonParametres = new Rectangle((GraphicsDevice.DisplayMode.Width) - 200, 0, 200, 160);
+        _recCroixParametres = new Rectangle(1048, 350, 40, 45);
 
-        _screenManager = new ScreenManager();
+        _recCroixPleinEcran = new Rectangle(928, 390, 38, 30);
+        
+        _recCroixControles = new Rectangle(346, 120,55,55);
+        _screenManager = new ScreenManager(); 
+
+
         _myGame.Components.Add(_screenManager);
 
 
@@ -117,9 +134,9 @@ public class Menu : GameScreen
 
         _sonRect = Content.Load<Song>("Whoosh");
 
-        _options = Content.Load<Texture2D>("option");
+        _options = Content.Load<Texture2D>("Option");
 
-        //_controles = Content.Load<Texture2D>("Controles");
+        _controles = Content.Load<Texture2D>("Controles");
 
         base.LoadContent();
     }
@@ -182,7 +199,84 @@ public class Menu : GameScreen
                 _myGame.Etat = Game1.Etats.Play;
             }
         }
+        if (_rSouris.Intersects(_recBoutonControles))
+        {
+
+            if (_mouseState.LeftButton == ButtonState.Pressed)
+            {
+                _controlesEtat = true;
+
+            }
+        }
+        if (_controlesEtat == true)
+        {
+            if (_rSouris.Intersects(_recCroixControles))
+            {
+
+                if (_mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    _controlesEtat = false;
+
+                }
+            }
+        }
+        if (_rSouris.Intersects(_recBoutonParametres))
+        {
+
+            if (_mouseState.LeftButton == ButtonState.Pressed)
+            {
+                _parametresEtat = true;
+
+            }
+        }
+        if (_parametresEtat == true)
+        {
+            if (_rSouris.Intersects(_recCroixParametres))
+            {
+
+                if (_mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    _parametresEtat = false;
+                }
+            }
+        }
+        if (_parametresEtat == true)
+        {
+            if (_rSouris.Intersects(_recCroixPleinEcran))
+            {
+                if (_mouseState.LeftButton == ButtonState.Pressed)
+                {
+
+                    if (_pleinEcranEtat == true)
+                    {
+                        _fenetreEtat = true;
+                        Thread.Sleep(200);
+                    }
+                    if (_pleinEcranEtat == false)
+                    {
+                        _fenetreEtat = false;
+                        
+                    }
+
+                }
+            }
+        }
+        if (_fenetreEtat == true) {
+            _myGame.Option = Game1.Options.PleinEcran;
+            _pleinEcranEtat = false;
+           
+        }
+            
+
+        if (_fenetreEtat == false)
+        {
+            _myGame.Option = Game1.Options.Fenetre;
+            _pleinEcranEtat = true;
+            
+        }
        
+
+
 
 
     }
@@ -215,17 +309,19 @@ public class Menu : GameScreen
             {
                 _spriteBatch.Draw(_rectangleHover2, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 245, 595), Microsoft.Xna.Framework.Color.White);
             }
-            if (_rSouris.Intersects(_recBoutonParametres))
-            {
-
-                if (_mouseState.LeftButton == ButtonState.Pressed)
-                {
-
-                    _myGame.Etat = Game1.Etats.Play;
-                }
-            }
+            
+            
 
             _spriteBatch.Draw(_parametres, new Vector2((GraphicsDevice.DisplayMode.Width )-200,0), Microsoft.Xna.Framework.Color.White);
+
+            if (_controlesEtat == true)
+            {
+                _spriteBatch.Draw(_controles, new Vector2((GraphicsDevice.DisplayMode.Width / 2)-470, 100), Microsoft.Xna.Framework.Color.White);
+            }
+
+            if (_parametresEtat == true)
+                _spriteBatch.Draw(_options, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 1000, -100), Microsoft.Xna.Framework.Color.White);
+
 
             _spriteBatch.End();
 
