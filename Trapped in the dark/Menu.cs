@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Screens;
 
 using MonoGame.Extended.Screens.Transitions;
@@ -29,12 +30,15 @@ public class Menu : GameScreen
 
     private SpriteFont _font;
 
+    private Texture2D _options;
+
     
     private Vector2 _positionBoutonJouer;
     private Rectangle _recBoutonJouer;
 
     private Vector2 _positionBoutonControles;
     private Rectangle _recBoutonControles;
+    private Texture2D _controles;
 
     private Vector2 _positionBoutonQuitter;
     private Rectangle _recBoutonQuitter;
@@ -45,6 +49,8 @@ public class Menu : GameScreen
 
 
     private ScreenManager _screenManager;
+
+    private Song _sonRect;
 
 
     private int etatMouvement = 0;
@@ -109,6 +115,11 @@ public class Menu : GameScreen
 
         _parametres = Content.Load<Texture2D>("Parametres");
 
+        _sonRect = Content.Load<Song>("Whoosh");
+
+        _options = Content.Load<Texture2D>("option");
+
+        _controles = Content.Load<Texture2D>("Controles");
 
         base.LoadContent();
     }
@@ -151,7 +162,7 @@ public class Menu : GameScreen
 
 
 
-
+        
 
         if (_rSouris.Intersects(_recBoutonQuitter))
 
@@ -163,17 +174,15 @@ public class Menu : GameScreen
             }
 
         if (_rSouris.Intersects(_recBoutonJouer))
+        {
+           
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
-
+                MediaPlayer.Play(_sonRect);
                 _myGame.Etat = Game1.Etats.Play;
             }
-        if (_rSouris.Intersects(_recBoutonParametres))
-            if (_mouseState.LeftButton == ButtonState.Pressed)
-            {
-
-                _myGame.Etat = Game1.Etats.Play;
-            }
+        }
+       
 
 
     }
@@ -205,6 +214,15 @@ public class Menu : GameScreen
             if (_rSouris.Intersects(_recBoutonControles))
             {
                 _spriteBatch.Draw(_rectangleHover2, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 245, 595), Microsoft.Xna.Framework.Color.White);
+            }
+            if (_rSouris.Intersects(_recBoutonParametres))
+            {
+
+                if (_mouseState.LeftButton == ButtonState.Pressed)
+                {
+
+                    _myGame.Etat = Game1.Etats.Play;
+                }
             }
 
             _spriteBatch.Draw(_parametres, new Vector2((GraphicsDevice.DisplayMode.Width )-200,0), Microsoft.Xna.Framework.Color.White);
