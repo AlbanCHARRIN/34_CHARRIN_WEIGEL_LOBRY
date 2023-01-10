@@ -119,6 +119,11 @@
 /processor:TiledMapProcessor
 /build:Map.tmx
 
+#begin Map.tsx
+/importer:TiledMapTilesetImporter
+/processor:TiledMapTilesetProcessor
+/build:Map.tsx
+
 #begin Option.png
 /importer:TextureImporter
 /processor:TextureProcessor
