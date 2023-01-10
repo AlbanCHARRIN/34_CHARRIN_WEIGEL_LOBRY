@@ -309,6 +309,10 @@ public class Menu : GameScreen
             {
                 _spriteBatch.Draw(_rectangleHover2, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 245, 595), Microsoft.Xna.Framework.Color.White);
             }
+            if(_fenetreEtat == true)
+            {
+                _spriteBatch.DrawString(_font, "X", new Vector2(928, 390), Microsoft.Xna.Framework.Color.White);
+            }
             
             
 
@@ -322,7 +326,10 @@ public class Menu : GameScreen
             if (_parametresEtat == true)
                 _spriteBatch.Draw(_options, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 1000, -100), Microsoft.Xna.Framework.Color.White);
 
-
+            if (_fenetreEtat == true)
+            {
+                _spriteBatch.DrawString(_font, "X", new Vector2(928, 364), Microsoft.Xna.Framework.Color.Black);
+            }
             _spriteBatch.End();
 
         }
