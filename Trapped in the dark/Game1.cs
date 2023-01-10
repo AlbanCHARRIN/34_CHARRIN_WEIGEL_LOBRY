@@ -63,8 +63,6 @@ namespace Trapped_in_the_dark
 
         protected override void Initialize()
         {
-
-            MapAléatoire();
             // TODO: Add your initialization logic here
             _graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             _graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
@@ -144,10 +142,10 @@ namespace Trapped_in_the_dark
             base.Draw(gameTime);
         }
 
-        private void MapAléatoire()
+        /*private void MapAléatoire()
         {
 
-            /*Random rand = new Random();
+            Random rand = new Random();
             int valeurMur;
 
             for (int i = 0; i < dimensionx; i++)
@@ -164,7 +162,7 @@ namespace Trapped_in_the_dark
                 }
 
 
-            }*/
+            }
 
             String line;
             try
@@ -209,6 +207,6 @@ namespace Trapped_in_the_dark
 
 
 
-        }
+        }*/
     }
 }
