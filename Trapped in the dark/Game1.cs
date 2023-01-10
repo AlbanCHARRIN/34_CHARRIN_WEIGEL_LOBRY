@@ -120,8 +120,7 @@ namespace Trapped_in_the_dark
                     Exit();
 
             }
-            //if (_mouseState.RightButton == ButtonState.Pressed)
-            //{
+            
                 if (this.Option == Options.PleinEcran)
                 {
                     _graphics.IsFullScreen = true;
@@ -130,7 +129,7 @@ namespace Trapped_in_the_dark
                  if (this.Option == Options.Fenetre)
                     _graphics.IsFullScreen = false;
                     _graphics.ApplyChanges();
-            //}
+           
 
             if (keyboardState.IsKeyDown(Keys.F2))
             {
