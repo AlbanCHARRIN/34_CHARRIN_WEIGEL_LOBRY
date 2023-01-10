@@ -28,6 +28,11 @@ public class Menu : GameScreen
     private bool _parametresEtat;
 
 
+    private Rectangle _recSonNull;
+    private Rectangle _recSonBas;
+    private Rectangle _recSonMoyen;
+    private Rectangle _recSonHaut;
+
     private Texture2D _rectangleHover;
     private Texture2D _rectangleHover2;
 
@@ -99,10 +104,15 @@ public class Menu : GameScreen
         _positionBoutonParametres = new Vector2((GraphicsDevice.DisplayMode.Width )-200, 0);
         _recBoutonParametres = new Rectangle((GraphicsDevice.DisplayMode.Width) - 200, 0, 200, 160);
         _recCroixParametres = new Rectangle(1048, 350, 40, 45);
-
         _recCroixPleinEcran = new Rectangle(928, 390, 38, 30);
         
         _recCroixControles = new Rectangle(346, 120,55,55);
+
+        _recSonNull = new Rectangle(0, 0, 50, 50);
+        _recSonBas = new Rectangle(100, 100, 50, 50);
+        _recSonMoyen = new Rectangle(100, 100, 50, 50);
+        _recSonHaut = new Rectangle(100, 100, 50, 50);
+
         _screenManager = new ScreenManager(); 
 
 
@@ -185,7 +195,7 @@ public class Menu : GameScreen
 
         if (_rSouris.Intersects(_recBoutonJouer))
         {
-           
+            MediaPlayer.Play(_sonRect);
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
                 MediaPlayer.Play(_sonRect);
@@ -268,7 +278,16 @@ public class Menu : GameScreen
             
         }
        
-
+        if (_parametresEtat)
+        {
+            if (_rSouris.Intersects(_recSonNull))
+            {
+                if (_mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    MediaPlayer.Volume = 0f;
+                }
+            }
+        }
 
 
 
