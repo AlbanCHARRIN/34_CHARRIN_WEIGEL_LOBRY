@@ -24,8 +24,8 @@ namespace Trapped_in_the_dark
         private Personnage _personnage;
         public GraphicsDeviceManager _graphics;
         public int[,] _tableauMur;
-        public int dimensionx = Case.dimensionx;
-        public int dimensiony = Case.dimensiony;
+        public int dimensionx = Case2.dimensionx;
+        public int dimensiony = Case2.dimensiony;
 
         //Map
 
@@ -84,7 +84,7 @@ namespace Trapped_in_the_dark
             Etat = Etats.Menu;
             Option = Options.Fenetre;
 
-            _tableauMur = Case.GenerateurDuTileset();
+            _tableauMur = Case2.GenerateurDuTileset();
             base.Initialize();
         }
 
