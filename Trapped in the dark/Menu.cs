@@ -78,8 +78,6 @@ public class Menu : GameScreen
 
 
 
-    // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est
-    // défini dans Game1
     public Menu(Game1 game) : base(game)
     {
 
@@ -148,13 +146,15 @@ public class Menu : GameScreen
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 
-
+        //permet d'avoir la position de la souris et de pouvoir créer des Intersect
         _mouseState = Mouse.GetState();
         _rSouris.X = _mouseState.X;
         _rSouris.Y = _mouseState.Y;
 
 
 
+
+        //permet de faire bouger le logo
 
         if (_positionLogo.Y < 0)
         {
@@ -164,15 +164,8 @@ public class Menu : GameScreen
             etatMouvement = 1;
 
 
-
         if (etatMouvement == 0)
-        {
-            _positionLogo.Y = _positionLogo.Y + (float)0.3;
-
-        }
-
-
-
+             _positionLogo.Y = _positionLogo.Y + (float)0.3;
 
         if (etatMouvement == 1)
             _positionLogo.Y = _positionLogo.Y - (float)0.3;
@@ -180,7 +173,7 @@ public class Menu : GameScreen
 
 
         
-
+        //les intersections de tous les boutons du menu
         if (_rSouris.Intersects(_recBoutonQuitter))
 
 
@@ -287,16 +280,18 @@ public class Menu : GameScreen
             _myGame.GraphicsDevice.Clear(Color.SaddleBrown);
             _spriteBatch.Begin();
 
-
+            //dessines les textes, logos et symboles
             _spriteBatch.Draw(_background, new Vector2(0, 0), Microsoft.Xna.Framework.Color.White);
-
             _spriteBatch.Draw(_logo, _positionLogo, Microsoft.Xna.Framework.Color.White);
 
             _spriteBatch.DrawString(_font, "Jouer", _positionBoutonJouer, Microsoft.Xna.Framework.Color.White);
             _spriteBatch.DrawString(_font, "Controles", _positionBoutonControles, Microsoft.Xna.Framework.Color.White);
             _spriteBatch.DrawString(_font, "Quitter", _positionBoutonQuitter, Microsoft.Xna.Framework.Color.White);
 
+            _spriteBatch.Draw(_parametres, new Vector2((GraphicsDevice.DisplayMode.Width) - 200, 0), Microsoft.Xna.Framework.Color.White);
 
+
+            //dessine des contours autours des textes
             if (_rSouris.Intersects(_recBoutonQuitter))
             {
                 _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2)-200, 695), Microsoft.Xna.Framework.Color.White);
@@ -309,15 +304,8 @@ public class Menu : GameScreen
             {
                 _spriteBatch.Draw(_rectangleHover2, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 245, 595), Microsoft.Xna.Framework.Color.White);
             }
-            if(_fenetreEtat == true)
-            {
-                _spriteBatch.DrawString(_font, "X", new Vector2(928, 390), Microsoft.Xna.Framework.Color.White);
-            }
+          
             
-            
-
-            _spriteBatch.Draw(_parametres, new Vector2((GraphicsDevice.DisplayMode.Width )-200,0), Microsoft.Xna.Framework.Color.White);
-
             if (_controlesEtat == true)
             {
                 _spriteBatch.Draw(_controles, new Vector2((GraphicsDevice.DisplayMode.Width / 2)-470, 100), Microsoft.Xna.Framework.Color.White);
@@ -329,19 +317,11 @@ public class Menu : GameScreen
             if (_fenetreEtat == true)
             {
                 _spriteBatch.DrawString(_font, "X", new Vector2(928, 364), Microsoft.Xna.Framework.Color.Black);
-            }
+            } 
             _spriteBatch.End();
 
         }
 
     }
-    /*public static void IntersectSouris(Rectangle souris, Rectangle recBouton, MouseState mouseState)
-    {
-        if (souris.Intersects(recBouton))
-        {
-            if (mouseState.LeftButton == ButtonState.Pressed)
-            {
-            }
-        }
-    }*/
+    
 }
