@@ -21,7 +21,8 @@ public class Personnage : GameScreen
     // Map
     public TiledMap _tiledMap;
     public TiledMapRenderer _tiledMapRenderer;
-    public TiledMapTileLayer mapLayer;
+    public TiledMapTileLayer Obstacle;
+    public TiledMapTileLayer Piege;
     public TiledMapTileset _tileset;
     private Vector2 _positionMap;
 
@@ -55,6 +56,8 @@ public class Personnage : GameScreen
     private double positionPersoRedX = 0;
     private double positionPersoRedY = 0;
 
+    private int compteurRed;
+
     //Coeur 
     private AnimatedSprite _CoeurRed;
     int vieRed;
@@ -67,6 +70,8 @@ public class Personnage : GameScreen
     private double accelerationBlue = 1;
     private double positionPersoBlueX = 0;
     private double positionPersoBlueY = 0;
+
+    private int compteurBlue;
 
     //Coeur 
     private AnimatedSprite _CoeurBlue;
@@ -101,12 +106,14 @@ public class Personnage : GameScreen
         _directioncollisonRed = "idle";
         _directioncollisionBlue = "idle";
         //tileMap
-        _tiledMap = Content.Load<TiledMap>("Map1");
+        _tiledMap = Content.Load<TiledMap>("Map");
         _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
 
         GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
-        mapLayer = _tiledMap.GetLayer<TiledMapTileLayer>("Obstacle");
+        Obstacle = _tiledMap.GetLayer<TiledMapTileLayer>("Obstacle");
+
+        Piege = _tiledMap.GetLayer<TiledMapTileLayer>("Piege");
         
         //Joueur Rouge
         _positionPersoRed = new Vector2(400,500);
@@ -114,10 +121,12 @@ public class Personnage : GameScreen
         SpriteSheet spriteSheetRed = Content.Load<SpriteSheet>("persoAnimation.sf", new JsonContentLoader());
         _persoRed = new AnimatedSprite(spriteSheetRed);
 
+        compteurRed = 0;
+
         //Coeur
         SpriteSheet spriteSheetCoeurRed = Content.Load<SpriteSheet>("coeurPerso.sf", new JsonContentLoader());
         _CoeurRed = new AnimatedSprite(spriteSheetCoeurRed);
-        vieRed = 3;
+        vieRed = 2;
         _positionCoeurRed = _positionPersoRed + new Vector2(0, -20);
 
         //Joueur Bleu
@@ -125,6 +134,8 @@ public class Personnage : GameScreen
 
         SpriteSheet spriteSheetBlue = Content.Load<SpriteSheet>("persoPrincipaleAnimation.sf", new JsonContentLoader());
         _persoBlue = new AnimatedSprite(spriteSheetBlue);
+
+        compteurBlue = 0;
 
         //Coeur
         SpriteSheet spriteSheetCoeurBlue = Content.Load<SpriteSheet>("coeurPersoPrincipale.sf", new JsonContentLoader());
@@ -153,6 +164,8 @@ public class Personnage : GameScreen
     }
     public override void Update(GameTime gameTime)
     {
+
+        
         //variables personnage rouge
         positionPersoRedY = 0;
         positionPersoRedX = 0;
@@ -160,8 +173,6 @@ public class Personnage : GameScreen
         //variables personnage bleu
         positionPersoBlueY = 0;
         positionPersoBlueX = 0;
-
-        //Map aléatoire
         
 
         //Colisions entre joueur
@@ -179,6 +190,27 @@ public class Personnage : GameScreen
         _rSouris.X = _mouseState.X;
         _rSouris.Y = _mouseState.Y;
 
+
+        //cooeur Rouge
+        if (vieRed == 3)
+        {
+            _CoeurRed.Play("troisVie");
+        }
+        else if (vieRed == 2)
+        {
+            _CoeurRed.Play("deuxVie");
+        }
+        else if (vieRed == 1)
+        {
+            _CoeurRed.Play("uneVie");
+        }
+        else if (vieRed == 0)
+        {
+            _CoeurRed.Play("zeroVie");
+            
+        }
+
+
         //Joueur Rouge
 
         if (keyboardState.IsKeyDown(Keys.Left))
@@ -188,7 +220,7 @@ public class Personnage : GameScreen
             positionPersoRedX = -10;
             ushort tx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
             ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
-            if (IsCollision(tx, ty))
+            if (IsCollision(tx, ty, Obstacle))
             {
                 _collisionVectorRed = new Vector2(10, 0);
                 if (_directioncollisonRed == "idle")
@@ -198,6 +230,14 @@ public class Personnage : GameScreen
                     positionPersoRedY = 0;
                     positionPersoRedX = -10;
                 }
+            }
+
+            if (IsCollision(tx, ty, Piege))
+            {
+                vieRed--;
+                _collisionVectorRed.X = 70;
+                accelerationRed = 0;
+                compteurRed = 40;
             }
 
 
@@ -210,7 +250,7 @@ public class Personnage : GameScreen
             positionPersoRedX = 10;
             ushort tx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
             ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
-            if (IsCollision(tx, ty))
+            if (IsCollision(tx, ty, Obstacle))
             {
                 _collisionVectorRed = new Vector2(-10,0);
                 if (_directioncollisonRed == "idle")
@@ -233,7 +273,7 @@ public class Personnage : GameScreen
             positionPersoRedY = -10;
             positionPersoRedX = 0;
 
-            if (IsCollision(tx, ty))
+            if (IsCollision(tx, ty, Obstacle))
             {
                 _collisionVectorRed = new Vector2(0, 10);
                 if (_directioncollisonRed == "idle")
@@ -250,7 +290,7 @@ public class Personnage : GameScreen
             positionPersoRedX = 0;
             ushort tx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
             ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
-            if (IsCollision(tx, ty))
+            if (IsCollision(tx, ty, Obstacle))
             {
                 _collisionVectorRed = new Vector2(0, -10);
                 if (_directioncollisonRed == "idle")
@@ -268,7 +308,7 @@ public class Personnage : GameScreen
             _persoRed.Play("idle");
             ushort tx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
             ushort ty = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
-            if (IsCollision(tx, ty))
+            if (IsCollision(tx, ty, Obstacle))
             {
                 if (_directioncollisonRed == "left")
                 {
@@ -313,7 +353,7 @@ public class Personnage : GameScreen
             positionPersoBlueX = -10;
             ushort tx = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
             ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
-            if (IsCollision(tx, ty))
+            if (IsCollision(tx, ty, Obstacle))
             {
                 _collisionVectorBlue = new Vector2(10, 0);
                 if (_directioncollisionBlue == "idle")
@@ -334,7 +374,7 @@ public class Personnage : GameScreen
             positionPersoBlueX = 10;
             ushort tx = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
             ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
-            if (IsCollision(tx, ty))
+            if (IsCollision(tx, ty, Obstacle))
             {
                 _collisionVectorBlue = new Vector2( - 10, 0);
                 if (_directioncollisionBlue == "idle")
@@ -354,7 +394,7 @@ public class Personnage : GameScreen
             positionPersoBlueX = 0;
             ushort tx = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
             ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
-            if (IsCollision(tx, ty))
+            if (IsCollision(tx, ty, Obstacle))
             {
                 _collisionVectorBlue = new Vector2(0, 10);
                 if (_directioncollisionBlue == "idle")
@@ -373,7 +413,7 @@ public class Personnage : GameScreen
             positionPersoBlueX = 0;
             ushort tx = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
             ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
-            if (IsCollision(tx, ty))
+            if (IsCollision(tx, ty, Obstacle))
             {
                 _collisionVectorBlue = new Vector2(0, -10);
                 if (_directioncollisionBlue == "idle")
@@ -390,7 +430,7 @@ public class Personnage : GameScreen
             _persoBlue.Play("idle");
             ushort tx = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
             ushort ty = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
-            if (IsCollision(tx, ty))
+            if (IsCollision(tx, ty, Obstacle))
             {
                 if (_directioncollisionBlue == "left")
                 {
@@ -426,8 +466,8 @@ public class Personnage : GameScreen
 
         if (_collision == false)
         {
-            _positionPersoBlue += new Vector2( (float)positionPersoBlueX,  (float)positionPersoBlueY);
-            _positionPersoRed += new Vector2( (float)positionPersoRedX,  (float)positionPersoRedY);
+            _positionPersoBlue += new Vector2((float)accelerationBlue * (float)positionPersoBlueX, (float)accelerationBlue * (float)positionPersoBlueY);
+            _positionPersoRed += new Vector2((float)accelerationRed * (float)positionPersoRedX, (float)accelerationRed * (float)positionPersoRedY);
             _collision = true;
             _positionPersoBlue += _collisionVectorPersonnageBlue;
         }
@@ -444,6 +484,20 @@ public class Personnage : GameScreen
 
         _collisionVectorBlue = new Vector2(0,0);
         _collisionVectorRed = new Vector2(0,0);
+
+        if (compteurRed <= 0)
+        {
+            accelerationRed = 1;
+        }
+        else
+        {
+            compteurRed--;
+        }
+
+        if (compteurBlue == 0)
+        {
+            accelerationBlue = 1;
+        }
 
         _positionCoeurRed = _positionPersoRed + new Vector2(0, -20);
         _positionCoeurBlue = _positionPersoBlue + new Vector2(0, -20);
@@ -541,12 +595,12 @@ public class Personnage : GameScreen
     }
 
 
-    private bool IsCollision(ushort x, ushort y)
+    private bool IsCollision(ushort x, ushort y, TiledMapTileLayer tileref)
     {
         // définition de tile qui peut être null (?)
         TiledMapTile? tile;
-        TiledMapTile valeurTile = mapLayer.GetTile(x, y);
-        if (mapLayer.TryGetTile(x, y, out tile) == false)
+        TiledMapTile valeurTile = tileref.GetTile(x, y);
+        if (tileref.TryGetTile(x, y, out tile) == false)
             return false;
         if (!tile.Value.IsBlank)
             return true;

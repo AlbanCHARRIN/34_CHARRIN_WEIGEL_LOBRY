@@ -119,7 +119,7 @@ public class Menu : GameScreen
 
         _options = Content.Load<Texture2D>("option");
 
-        _controles = Content.Load<Texture2D>("Controles");
+        //_controles = Content.Load<Texture2D>("Controles");
 
         base.LoadContent();
     }
