@@ -3,11 +3,13 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Screens;
+using MonoGame.Extended.Screens.Transitions;
 using MonoGame.Extended.Serialization;
 using MonoGame.Extended.Sprites;
 using MonoGame.Extended.Tiled;
 using MonoGame.Extended.Tiled.Renderers;
 using System;
+using Trapped_in_the_dark;
 
 public class Personnage : GameScreen
 {
@@ -69,6 +71,19 @@ public class Personnage : GameScreen
     int vieBlue;
     private Vector2 _positionCoeurBlue;
 
+    private ScreenManager _screenManager;
+    private Texture2D _pause;
+    private int _pauseEtat = 0;
+    private Texture2D _rectangleHover;
+
+    private Rectangle _recBoutonReprendre;
+    private Rectangle _recBoutonOptions;
+    private Rectangle _recBoutonControles;
+    private Rectangle _recBoutonQuitter;
+
+    private MouseState _mouseState;
+    private Rectangle _rSouris;
+
 
     public Personnage(Game game) : base(game)
     {
@@ -122,6 +137,16 @@ public class Personnage : GameScreen
         _fondNoirRed = Content.Load<Texture2D>("New Piskel(11)");
         _positionFondRed = _positionPersoRed + new Vector2(-_fondNoirRed.Width / 2 + 10, -_fondNoirRed.Height / 2 + 10);*/
 
+        _screenManager = new ScreenManager();
+        _myGame.Components.Add(_screenManager);
+
+        _pause = Content.Load<Texture2D>("Pause");
+        _rectangleHover = Content.Load<Texture2D>("Carre");
+
+        _recBoutonReprendre = new Rectangle(2000, 515, 245, 50);
+        _recBoutonQuitter = new Rectangle(2000, 720, 300, 50);
+        _recBoutonControles = new Rectangle(2000, 620, 425, 50);
+
         base.LoadContent();
     }
     public override void Update(GameTime gameTime)
@@ -157,6 +182,10 @@ public class Personnage : GameScreen
 
         float deltaSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds; // DeltaTime
         KeyboardState keyboardState = Keyboard.GetState();
+
+        _mouseState = Mouse.GetState();
+        _rSouris.X = _mouseState.X;
+        _rSouris.Y = _mouseState.Y;
 
         //Joueur Rouge
 
@@ -427,7 +456,58 @@ public class Personnage : GameScreen
         _positionCoeurRed = _positionPersoRed + new Vector2(0, -20);
         _positionCoeurBlue = _positionPersoBlue + new Vector2(0, -20);
 
-        _tiledMapRenderer.Update(gameTime);
+
+
+        if (keyboardState.IsKeyDown(Keys.P))
+        {
+            _pauseEtat = 1;
+        }
+        if (_pauseEtat == 1)
+        {
+            _recBoutonReprendre.X = 500;
+            _recBoutonReprendre.Y = 500;
+
+            _recBoutonOptions.X = 500;
+            _recBoutonOptions.Y = 500;
+
+            _recBoutonQuitter.X = 500;
+            _recBoutonQuitter.Y = 500;
+
+            _recBoutonControles.X = 500;
+            _recBoutonControles.Y = 500;
+
+
+        }
+
+        if (_rSouris.Intersects(_recBoutonReprendre))
+            if (_mouseState.LeftButton == ButtonState.Pressed)
+        {
+
+                _pauseEtat = 0;
+        }
+        if (_rSouris.Intersects(_recBoutonQuitter))
+            if (_mouseState.LeftButton == ButtonState.Pressed)
+            {
+
+                _myGame.Exit();
+            }
+
+        if (_pauseEtat == 0)
+        {
+            _recBoutonReprendre.X = 2000;
+            _recBoutonReprendre.Y = 2000;
+
+            _recBoutonOptions.X = 2000;
+            _recBoutonOptions.Y = 2000;
+
+            _recBoutonQuitter.X = 2000;
+            _recBoutonQuitter.Y = 2000;
+
+            _recBoutonControles.X = 2000;
+            _recBoutonControles.Y = 2000;
+        }
+
+            _tiledMapRenderer.Update(gameTime);
 
     }
     public override void Draw(GameTime gameTime)
@@ -442,6 +522,28 @@ public class Personnage : GameScreen
         _spriteBatch.Draw(_persoBlue, _positionPersoBlue);
         _spriteBatch.Draw(_CoeurBlue, _positionCoeurBlue);
         _spriteBatch.Draw(_CoeurRed, _positionCoeurRed);
+
+        if (_pauseEtat == 1)
+        {
+            _spriteBatch.Draw(_pause, new Vector2(0, 0), Microsoft.Xna.Framework.Color.White);
+
+            if (_rSouris.Intersects(_recBoutonQuitter))
+            {
+                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 695), Microsoft.Xna.Framework.Color.White);
+            }
+            if (_rSouris.Intersects(_recBoutonReprendre))
+            {
+                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 495), Microsoft.Xna.Framework.Color.White);
+            }
+            if (_rSouris.Intersects(_recBoutonControles))
+            {
+                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 245, 595), Microsoft.Xna.Framework.Color.White);
+            }
+            if (_rSouris.Intersects(_recBoutonOptions))
+            {
+                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 245, 595), Microsoft.Xna.Framework.Color.White);
+            }
+        }
 
         _spriteBatch.End();
     }
@@ -496,6 +598,8 @@ public class Personnage : GameScreen
         {
             return recul;
         }
+
+       
     }
 
 }
