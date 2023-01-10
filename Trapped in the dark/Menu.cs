@@ -335,4 +335,13 @@ public class Menu : GameScreen
         }
 
     }
+    /*public static void IntersectSouris(Rectangle souris, Rectangle recBouton, MouseState mouseState)
+    {
+        if (souris.Intersects(recBouton))
+        {
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+            }
+        }
+    }*/
 }
