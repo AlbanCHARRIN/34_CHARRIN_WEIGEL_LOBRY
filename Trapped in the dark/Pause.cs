@@ -66,6 +66,7 @@ public class Pause : GameScreen
     private MouseState _mouseState;
     private Rectangle _rSouris;
 
+    private int _pauseEtat;
 
     private ScreenManager _screenManager;
 
@@ -79,18 +80,13 @@ public class Pause : GameScreen
     public override void Initialize()
     {
 
-        _positionBoutonJouer = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 0, 500);
-        _positionBoutonControles = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 0, 600);
-        _positionBoutonQuitter = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 0, 700);
-
-        _recBoutonJouer = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - 0, 515, 245, 50);
-        _recBoutonQuitter = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - 0, 720, 300, 50);
-        _recBoutonControles = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - 210, 620, 425, 50);
-
        
 
-        _positionBoutonParametres = new Vector2((GraphicsDevice.DisplayMode.Width) - 200, 0);
+        _recBoutonJouer = new Rectangle(1160, 210, 340, 40);
+        _recBoutonQuitter = new Rectangle(1160, 800, 300, 50);
+        _recBoutonControles = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - 210, 620, 425, 50);
         _recBoutonParametres = new Rectangle((GraphicsDevice.DisplayMode.Width) - 200, 0, 200, 160);
+
         _recCroixParametres = new Rectangle(1048, 350, 40, 45);
         _recCroixPleinEcran = new Rectangle(928, 390, 38, 30);
 
@@ -140,165 +136,171 @@ public class Pause : GameScreen
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 
-
+        KeyboardState keyboardState = Keyboard.GetState();
 
         //permet d'avoir la position de la souris et de pouvoir créer des Intersect
         _mouseState = Mouse.GetState();
         _rSouris.X = _mouseState.X;
         _rSouris.Y = _mouseState.Y;
 
-
-      
-
-
-
-
-        //les intersections de tous les boutons du menu
-        if (_rSouris.Intersects(_recBoutonQuitter))
-
-
-            if (_mouseState.LeftButton == ButtonState.Pressed)
-            {
-                _myGame.Etat = Game1.Etats.Quit;
-
-            }
-
-        if (_rSouris.Intersects(_recBoutonJouer))
+        if (keyboardState.IsKeyDown(Keys.Space))
         {
-
-            if (_mouseState.LeftButton == ButtonState.Pressed)
-            {
-
-                _myGame.Etat = Game1.Etats.Play;
-            }
+            _pauseEtat = 1;
         }
-        if (_rSouris.Intersects(_recBoutonControles))
+
+        if (_pauseEtat == 1)
         {
+            //les intersections de tous les boutons du menu
+            if (_rSouris.Intersects(_recBoutonQuitter))
 
-            if (_mouseState.LeftButton == ButtonState.Pressed)
-            {
 
-                _controlesEtat = true;
+                if (_mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    _myGame.Etat = Game1.Etats.Quit;
 
-            }
-        }
-        if (_controlesEtat == true)
-        {
-            if (_rSouris.Intersects(_recCroixControles))
+                }
+
+            if (_rSouris.Intersects(_recBoutonJouer))
             {
 
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
 
-                    _controlesEtat = false;
+                    _pauseEtat = 0;
+                }
+            }
+            if (_rSouris.Intersects(_recBoutonControles))
+            {
+
+                if (_mouseState.LeftButton == ButtonState.Pressed)
+                {
+
+                    _controlesEtat = true;
 
                 }
             }
-        }
-        if (_rSouris.Intersects(_recBoutonParametres))
-        {
-
-            if (_mouseState.LeftButton == ButtonState.Pressed)
+            if (_controlesEtat == true)
             {
-
-                _parametresEtat = true;
-
-            }
-        }
-        if (_parametresEtat == true)
-        {
-            if (_rSouris.Intersects(_recCroixParametres))
-            {
-
-                if (_mouseState.LeftButton == ButtonState.Pressed)
+                if (_rSouris.Intersects(_recCroixControles))
                 {
 
-                    _parametresEtat = false;
-                }
-            }
-        }
-        if (_parametresEtat == true)
-        {
-            if (_rSouris.Intersects(_recCroixPleinEcran))
-            {
-                if (_mouseState.LeftButton == ButtonState.Pressed)
-                {
+                    if (_mouseState.LeftButton == ButtonState.Pressed)
+                    {
 
-                    if (_pleinEcranEtat == true)
-                    {
-                        _fenetreEtat = true;
-                        Thread.Sleep(200);
-                    }
-                    if (_pleinEcranEtat == false)
-                    {
-                        _fenetreEtat = false;
+                        _controlesEtat = false;
 
                     }
-
                 }
             }
-        }
-        if (_fenetreEtat == true)
-        {
-            _myGame.Option = Game1.Options.PleinEcran;
-            _pleinEcranEtat = false;
-
-        }
-
-
-        if (_fenetreEtat == false)
-        {
-            _myGame.Option = Game1.Options.Fenetre;
-            _pleinEcranEtat = true;
-
-        }
-
-        if (_parametresEtat)
-        {
-            if (_rSouris.Intersects(_recSonNull))
+            if (_rSouris.Intersects(_recBoutonParametres))
             {
+
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    MediaPlayer.Volume = 0f;
-                    _sonEtat = 1;
+
+                    _parametresEtat = true;
+
                 }
             }
-        }
-        if (_parametresEtat)
-        {
-            if (_rSouris.Intersects(_recSonBas))
+            if (_parametresEtat == true)
             {
-                if (_mouseState.LeftButton == ButtonState.Pressed)
+                if (_rSouris.Intersects(_recCroixParametres))
                 {
-                    MediaPlayer.Volume = 0.25f;
-                    _sonEtat = 2;
+
+                    if (_mouseState.LeftButton == ButtonState.Pressed)
+                    {
+
+                        _parametresEtat = false;
+                    }
                 }
             }
-        }
-        if (_parametresEtat)
-        {
-            if (_rSouris.Intersects(_recSonMoyen))
+            if (_parametresEtat == true)
             {
-                if (_mouseState.LeftButton == ButtonState.Pressed)
+                if (_rSouris.Intersects(_recCroixPleinEcran))
                 {
-                    MediaPlayer.Volume = 0.75f;
-                    _sonEtat = 3;
+                    if (_mouseState.LeftButton == ButtonState.Pressed)
+                    {
+
+                        if (_pleinEcranEtat == true)
+                        {
+                            _fenetreEtat = true;
+                            Thread.Sleep(200);
+                        }
+                        if (_pleinEcranEtat == false)
+                        {
+                            _fenetreEtat = false;
+
+                        }
+
+                    }
                 }
             }
-        }
-        if (_parametresEtat)
-        {
-            if (_rSouris.Intersects(_recSonHaut))
+            if (_fenetreEtat == true)
             {
-                if (_mouseState.LeftButton == ButtonState.Pressed)
+                _myGame.Option = Game1.Options.PleinEcran;
+                _pleinEcranEtat = false;
+
+            }
+
+
+            if (_fenetreEtat == false)
+            {
+                _myGame.Option = Game1.Options.Fenetre;
+                _pleinEcranEtat = true;
+
+            }
+
+            if (_parametresEtat)
+            {
+                if (_rSouris.Intersects(_recSonNull))
                 {
-                    MediaPlayer.Volume = 1f;
-                    _sonEtat = 4;
+                    if (_mouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        MediaPlayer.Volume = 0f;
+                        _sonEtat = 1;
+                    }
+                }
+            }
+            if (_parametresEtat)
+            {
+                if (_rSouris.Intersects(_recSonBas))
+                {
+                    if (_mouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        MediaPlayer.Volume = 0.25f;
+                        _sonEtat = 2;
+                    }
+                }
+            }
+            if (_parametresEtat)
+            {
+                if (_rSouris.Intersects(_recSonMoyen))
+                {
+                    if (_mouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        MediaPlayer.Volume = 0.75f;
+                        _sonEtat = 3;
+                    }
+                }
+            }
+            if (_parametresEtat)
+            {
+                if (_rSouris.Intersects(_recSonHaut))
+                {
+                    if (_mouseState.LeftButton == ButtonState.Pressed)
+                    {
+                        MediaPlayer.Volume = 1f;
+                        _sonEtat = 4;
+                    }
                 }
             }
         }
 
 
+
+        
+
+         
 
     }
     public override void Draw(GameTime gameTime)
@@ -306,51 +308,57 @@ public class Pause : GameScreen
         _myGame.GraphicsDevice.Clear(Color.DarkGray); // on utilise la reference vers  Game1 pour changer le graphisme
 
         _spriteBatch.Begin();
-        _spriteBatch.DrawString(_font, "Jouer", _positionBoutonJouer, Microsoft.Xna.Framework.Color.White);
-        _spriteBatch.DrawString(_font, "Controles", _positionBoutonControles, Microsoft.Xna.Framework.Color.White);
-        _spriteBatch.DrawString(_font, "Quitter", _positionBoutonQuitter, Microsoft.Xna.Framework.Color.White);
 
-        _spriteBatch.Draw(_parametres, new Vector2((GraphicsDevice.DisplayMode.Width) - 200, 0), Microsoft.Xna.Framework.Color.White);
-
-
-        //dessine des contours autours des textes
-        if (_rSouris.Intersects(_recBoutonQuitter))
+        if ( _pauseEtat == 1)
         {
-            _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 695), Microsoft.Xna.Framework.Color.White);
-        }
-        if (_rSouris.Intersects(_recBoutonJouer))
-        {
-            _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 495), Microsoft.Xna.Framework.Color.White);
-        }
-        if (_rSouris.Intersects(_recBoutonControles))
-        {
-            _spriteBatch.Draw(_rectangleHover2, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 245, 595), Microsoft.Xna.Framework.Color.White);
-        }
+            _spriteBatch.Draw(_imagePause, new Vector2(0, 0), Microsoft.Xna.Framework.Color.White);
+            
+            
+
+            
 
 
-        if (_controlesEtat == true)
-        {
-            _spriteBatch.Draw(_controles, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 470, 100), Microsoft.Xna.Framework.Color.White);
-        }
-
-        if (_parametresEtat == true)
-        {
-            _spriteBatch.Draw(_options, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 1000, -100), Microsoft.Xna.Framework.Color.White);
-
-            if (_fenetreEtat == true)
+            //dessine des contours autours des textes
+            if (_rSouris.Intersects(_recBoutonQuitter))
             {
-                _spriteBatch.DrawString(_font, "X", new Vector2(928, 364), Microsoft.Xna.Framework.Color.Black);
+                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 695), Microsoft.Xna.Framework.Color.White);
             }
-            if (_sonEtat == 1)
-                _spriteBatch.Draw(_carreHover, new Vector2(701, 445), Microsoft.Xna.Framework.Color.White);
-            if (_sonEtat == 2)
-                _spriteBatch.Draw(_carreHover, new Vector2(800, 445), Microsoft.Xna.Framework.Color.White);
-            if (_sonEtat == 3)
-                _spriteBatch.Draw(_carreHover, new Vector2(907, 445), Microsoft.Xna.Framework.Color.White);
-            if (_sonEtat == 4)
-                _spriteBatch.Draw(_carreHover, new Vector2(1002, 445), Microsoft.Xna.Framework.Color.White);
+            if (_rSouris.Intersects(_recBoutonJouer))
+            {
+                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 495), Microsoft.Xna.Framework.Color.White);
+            }
+            if (_rSouris.Intersects(_recBoutonControles))
+            {
+                _spriteBatch.Draw(_rectangleHover2, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 245, 595), Microsoft.Xna.Framework.Color.White);
+            }
+
+
+            if (_controlesEtat == true)
+            {
+                _spriteBatch.Draw(_controles, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 470, 100), Microsoft.Xna.Framework.Color.White);
+            }
+
+            if (_parametresEtat == true)
+            {
+                _spriteBatch.Draw(_options, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 1000, -100), Microsoft.Xna.Framework.Color.White);
+
+                if (_fenetreEtat == true)
+                {
+                    _spriteBatch.DrawString(_font, "X", new Vector2(928, 364), Microsoft.Xna.Framework.Color.Black);
+                }
+                if (_sonEtat == 1)
+                    _spriteBatch.Draw(_carreHover, new Vector2(701, 445), Microsoft.Xna.Framework.Color.White);
+                if (_sonEtat == 2)
+                    _spriteBatch.Draw(_carreHover, new Vector2(800, 445), Microsoft.Xna.Framework.Color.White);
+                if (_sonEtat == 3)
+                    _spriteBatch.Draw(_carreHover, new Vector2(907, 445), Microsoft.Xna.Framework.Color.White);
+                if (_sonEtat == 4)
+                    _spriteBatch.Draw(_carreHover, new Vector2(1002, 445), Microsoft.Xna.Framework.Color.White);
+
+            }
 
         }
+
 
 
 
