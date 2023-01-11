@@ -13,7 +13,7 @@ public class Menu : GameScreen
 {
     private Game1 _myGame;
     private SpriteBatch _spriteBatch { get; set; }
-   
+
     private Texture2D _background;
 
 
@@ -32,7 +32,6 @@ public class Menu : GameScreen
     private Rectangle _recSonBas;
     private Rectangle _recSonMoyen;
     private Rectangle _recSonHaut;
-    private Texture2D _carreHover;
 
     private Texture2D _rectangleHover;
     private Texture2D _rectangleHover2;
@@ -41,7 +40,7 @@ public class Menu : GameScreen
 
     private Texture2D _options;
 
-    
+
     private Vector2 _positionBoutonJouer;
     private Rectangle _recBoutonJouer;
 
@@ -52,7 +51,7 @@ public class Menu : GameScreen
 
     private Rectangle _recCroixPleinEcran;
     private bool _pleinEcranEtat;
-    private bool _fenetreEtat ;
+    private bool _fenetreEtat;
 
     private Rectangle _recCroixControles;
 
@@ -102,19 +101,19 @@ public class Menu : GameScreen
 
         _positionLogo = new Vector2((GraphicsDevice.DisplayMode.Width / 2) - (TAILLE_LOGO / 2), 0);
 
-        _positionBoutonParametres = new Vector2((GraphicsDevice.DisplayMode.Width )-200, 0);
+        _positionBoutonParametres = new Vector2((GraphicsDevice.DisplayMode.Width) - 200, 0);
         _recBoutonParametres = new Rectangle((GraphicsDevice.DisplayMode.Width) - 200, 0, 200, 160);
-        _recCroixParametres = new Rectangle((GraphicsDevice.DisplayMode.Width) - 700, 350, 40, 45);
-        _recCroixPleinEcran = new Rectangle((GraphicsDevice.DisplayMode.Width) - 827, 390, 38, 30);
-        
-        _recCroixControles = new Rectangle((GraphicsDevice.DisplayMode.Width) - 1414, 120,55,55);
+        _recCroixParametres = new Rectangle(1048, 350, 40, 45);
+        _recCroixPleinEcran = new Rectangle(928, 390, 38, 30);
 
-        _recSonNull = new Rectangle(0, 0, 27, 34);
+        _recCroixControles = new Rectangle(346, 120, 55, 55);
+
+        _recSonNull = new Rectangle(717, 455, 27, 34);
         _recSonBas = new Rectangle(810, 455, 40, 34);
         _recSonMoyen = new Rectangle(913, 455, 47, 34);
         _recSonHaut = new Rectangle(1005, 455, 55, 50);
 
-        _screenManager = new ScreenManager(); 
+        _screenManager = new ScreenManager();
 
 
         _myGame.Components.Add(_screenManager);
@@ -135,7 +134,7 @@ public class Menu : GameScreen
 
         _font = Content.Load<SpriteFont>("PixelFont");
 
-        _rectangleHover = Content.Load <Texture2D>("Carre");
+        _rectangleHover = Content.Load<Texture2D>("Carre");
 
         _rectangleHover2 = Content.Load<Texture2D>("Carre2");
 
@@ -146,8 +145,6 @@ public class Menu : GameScreen
         _options = Content.Load<Texture2D>("Option");
 
         _controles = Content.Load<Texture2D>("Controles");
-
-        _carreHover = Content.Load<Texture2D>("Carre3");
 
         base.LoadContent();
     }
@@ -178,14 +175,14 @@ public class Menu : GameScreen
 
 
         if (etatMouvement == 0)
-             _positionLogo.Y = _positionLogo.Y + (float)0.3;
+            _positionLogo.Y = _positionLogo.Y + (float)0.3;
 
         if (etatMouvement == 1)
             _positionLogo.Y = _positionLogo.Y - (float)0.3;
 
 
 
-        
+
         //les intersections de tous les boutons du menu
         if (_rSouris.Intersects(_recBoutonQuitter))
 
@@ -198,7 +195,7 @@ public class Menu : GameScreen
 
         if (_rSouris.Intersects(_recBoutonJouer))
         {
-            
+
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
                 MediaPlayer.Play(_sonRect);
@@ -265,26 +262,27 @@ public class Menu : GameScreen
                     if (_pleinEcranEtat == false)
                     {
                         _fenetreEtat = false;
-                        
+
                     }
 
                 }
             }
         }
-        if (_fenetreEtat == true) {
+        if (_fenetreEtat == true)
+        {
             _myGame.Option = Game1.Options.PleinEcran;
             _pleinEcranEtat = false;
-           
+
         }
-            
+
 
         if (_fenetreEtat == false)
         {
             _myGame.Option = Game1.Options.Fenetre;
             _pleinEcranEtat = true;
-            
+
         }
-       
+
         if (_parametresEtat)
         {
             if (_rSouris.Intersects(_recSonNull))
@@ -354,7 +352,7 @@ public class Menu : GameScreen
             //dessine des contours autours des textes
             if (_rSouris.Intersects(_recBoutonQuitter))
             {
-                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2)-200, 695), Microsoft.Xna.Framework.Color.White);
+                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 695), Microsoft.Xna.Framework.Color.White);
             }
             if (_rSouris.Intersects(_recBoutonJouer))
             {
@@ -364,11 +362,11 @@ public class Menu : GameScreen
             {
                 _spriteBatch.Draw(_rectangleHover2, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 245, 595), Microsoft.Xna.Framework.Color.White);
             }
-          
-            
+
+
             if (_controlesEtat == true)
             {
-                _spriteBatch.Draw(_controles, new Vector2((GraphicsDevice.DisplayMode.Width / 2)-470, 100), Microsoft.Xna.Framework.Color.White);
+                _spriteBatch.Draw(_controles, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 470, 100), Microsoft.Xna.Framework.Color.White);
             }
 
             if (_parametresEtat == true)
@@ -376,20 +374,12 @@ public class Menu : GameScreen
 
             if (_fenetreEtat == true)
             {
-                _spriteBatch.DrawString(_font, "X", new Vector2((GraphicsDevice.DisplayMode.Width) - 833, 364), Microsoft.Xna.Framework.Color.Black);
-            } 
-
-
-            if(_parametresEtat == true)
-            {
-                if (_rSouris.Intersects(_recSonNull)){
-                    _spriteBatch.Draw(_carreHover, new Vector2(0, 0), Microsoft.Xna.Framework.Color.White);
-                }
+                _spriteBatch.DrawString(_font, "X", new Vector2(928, 364), Microsoft.Xna.Framework.Color.Black);
             }
             _spriteBatch.End();
 
         }
 
     }
-    
+
 }
