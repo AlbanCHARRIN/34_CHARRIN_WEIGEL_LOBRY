@@ -1,4 +1,100 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Trapped_in_the_dark.Game1" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Trapped_in_the_dark.Game1.Etats" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Game1.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Trapped_in_the_dark.Game1.Options" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Game1.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQQAAAAAQAAAyIIAAwACIEABEgAIEAKAISAACAAhAQ=</HashCode>
+      <FileName>Game1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personnage" Collapsed="true">
+    <Position X="1.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>KoYADSAAQhKmlgAgAFJUAJjoLjgAIAQazogABECLAtQ=</HashCode>
+      <FileName>Personnage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Map1" Collapsed="true">
+    <Position X="1.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>qgQICSAAAhKmFhAAAFIEAJlgLDgAIQQKTIgABEKLApQ=</HashCode>
+      <FileName>Map1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Map3" Collapsed="true">
+    <Position X="4.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>qgQICSAAAhKmFhAAAFIEAJlgLDgAIQQKTIgABEKLApQ=</HashCode>
+      <FileName>Map3.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Map2" Collapsed="true">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>qgQICSAAAhKmFhAAAFIEAJlgLDgAIQQKTIgABEKLApQ=</HashCode>
+      <FileName>Map2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Map4" Collapsed="true">
+    <Position X="6.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>qgQICSAAAhKmFhAAAFIEAJlgLDgAIQQKTIgABEKLApQ=</HashCode>
+      <FileName>Map4.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Map5" Collapsed="true">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>qgQICSAAAhKmFhAAAFIEAJlgLDgAIQQKTIgABEKLApQ=</HashCode>
+      <FileName>Map5.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Map6" Collapsed="true">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>qgQICSAAAhKmFhAAAFIEAJlgLDgAIQQKTIgABEKLApQ=</HashCode>
+      <FileName>Map6.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Menu" Collapsed="true">
+    <Position X="4.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gERAADIAAxgAgwIiCAAEwAkEBgCgADCkAIAEAVCAABQ=</HashCode>
+      <FileName>Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pause" Collapsed="true">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gERAACAAAxAAAwAiCAAEwAgEBgCgABCkAIAAAECBABQ=</HashCode>
+      <FileName>Pause.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Trapped_in_the_dark.Case1" Collapsed="true">
+    <Position X="1.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAABAAAAAAAAAAEgAAAAAEMAAAAAIQAAAAMAAOACAQ=</HashCode>
+      <FileName>Case1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Trapped_in_the_dark.Case2" Collapsed="true">
+    <Position X="3" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAQEAAAAEgAAAAAAMCAAAAIgAAAAAAACAAAA=</HashCode>
+      <FileName>Case2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
