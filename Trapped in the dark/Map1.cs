@@ -754,11 +754,11 @@ public class Map1 : GameScreen
         _positionCoeurRed = _positionPersoRed + new Vector2(0, -20);
         _positionCoeurBlue = _positionPersoBlue + new Vector2(0, -20);
 
-        
-        if ( IsCollision((ushort)(_positionPersoRed.X / _tiledMap.TileWidth), (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight), Arrivee) && IsCollision((ushort)(_positionPersoBlue.X / _tiledMap.TileWidth), (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight), Arrivee))
+
+       /*
         {
             _myGame.Etat = Game1.Etats.Play;
-        }
+        }*/
 
         if (keyboardState.IsKeyDown(Keys.P))
         {
