@@ -24,6 +24,18 @@
 /processorParam:Quality=Best
 /build:080205_life-lost-game-over-89697.mp3
 
+#begin Arrive.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Arrive.png
+
 #begin background.jpg
 /importer:TextureImporter
 /processor:TextureProcessor

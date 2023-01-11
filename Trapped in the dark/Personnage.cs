@@ -14,7 +14,7 @@ using Trapped_in_the_dark;
 
 public class Personnage : GameScreen
 {
-    private Game _myGame;
+    private Game1 _myGame;
     private SpriteBatch _spriteBatch { get; set; }
     // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est
     // défini dans Game1
@@ -25,6 +25,7 @@ public class Personnage : GameScreen
     public TiledMapTileLayer Obstacle;
     public TiledMapTileLayer piege;
     public TiledMapTileset _tileset;
+    public TiledMapTileLayer _arrivee;
 
     // Timer
     private int _timer;
@@ -126,7 +127,7 @@ public class Personnage : GameScreen
     private Rectangle _rSouris;
 
 
-    public Personnage(Game game) : base(game)
+    public Personnage(Game1 game) : base(game)
     {
         _myGame = game;
     }
@@ -146,6 +147,9 @@ public class Personnage : GameScreen
         GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
         Obstacle = _tiledMap.GetLayer<TiledMapTileLayer>("Obstacle");
+
+        _arrivee = _tiledMap.GetLayer<TiledMapTileLayer>("Arrivee");
+       
 
         //Timer
         _timer = 0;
@@ -1070,9 +1074,19 @@ public class Personnage : GameScreen
             _recBoutonControles.Y = 2000;
         }
 
-        _tiledMapRenderer.Update(gameTime);
+        _tiledMapRenderer.Update(gameTime); 
         _timer++;
         trapTime++;
+
+        ushort bx = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
+        ushort by = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
+        ushort rx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
+        ushort ry = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
+        if (IsCollision(bx, by, _arrivee) && IsCollision(rx, ry, _arrivee))
+        {
+            _myGame.Etat = Game1.Etats.Play;
+        }
+
     }
     public override void Draw(GameTime gameTime)
     {
