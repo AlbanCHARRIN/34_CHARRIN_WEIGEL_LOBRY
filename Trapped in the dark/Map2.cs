@@ -224,7 +224,7 @@ public class Map2 : GameScreen
 
 
         //Joueur Rouge
-        _positionPersoRed = new Vector2(400, 500);
+        _positionPersoRed = new Vector2(10, 10);
 
         SpriteSheet spriteSheetRed = Content.Load<SpriteSheet>("persoAnimation.sf", new JsonContentLoader());
         _persoRed = new AnimatedSprite(spriteSheetRed);
@@ -238,7 +238,7 @@ public class Map2 : GameScreen
         _positionCoeurRed = _positionPersoRed + new Vector2(0, -20);
 
         //Joueur Bleu
-        _positionPersoBlue = new Vector2(450, 500);
+        _positionPersoBlue = new Vector2(10, 10);
 
         SpriteSheet spriteSheetBlue = Content.Load<SpriteSheet>("persoPrincipaleAnimation.sf", new JsonContentLoader());
         _persoBlue = new AnimatedSprite(spriteSheetBlue);
