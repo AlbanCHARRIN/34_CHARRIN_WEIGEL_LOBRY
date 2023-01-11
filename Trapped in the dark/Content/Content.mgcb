@@ -18,6 +18,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin 080205_life-lost-game-over-89697.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:080205_life-lost-game-over-89697.mp3
+
 #begin background.jpg
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -41,6 +47,24 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:background2.png
+
+#begin bat-chirp-close-up-29644.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:bat-chirp-close-up-29644.mp3
+
+#begin big-metal-knock-001-11345.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:big-metal-knock-001-11345.mp3
+
+#begin boom_c_06-102838.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:boom_c_06-102838.mp3
 
 #begin Carre.png
 /importer:TextureImporter
@@ -102,6 +126,18 @@
 /processorParam:TextureFormat=Color
 /build:Controles.png
 
+#begin dead-8bit-41400.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:dead-8bit-41400.mp3
+
+#begin dorm-door-opening-6038.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:dorm-door-opening-6038.mp3
+
 #begin FondNoir.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -113,6 +149,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:FondNoir.png
+
+#begin Health_up.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Health_up.mp3
+
+#begin key-twist-in-lock-47832.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:key-twist-in-lock-47832.mp3
 
 #begin Logo.png
 /importer:TextureImporter
@@ -180,6 +228,12 @@
 /processorParam:TextureFormat=Color
 /build:MapPiege.png
 
+#begin Myuu-HoldOn.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Myuu-HoldOn.mp3
+
 #begin Option.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -246,6 +300,24 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:PixelFont.spritefont
+
+#begin snake-hissing-6092.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:snake-hissing-6092.mp3
+
+#begin sword-impact-100489.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sword-impact-100489.mp3
+
+#begin Whoosh.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Whoosh.mp3
 
 #begin Whoosh.mp3
 /importer:Mp3Importer
