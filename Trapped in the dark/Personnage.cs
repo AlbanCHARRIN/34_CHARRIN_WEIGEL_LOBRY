@@ -152,7 +152,7 @@ public class Personnage : GameScreen
        
 
         //Timer
-        _timer = 0;
+        _timer = 150 * 60;
 
         //Piege
         piege = _tiledMap.GetLayer<TiledMapTileLayer>("Piege");
@@ -704,9 +704,10 @@ public class Personnage : GameScreen
         {
             _coeurRed.Play("uneVie");
         }
-        else if (vieRed <= 0)
+        else if (vieRed <= 0 || _timer == 0)
         {
             _coeurRed.Play("zeroVie");
+            _myGame.Etat = Game1.Etats.Quit;
         }
         else if (vieRed >= 3)
         {
@@ -1075,8 +1076,9 @@ public class Personnage : GameScreen
         }
 
         _tiledMapRenderer.Update(gameTime); 
-        _timer++;
+        _timer--;
         trapTime++;
+
 
         ushort bx = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
         ushort by = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
