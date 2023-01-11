@@ -13,12 +13,12 @@
     "enclume": {
       "frames": [19,20,21,22,23,24,25,26,27,28],
       "isLooping": false,
-      "frameDuration": 0.169999987
+      "frameDuration": 0.1
     },
     "enclumeApres": {
       "frames": [5],
       "isLooping": false,
-      "frameDuration": 0.2
+      "frameDuration": 0.1
     },
     "trapFerme": {
       "frames": [36],
@@ -96,7 +96,7 @@
       "frameDuration": 0.2
     },
     "bomb": {
-      "frames": [],
+      "frames": [77],
       "isLooping": false,
       "frameDuration": 0.2
     },
