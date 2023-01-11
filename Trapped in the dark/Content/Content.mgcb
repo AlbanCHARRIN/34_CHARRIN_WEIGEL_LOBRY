@@ -143,17 +143,30 @@
 /processor:TiledMapProcessor
 /build:Map.tmx
 
-#begin MapPiege.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:MapPiege.png
+#begin Map2.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Map2.tmx
+
+#begin Map3.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Map3.tmx
+
+#begin Map4.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Map4.tmx
+
+#begin Map5.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Map5.tmx
+
+#begin Map6.tmx
+/importer:TiledMapImporter
+/processor:TiledMapProcessor
+/build:Map6.tmx
 
 #begin MapPiege.png
 /importer:TextureImporter
