@@ -68,10 +68,11 @@ public class Menu : GameScreen
     private ScreenManager _screenManager;
 
     private Song _sonRect;
+    private Song _sonMenu;
 
 
     private int etatMouvement = 0;
-
+    private int _musiqueEtat = 0;
 
     public const int TAILLE_LOGO = 500;
 
@@ -116,7 +117,7 @@ public class Menu : GameScreen
         _recSonHaut = new Rectangle(1005, 455, 55, 50);
 
         _screenManager = new ScreenManager();
-
+       
 
         _myGame.Components.Add(_screenManager);
 
@@ -150,6 +151,8 @@ public class Menu : GameScreen
 
         _carreHover = Content.Load<Texture2D>("Carre3");
 
+        _sonMenu = Content.Load<Song>("Myuu-HoldOn");
+
         base.LoadContent();
     }
 
@@ -160,13 +163,19 @@ public class Menu : GameScreen
         float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
 
+      
+
         //permet d'avoir la position de la souris et de pouvoir créer des Intersect
         _mouseState = Mouse.GetState();
         _rSouris.X = _mouseState.X;
         _rSouris.Y = _mouseState.Y;
 
 
-
+        if(_musiqueEtat == 0)
+        {
+            MediaPlayer.Play(_sonMenu);
+            _musiqueEtat++;
+        }
 
         //permet de faire bouger le logo
 
@@ -202,7 +211,7 @@ public class Menu : GameScreen
 
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
-                MediaPlayer.Play(_sonRect);
+                
                 _myGame.Etat = Game1.Etats.Play;
             }
         }
@@ -211,7 +220,7 @@ public class Menu : GameScreen
 
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
-                MediaPlayer.Play(_sonRect);
+                
                 _controlesEtat = true;
 
             }
@@ -223,7 +232,7 @@ public class Menu : GameScreen
 
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    MediaPlayer.Play(_sonRect);
+                    
                     _controlesEtat = false;
 
                 }
@@ -234,7 +243,7 @@ public class Menu : GameScreen
 
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
-                MediaPlayer.Play(_sonRect);
+              
                 _parametresEtat = true;
 
             }
@@ -246,7 +255,7 @@ public class Menu : GameScreen
 
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    MediaPlayer.Play(_sonRect);
+                   
                     _parametresEtat = false;
                 }
             }
@@ -257,7 +266,7 @@ public class Menu : GameScreen
             {
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    MediaPlayer.Play(_sonRect);
+                   
                     if (_pleinEcranEtat == true)
                     {
                         _fenetreEtat = true;
