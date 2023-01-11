@@ -216,13 +216,13 @@ public class Personnage : GameScreen
 
         for (int i = 0; i < _numPiegePosition; i++)
         {
-            _positionPiege[i] = new Vector2 (_positionXPieges[i] * 32 + i/2,_positionYPieges[i] * 33 + 8);
+            _positionPiege[i] = new Vector2 (_positionXPieges[i] * 32,_positionYPieges[i] * 32);
         }
 
 
 
         //Joueur Rouge
-        _positionPersoRed = new Vector2(400, 500);
+        _positionPersoRed = new Vector2(75, 810);
 
         SpriteSheet spriteSheetRed = Content.Load<SpriteSheet>("persoAnimation.sf", new JsonContentLoader());
         _persoRed = new AnimatedSprite(spriteSheetRed);
@@ -236,7 +236,7 @@ public class Personnage : GameScreen
         _positionCoeurRed = _positionPersoRed + new Vector2(0, -20);
 
         //Joueur Bleu
-        _positionPersoBlue = new Vector2(450, 500);
+        _positionPersoBlue = new Vector2(150, 810);
 
         SpriteSheet spriteSheetBlue = Content.Load<SpriteSheet>("persoPrincipaleAnimation.sf", new JsonContentLoader());
         _persoBlue = new AnimatedSprite(spriteSheetBlue);
