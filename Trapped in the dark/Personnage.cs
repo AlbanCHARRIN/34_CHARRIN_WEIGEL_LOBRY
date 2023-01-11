@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using MonoGame.Extended.Content;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
@@ -52,21 +53,21 @@ public class Personnage : GameScreen
     private int[] _namePiege = new int[23];
     private int[] _positionXPieges = new int[23];
     private int[] _positionYPieges = new int[23];
-    private bool _colisionCoeur;
-    private bool _colisionCoeurFull;
-    private bool _colisionChrono;
-    private bool _colisionChronoPlus;
+    private bool[] _colisionCoeur = new bool[23];
+    private bool[] _colisionCoeurFull = new bool[23];
+    private bool[] _colisionChrono = new bool[23];
+    private bool[] _colisionChronoPlus = new bool[23];
     private int serpentTime;
-    private bool[] serpentTouch;
+    private bool[] serpentTouch = new bool[23];
     private int bombeTime;
-    private bool[] bombeTouch;
+    private bool[] bombeTouch = new bool[23];
     private bool _colisionBombe;
     private int _chauveSourisTime;
-    private bool[] chauveSourisTouch;
+    private bool[] chauveSourisTouch = new bool[23];
     private int piqueTime;
     private int trapTime;
     private int enclumeTime;
-    private bool[] enclumeTouch;
+    private bool[] enclumeTouch = new bool[23];
 
 
 
@@ -157,26 +158,26 @@ public class Personnage : GameScreen
             {
                 _piege[i].Play("chronoPlus");
                 _namePiege[i] = 1;
-                _colisionChronoPlus = false;
+                _colisionChronoPlus[i] = false;
             }
             else if (_numPiegePosition == 99)
             {
                 _piege[i].Play("coeurfull");
                 _namePiege[i] = 2;
-                _colisionCoeurFull = false;
+                _colisionCoeurFull[i] = false;
             }
             else if (_numPiegePosition >= 93 && _numPiegePosition <= 98)
             {
                 _piege[i].Play("chrono");
                 _namePiege[i] = 3;
-                _colisionChrono = false;
+                _colisionChrono[i] = false;
             }
 
             else if (_numPiegePosition >= 87 && _numPiegePosition <= 92)
             {
                 _piege[i].Play("coeur");
                 _namePiege[i] = 4;
-                _colisionCoeur = false;
+                _colisionCoeur[i] = false;
             }
 
             else if (_numPiegePosition >= 80 && _numPiegePosition <= 86)
@@ -328,59 +329,82 @@ public class Personnage : GameScreen
         {
             if (_namePiege[i] == 1)
             {
-                _piege[i].Play("chronoPlus");
+                if (_colisionChronoPlus[i] == false)
+                {
+                    _piege[i].Play("chronoPlus");
 
-                if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
-                {
-                    _timer += 100;
-                    _colisionChronoPlus = true;
+                    if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
+                    {
+                        _timer += 100;
+                        _colisionChronoPlus[i] = true;
+                        _piege[i].Play("stop");
+                    }
+                    else if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoRed) != new Vector2(0, 0))
+                    {
+                        _timer += 100;
+                        _colisionChronoPlus[i] = true;
+                        _piege[i].Play("stop");
+                    }
                 }
-                else if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoRed) != new Vector2(0, 0))
-                {
-                    _timer += 100;
-                    _colisionChronoPlus = true;
-                }
+
             }
             else if (_namePiege[i] == 2)
             {
-                _piege[i].Play("coeurfull");
-                if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
+                if (_colisionCoeurFull[i] == false)
                 {
-                    vieBlue += 3;
-                    _colisionCoeurFull = true;
+                    _piege[i].Play("coeurfull");
+                    if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
+                    {
+                        vieBlue += 3;
+                        _colisionCoeurFull[i] = true;
+                        _piege[i].Play("stop");
+                    }
+                    else if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoRed) != new Vector2(0, 0))
+                    {
+                        vieRed += 3;
+                        _colisionCoeurFull[i] = true;
+                        _piege[i].Play("stop");
+                    }
                 }
-                else if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoRed) != new Vector2(0, 0))
-                {
-                    vieRed += 3;
-                    _colisionCoeurFull = true;
-                }
+
             }
             else if (_namePiege[i] == 3)
             {
-                _piege[i].Play("chrono");
-                if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
+                if (_colisionChrono[i] == false)
                 {
-                    _timer += 20;
-                    _colisionChrono = true;
+                    _piege[i].Play("chrono");
+                    if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
+                    {
+                        _timer += 20;
+                        _colisionChrono[i] = true;
+                        _piege[i].Play("stop");
+                    }
+                    else if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoRed) != new Vector2(0, 0))
+                    {
+                        _timer += 20;
+                        _colisionChrono[i] = true;
+                        _piege[i].Play("stop");
+                    }
                 }
-                else if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoRed) != new Vector2(0, 0))
-                {
-                    _timer += 20;
-                    _colisionChrono = true;
-                }
+
             }
             else if (_namePiege[i] == 4)
             {
-                _piege[i].Play("coeur");
-                if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
+                if (_colisionCoeur[i] == false)
                 {
-                    vieBlue++;
-                    _colisionCoeurFull = true;
-                }
-                else if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoRed) != new Vector2(0, 0))
-                {
-                    vieRed++;
-                    _colisionCoeurFull = true;
+                    _piege[i].Play("coeur");
+                    if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
+                    {
+                        vieBlue++;
+                        _colisionCoeur[i] = true;
+                        _piege[i].Play("stop");
+                    }
+                    else if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoRed) != new Vector2(0, 0))
+                    {
+                        vieRed++;
+                        _colisionCoeur[i] = true;
+                        _piege[i].Play("stop");
+                    }
                 }
             }
             else if (_namePiege[i] == 5)
@@ -390,9 +414,12 @@ public class Personnage : GameScreen
                     serpentTouch[i] = true;
                 else if (serpentTouch[i])
                 {
-                    _piege[i].Play("serpentSortant");
-                    serpentTime++;
-                    if (serpentTime >= 36)
+                    if (serpentTime <= 36)
+                    {
+                        _piege[i].Play("serpentSortant");
+                        serpentTime++;
+                    }
+                    else if (serpentTime == 36)
                     {
                         _piege[i].Play("serpentMoving");
                         if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
@@ -403,9 +430,12 @@ public class Personnage : GameScreen
                     serpentTouch[i] = true;
                 if (serpentTouch[i])
                 {
-                    _piege[i].Play("serpentSortant");
-                    serpentTime++;
-                    if (serpentTime >= 36)
+                    if (serpentTime <= 36)
+                    {
+                        _piege[i].Play("serpentSortant");
+                        serpentTime++;
+                    }
+                    else if (serpentTime == 36)
                     {
                         _piege[i].Play("serpentMoving");
                         if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoRed) != new Vector2(0, 0))
@@ -420,14 +450,21 @@ public class Personnage : GameScreen
                     bombeTouch[i] = true;
                 else if (bombeTouch[i])
                 {
-                    _piege[i].Play("boom");
-                    bombeTime++;
-                    if (bombeTime >= 40)
+                    if (bombeTime <= 40)
+                    {
+                        _piege[i].Play("boom");
+                        bombeTime++;
+                    }
+
+                    else if (bombeTime == 40)
                     {
                         if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
                             compteurBlue = 10;
-                        if (bombeTime >= 84)
+                        if (bombeTime == 84)
+                        {
                             _colisionBombe = true;
+                            _piege[i].Play("stop");
+                        }
 
                     }
                 }
@@ -435,15 +472,20 @@ public class Personnage : GameScreen
                     bombeTouch[i] = true;
                 else if (bombeTouch[i])
                 {
-                    _piege[i].Play("boom");
-                    bombeTime++;
-                    if (bombeTime >= 40)
+                    if (bombeTime <= 40)
+                    {
+                        _piege[i].Play("boom");
+                        bombeTime++;
+                    }
+                    if (bombeTime == 40)
                     {
                         if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoRed) != new Vector2(0, 0))
                             compteurRed = 10;
-                        if (bombeTime >= 84)
+                        if (bombeTime == 84)
+                        {
                             _colisionBombe = true;
-
+                            _piege[i].Play("stop");
+                        }
                     }
                 }
             }
@@ -454,22 +496,31 @@ public class Personnage : GameScreen
                     chauveSourisTouch[i] = true;
                 else if (chauveSourisTouch[i])
                 {
-                    _piege[i].Play("chauveSourisSortant");
+                    Console.WriteLine(_chauveSourisTime);
                     _chauveSourisTime++;
-                    if (_chauveSourisTime >= 45)
-                    {
-                        _piege[i].Play("chauveSouris");
-                        if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
-                            compteurBlue = 10;
-                    }
                 }
+                if (_chauveSourisTime == 1)
+                {
+                    _piege[i].Play("chauveSouris");
+                }
+
+                else if (_chauveSourisTime == 60)
+                {
+                    _piege[i].Play("chauveSouris");
+                    if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
+                        compteurBlue = 10;
+                }
+
                 if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoRed) != new Vector2(0, 0))
                     chauveSourisTouch[i] = true;
                 else if (chauveSourisTouch[i])
                 {
-                    _piege[i].Play("chauveSourisSortant");
-                    _chauveSourisTime++;
-                    if (_chauveSourisTime >= 45)
+                    if (_chauveSourisTime <= 45)
+                    {
+                        _piege[i].Play("chauveSourisSortant");
+                        _chauveSourisTime++;
+                    }
+                    else if (_chauveSourisTime >= 45)
                     {
                         _piege[i].Play("chauveSouris");
                         if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoRed) != new Vector2(0, 0))
@@ -479,8 +530,6 @@ public class Personnage : GameScreen
             }
             else if (_namePiege[i] == 8)
             {
-
-
                 if (piqueTime == 60)
                 {
                     _piege[i].Play("piqueOuverture");
@@ -547,11 +596,14 @@ public class Personnage : GameScreen
                     enclumeTouch[i] = true;
                 else if (enclumeTouch[i])
                 {
-                    _piege[i].Play("enclume");
-                    enclumeTime++;
-                    if (enclumeTime >= 60)
+                    if (enclumeTime <= 60)
                     {
-                        if (bombeTime >= 62) ;
+                        _piege[i].Play("enclume");
+                        enclumeTime++;
+                    }
+                    else if (enclumeTime == 60)
+                    {
+                        if (bombeTime == 62) ;
                         if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
                             compteurBlue = 10;
                     }
@@ -560,11 +612,14 @@ public class Personnage : GameScreen
                     enclumeTouch[i] = true;
                 else if (enclumeTouch[i])
                 {
-                    _piege[i].Play("enclume");
-                    enclumeTime++;
-                    if (enclumeTime >= 60)
+                    if (enclumeTime <= 60)
                     {
-                        if (bombeTime >= 62) ;
+                        _piege[i].Play("enclume");
+                        enclumeTime++;
+                    }
+                    else if (enclumeTime == 60)
+                    {
+                        if (bombeTime == 62) ;
                         if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoRed) != new Vector2(0, 0))
                             compteurRed = 10;
                     }
@@ -893,10 +948,10 @@ public class Personnage : GameScreen
 
         for (int i = 0; i < _piege.Length; i++)
         {
-            if (_namePiege[i] == 1 && _colisionChronoPlus) ;
-            else if (_namePiege[i] == 2 && _colisionCoeurFull) ;
-            else if (_namePiege[i] == 3 && _colisionChrono) ;
-            else if (_namePiege[i] == 4 && _colisionCoeur) ;
+            if (_namePiege[i] == 1 && _colisionChronoPlus[i]) ;
+            else if (_namePiege[i] == 2 && _colisionCoeurFull[i]) ;
+            else if (_namePiege[i] == 3 && _colisionChrono[i]) ;
+            else if (_namePiege[i] == 4 && _colisionCoeur[i]) ;
             else if (_namePiege[i] == 6 && _colisionBombe) ;
             else
             {
@@ -988,6 +1043,7 @@ public class Personnage : GameScreen
 
         _tiledMapRenderer.Update(gameTime);
         _timer++;
+        trapTime++;
     }
     public override void Draw(GameTime gameTime)
     {
@@ -998,10 +1054,10 @@ public class Personnage : GameScreen
 
         for (int i = 0; i < _piege.Length; i++)
         {
-            if (_namePiege[i] == 1 && _colisionChronoPlus) ;
-            else if (_namePiege[i] == 2 && _colisionCoeurFull) ;
-            else if (_namePiege[i] == 3 && _colisionChrono) ;
-            else if (_namePiege[i] == 4 && _colisionCoeur) ;
+            if (_namePiege[i] == 1 && _colisionChronoPlus[i]) ;
+            else if (_namePiege[i] == 2 && _colisionCoeurFull[i]) ;
+            else if (_namePiege[i] == 3 && _colisionChrono[i]) ;
+            else if (_namePiege[i] == 4 && _colisionCoeur[i]) ;
             else if (_namePiege[i] == 6 && _colisionBombe) ;
             else
             {
@@ -1012,7 +1068,7 @@ public class Personnage : GameScreen
         _spriteBatch.Draw(_persoRed, _positionPersoRed);
         _spriteBatch.Draw(_persoBlue, _positionPersoBlue);
         _spriteBatch.Draw(_coeurBlue, _positionCoeurBlue);
-        _spriteBatch.Draw(_fondNoirBlue, _positionFondBlue, Microsoft.Xna.Framework.Color.White);
+       // _spriteBatch.Draw(_fondNoirBlue, _positionFondBlue, Microsoft.Xna.Framework.Color.White);
 
 
 
