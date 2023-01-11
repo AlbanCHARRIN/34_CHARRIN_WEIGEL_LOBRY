@@ -149,6 +149,7 @@ public class Personnage : GameScreen
         Obstacle = _tiledMap.GetLayer<TiledMapTileLayer>("Obstacle");
 
         _arrivee = _tiledMap.GetLayer<TiledMapTileLayer>("Arrivee");
+       
 
         //Timer
         _timer = 0;
@@ -1073,14 +1074,17 @@ public class Personnage : GameScreen
             _recBoutonControles.Y = 2000;
         }
 
-        _tiledMapRenderer.Update(gameTime);
+        _tiledMapRenderer.Update(gameTime); 
         _timer++;
         trapTime++;
 
-
-        if (IsCollision((ushort)(_positionPersoBlue.X / _tiledMap.TileWidth), (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight), _arrivee) || IsCollision((ushort)(_positionPersoRed.X / _tiledMap.TileWidth), (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight), _arrivee))
+        ushort bx = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
+        ushort by = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
+        ushort rx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
+        ushort ry = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
+        if (IsCollision(bx, by, _arrivee) && IsCollision(rx, ry, _arrivee))
         {
-            _myGame.Etat = Game1.Etats.Quit;
+            _myGame.Etat = Game1.Etats.Play;
         }
 
     }
@@ -1107,7 +1111,7 @@ public class Personnage : GameScreen
         _spriteBatch.Draw(_persoRed, _positionPersoRed);
         _spriteBatch.Draw(_persoBlue, _positionPersoBlue);
         _spriteBatch.Draw(_coeurBlue, _positionCoeurBlue);
-        //_spriteBatch.Draw(_fondNoirBlue, _positionFondBlue, Microsoft.Xna.Framework.Color.White);
+        _spriteBatch.Draw(_fondNoirBlue, _positionFondBlue, Microsoft.Xna.Framework.Color.White);
 
 
 
