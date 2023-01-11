@@ -31,9 +31,7 @@ namespace Trapped_in_the_dark
         private Map6 _map6;
         private Song _sonMusique;
 
-        private int randomMap;
-        private int[] tabMap;
-        Random random = new Random();
+      ;
         bool map1 = true;
         bool map2 = true;
         bool map3 = true;
@@ -107,9 +105,7 @@ namespace Trapped_in_the_dark
             _graphics.ApplyChanges();
 
 
-            randomMap = random.Next(1, 7);
-            tabMap = new int[6] { 0, 0, 0, 0, 0, 0 };
-            Console.WriteLine(randomMap);
+
 
 
             Etat = Etats.Menu;
@@ -152,17 +148,55 @@ namespace Trapped_in_the_dark
 
 
                 }
-               
+
             }
-            if (test == true)
+            if (map1 == true)
                 if (this.Etat == Etats.Map2)
                 {
 
-                _screenManager.LoadScreen(_map2, new FadeTransition(GraphicsDevice, Color.Black));
-                    test= false;
+                    _screenManager.LoadScreen(_map2, new FadeTransition(GraphicsDevice, Color.Black));
+                    map1 = false;
 
 
                 }
+            if (map2 == true)
+                if (this.Etat == Etats.Map3)
+                {
+
+                    _screenManager.LoadScreen(_map3, new FadeTransition(GraphicsDevice, Color.Black));
+                    map2 = false;
+
+
+                }
+            if (map3 == true)
+                if (this.Etat == Etats.Map4)
+                {
+
+                    _screenManager.LoadScreen(_map4, new FadeTransition(GraphicsDevice, Color.Black));
+                    map3 = false;
+
+
+                }
+            if (map4 == true)
+                if (this.Etat == Etats.Map5)
+                {
+
+                    _screenManager.LoadScreen(_map5, new FadeTransition(GraphicsDevice, Color.Black));
+                    map4 = false;
+
+
+                }
+            if (map5 == true)
+                if (this.Etat == Etats.Map6)
+                {
+
+                    _screenManager.LoadScreen(_map6, new FadeTransition(GraphicsDevice, Color.Black));
+                    map5 = false;
+
+
+                }
+           
+
             if (this.Etat == Etats.Quit)
                 Exit();
 

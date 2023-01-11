@@ -1086,7 +1086,7 @@ public class Map5 : GameScreen
         ushort ry = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
         if (IsCollision(bx, by, _arrivee) && IsCollision(rx, ry, _arrivee))
         {
-            _myGame.Etat = Game1.Etats.Play;
+            _myGame.Etat = Game1.Etats.Map6;
         }
 
     }
