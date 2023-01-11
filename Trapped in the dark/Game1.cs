@@ -165,8 +165,7 @@ namespace Trapped_in_the_dark
 
 
 
-            if (_mouseState.LeftButton == ButtonState.Pressed)
-            {
+            
                 
                 
                 if (this.Etat == Etats.Play)
@@ -241,7 +240,7 @@ namespace Trapped_in_the_dark
                     Console.Write(tabMap[5]);
 
                 }
-            }
+            
             if ( test == 1 && !(tabMap[0] == 1 && tabMap[1] == 2 && tabMap[2] == 3 && tabMap[3] == 4 && tabMap[4] == 5 && tabMap[5] == 6))
                 randomMap = random.Next(1, 7);
             if (tabMap[0] == 1 && tabMap[1] == 2 && tabMap[2] == 3 && tabMap[3] == 4 && tabMap[4] == 5 && tabMap[5] == 6)
@@ -280,6 +279,11 @@ namespace Trapped_in_the_dark
             else if (keyboardState.IsKeyDown(Keys.F4))
             {
                 _screenManager.LoadScreen(_personnage, new FadeTransition(GraphicsDevice,
+                Color.Black));
+            }
+            else if (keyboardState.IsKeyDown(Keys.F7))
+            {
+                _screenManager.LoadScreen(_pause, new FadeTransition(GraphicsDevice,
                 Color.Black));
             }
 
