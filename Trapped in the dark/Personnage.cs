@@ -216,7 +216,7 @@ public class Personnage : GameScreen
 
         for (int i = 0; i < _numPiegePosition; i++)
         {
-            _positionPiege[i] = new Vector2 (_positionXPieges[i] * 32 + 16,_positionYPieges[i] * 33 + 8);
+            _positionPiege[i] = new Vector2 (_positionXPieges[i] * 32 + i/2,_positionYPieges[i] * 33 + 8);
         }
 
 
