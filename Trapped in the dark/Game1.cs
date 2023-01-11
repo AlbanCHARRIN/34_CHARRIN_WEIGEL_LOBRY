@@ -22,6 +22,9 @@ namespace Trapped_in_the_dark
         private Menu _menu;
         private Pause _pause;
         private Personnage _personnage;
+        private Map1 _map1;
+        private Map2 _map2;
+
         public GraphicsDeviceManager _graphics;
         public int[,] _tableauMur;
         public int dimensionx = Case2.dimensionx;

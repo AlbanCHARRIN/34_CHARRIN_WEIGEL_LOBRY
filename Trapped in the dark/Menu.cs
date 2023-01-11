@@ -110,8 +110,8 @@ public class Menu : GameScreen
 
         _recSonNull = new Rectangle(717, 455, 27, 34);
         _recSonBas = new Rectangle(810, 455, 40, 34);
-        _recSonMoyen = new Rectangle(100, 455, 50, 34);
-        _recSonHaut = new Rectangle(100, 455, 50, 50);
+        _recSonMoyen = new Rectangle(913, 455, 47, 34);
+        _recSonHaut = new Rectangle(1005, 455, 55, 50);
 
         _screenManager = new ScreenManager(); 
 
