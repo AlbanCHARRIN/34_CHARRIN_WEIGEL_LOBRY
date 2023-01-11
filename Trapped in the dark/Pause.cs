@@ -20,9 +20,10 @@ using System.Threading;
 public class Pause : GameScreen
 {
 
-    private Texture2D _imagePause;
     private SpriteBatch _spriteBatch { get; set; }
 
+
+    private Texture2D _imagePause;
     private Texture2D _parametres;
     private Vector2 _positionBoutonParametres;
     private Rectangle _recBoutonParametres;
@@ -62,11 +63,12 @@ public class Pause : GameScreen
     private Vector2 _positionBoutonQuitter;
     private Rectangle _recBoutonQuitter;
 
+    private int _pauseEtat;
 
     private MouseState _mouseState;
     private Rectangle _rSouris;
 
-    private int _pauseEtat;
+    
 
     private ScreenManager _screenManager;
 
