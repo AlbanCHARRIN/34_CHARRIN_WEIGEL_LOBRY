@@ -24,8 +24,8 @@ namespace Trapped_in_the_dark
         private Personnage _personnage;
         public GraphicsDeviceManager _graphics;
         public int[,] _tableauMur;
-        public int dimensionx = Case.dimensionx;
-        public int dimensiony = Case.dimensiony;
+        public int dimensionx = Case2.dimensionx;
+        public int dimensiony = Case2.dimensiony;
 
         //Map
 
@@ -33,6 +33,8 @@ namespace Trapped_in_the_dark
 
         private Etats etat;
 
+        public enum Options{ PleinEcran, Son, Fenetre}
+        private Options option;
 
 
 
@@ -47,6 +49,11 @@ namespace Trapped_in_the_dark
             {
                 this.etat = value;
             }
+        }
+        public Options Option
+        {
+            get { return this.option; }
+            set { this.option = value; }
         }
 
         public Game1()
@@ -73,9 +80,11 @@ namespace Trapped_in_the_dark
             Components.Add(_screenManager);
             _graphics.ApplyChanges();
 
-            Etat = Etats.Menu;
 
-            _tableauMur = Case.GenerateurDuTileset();
+            Etat = Etats.Menu;
+            Option = Options.Fenetre;
+
+            _tableauMur = Case2.GenerateurDuTileset();
             base.Initialize();
         }
 
@@ -111,7 +120,16 @@ namespace Trapped_in_the_dark
                     Exit();
 
             }
-
+            
+                if (this.Option == Options.PleinEcran)
+                {
+                    _graphics.IsFullScreen = true;
+                    _graphics.ApplyChanges();
+                }
+                 if (this.Option == Options.Fenetre)
+                    _graphics.IsFullScreen = false;
+                    _graphics.ApplyChanges();
+           
 
             if (keyboardState.IsKeyDown(Keys.F2))
             {

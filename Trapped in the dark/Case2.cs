@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Trapped_in_the_dark
 {
-    internal class Case
+    internal class Case2
     {
         private const int uneCase = 3;
         public const int dimensionx = 10 * uneCase;
@@ -15,7 +15,7 @@ namespace Trapped_in_the_dark
 
         private int[,] tableau;
 
-        public Case(int[,] tableau)
+        public Case2(int[,] tableau)
         {
             this.tableau = tableau;
         }
