@@ -167,8 +167,7 @@ namespace Trapped_in_the_dark
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
                 
-                Console.WriteLine("F6");
-                Console.WriteLine(randomMap);
+                
                 if (this.Etat == Etats.Play)
                 {
 
@@ -230,7 +229,7 @@ namespace Trapped_in_the_dark
                     }
 
 
-                    else if (this.Etat == Etats.Quit)
+                    if (this.Etat == Etats.Quit)
                         Exit();
 
                     Console.Write(tabMap[0]);
@@ -248,11 +247,14 @@ namespace Trapped_in_the_dark
                 test = 0;
 
 
+            if (_mouseState.LeftButton == ButtonState.Pressed)
+            {
 
+                    if (this.Etat == Etats.Quit)
+                        Exit();
 
-
-
-            if (this.Option == Options.PleinEcran)
+            }
+                    if (this.Option == Options.PleinEcran)
             {
                 _graphics.IsFullScreen = true;
                 _graphics.ApplyChanges();

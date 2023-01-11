@@ -32,6 +32,7 @@ public class Menu : GameScreen
     private Rectangle _recSonBas;
     private Rectangle _recSonMoyen;
     private Rectangle _recSonHaut;
+     
 
     private Texture2D _rectangleHover;
     private Texture2D _rectangleHover2;
@@ -289,8 +290,8 @@ public class Menu : GameScreen
             {
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    //MediaPlayer.Volume = 0f;
-                    _myGame.Etat = Game1.Etats.Play;
+                    MediaPlayer.Volume = 0f;
+                    
                 }
             }
         }
@@ -300,8 +301,8 @@ public class Menu : GameScreen
             {
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    //MediaPlayer.Volume = 0f;
-                    _myGame.Etat = Game1.Etats.Play;
+                    MediaPlayer.Volume = 0.25f;
+                    
                 }
             }
         }
@@ -311,8 +312,8 @@ public class Menu : GameScreen
             {
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    //MediaPlayer.Volume = 0f;
-                    _myGame.Etat = Game1.Etats.Play;
+                    MediaPlayer.Volume = 0.75f;
+                    
                 }
             }
         }
@@ -322,8 +323,8 @@ public class Menu : GameScreen
             {
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    //MediaPlayer.Volume = 0f;
-                    _myGame.Etat = Game1.Etats.Play;
+                    MediaPlayer.Volume = 1f;
+                    
                 }
             }
         }
@@ -370,12 +371,20 @@ public class Menu : GameScreen
             }
 
             if (_parametresEtat == true)
+            {
                 _spriteBatch.Draw(_options, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 1000, -100), Microsoft.Xna.Framework.Color.White);
 
-            if (_fenetreEtat == true)
-            {
-                _spriteBatch.DrawString(_font, "X", new Vector2(928, 364), Microsoft.Xna.Framework.Color.Black);
+                if (_fenetreEtat == true)
+                {
+                    _spriteBatch.DrawString(_font, "X", new Vector2(928, 364), Microsoft.Xna.Framework.Color.Black);
+                }
+                if
+
+                
             }
+                
+                
+
             _spriteBatch.End();
 
         }
