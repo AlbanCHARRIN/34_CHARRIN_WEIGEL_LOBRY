@@ -103,10 +103,10 @@ public class Menu : GameScreen
 
         _positionBoutonParametres = new Vector2((GraphicsDevice.DisplayMode.Width )-200, 0);
         _recBoutonParametres = new Rectangle((GraphicsDevice.DisplayMode.Width) - 200, 0, 200, 160);
-        _recCroixParametres = new Rectangle(1048, 350, 40, 45);
-        _recCroixPleinEcran = new Rectangle(928, 390, 38, 30);
+        _recCroixParametres = new Rectangle((GraphicsDevice.DisplayMode.Width) - 700, 350, 40, 45);
+        _recCroixPleinEcran = new Rectangle((GraphicsDevice.DisplayMode.Width) - 827, 390, 38, 30);
         
-        _recCroixControles = new Rectangle(346, 120,55,55);
+        _recCroixControles = new Rectangle((GraphicsDevice.DisplayMode.Width) - 1414, 120,55,55);
 
         _recSonNull = new Rectangle(717, 455, 27, 34);
         _recSonBas = new Rectangle(810, 455, 40, 34);
@@ -373,7 +373,7 @@ public class Menu : GameScreen
 
             if (_fenetreEtat == true)
             {
-                _spriteBatch.DrawString(_font, "X", new Vector2(928, 364), Microsoft.Xna.Framework.Color.Black);
+                _spriteBatch.DrawString(_font, "X", new Vector2((GraphicsDevice.DisplayMode.Width) - 833, 364), Microsoft.Xna.Framework.Color.Black);
             } 
             _spriteBatch.End();
 
