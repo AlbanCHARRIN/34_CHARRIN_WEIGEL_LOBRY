@@ -224,7 +224,7 @@ public class Map3 : GameScreen
 
 
         //Joueur Rouge
-        _positionPersoRed = new Vector2(400, 500);
+        _positionPersoRed = new Vector2(100, 100);
 
         SpriteSheet spriteSheetRed = Content.Load<SpriteSheet>("persoAnimation.sf", new JsonContentLoader());
         _persoRed = new AnimatedSprite(spriteSheetRed);
@@ -238,7 +238,7 @@ public class Map3 : GameScreen
         _positionCoeurRed = _positionPersoRed + new Vector2(0, -20);
 
         //Joueur Bleu
-        _positionPersoBlue = new Vector2(450, 500);
+        _positionPersoBlue = new Vector2(120, 120);
 
         SpriteSheet spriteSheetBlue = Content.Load<SpriteSheet>("persoPrincipaleAnimation.sf", new JsonContentLoader());
         _persoBlue = new AnimatedSprite(spriteSheetBlue);
@@ -754,15 +754,18 @@ public class Map3 : GameScreen
         _positionCoeurRed = _positionPersoRed + new Vector2(0, -20);
         _positionCoeurBlue = _positionPersoBlue + new Vector2(0, -20);
 
-        ushort bluex = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
-        ushort bluey = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
-        ushort redx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
-        ushort redy = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
-        if (IsCollision(redx, redy, Arrivee) && IsCollision(bluex, bluey, Arrivee))
+        /* ushort bluex = (ushort)(_positionPersoBlue.X / _tiledMap.TileWidth);
+         ushort bluey = (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight);
+         ushort redx = (ushort)(_positionPersoRed.X / _tiledMap.TileWidth);
+         ushort redy = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
+         if (IsCollision(redx, redy, Arrivee) && IsCollision(bluex, bluey, Arrivee))
+         {
+             _myGame.Etat = Game1.Etats.Play;
+         }*/
+        if (keyboardState.IsKeyDown(Keys.F8))
         {
             _myGame.Etat = Game1.Etats.Play;
         }
-
         if (keyboardState.IsKeyDown(Keys.P))
         {
             _pauseEtat = 1;

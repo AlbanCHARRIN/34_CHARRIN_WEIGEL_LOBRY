@@ -28,6 +28,10 @@ namespace Trapped_in_the_dark
         private Map4 _map4;
         private Map5 _map5;
         private Map6 _map6;
+       
+        private int randomMap;
+        private int[] tabMap;
+        Random random = new Random();
 
         public GraphicsDeviceManager _graphics;
         public int[,] _tableauMur;
@@ -94,6 +98,10 @@ namespace Trapped_in_the_dark
             _graphics.ApplyChanges();
 
 
+            
+            randomMap = random.Next(1, 7);
+            tabMap = new int[6] { 0, 0, 0, 0, 0, 0 };
+
             Etat = Etats.Menu;
             Option = Options.Fenetre;
 
@@ -123,30 +131,76 @@ namespace Trapped_in_the_dark
 
             MouseState _mouseState = Mouse.GetState();
 
-            Random random = new Random();
-            int randomMap = random.Next(1, 7);
-            int[] tabMap = new int[6] {0,0,0,0,0,0};
 
-            for ( int i = 0; i < tabMap.Length; i++)
+
+
+            randomMap = random.Next(1, 7);
+
+            if (tabMap[randomMap-1] == 0)
             {
-                if (tabMap[i] == i+1 )
-                    random.Next(1, 7);
+                if (keyboardState.IsKeyDown(Keys.F6))
+                {
+                    if (this.Etat == Etats.Play)
+
+                        if (randomMap == 1)
+                        {
+                            tabMap[0] = 1;
+                            _screenManager.LoadScreen(_map1, new FadeTransition(GraphicsDevice, Color.Black));
+                            
+
+                        }
+                    if (randomMap == 2)
+                    {
+                        tabMap[1] = 2;
+                        _screenManager.LoadScreen(_map2, new FadeTransition(GraphicsDevice, Color.Black));
+
+                    }
+                    if (randomMap == 3)
+                    {
+                        tabMap[2] = 3;
+                        _screenManager.LoadScreen(_map3, new FadeTransition(GraphicsDevice, Color.Black));
+                    }
+                    if (randomMap == 4)
+                    {
+                        tabMap[3] = 4;
+                        _screenManager.LoadScreen(_map4, new FadeTransition(GraphicsDevice, Color.Black));
+                    }
+                    if (randomMap == 5)
+                    {
+                        tabMap[4] = 5;
+                        _screenManager.LoadScreen(_map5, new FadeTransition(GraphicsDevice, Color.Black));
+                    }
+                    if (randomMap == 6)
+                    {
+                        tabMap[5] = 6;
+                        _screenManager.LoadScreen(_map6, new FadeTransition(GraphicsDevice, Color.Black));
+                    }
+
+
+                    else if (this.Etat == Etats.Quit)
+                        Exit();
+
+                }
             }
+                    
+           
             //mouseState.LeftButton == ButtonState.Pressed
             if (keyboardState.IsKeyDown(Keys.F6))
             {
                 if (this.Etat == Etats.Play)
-                    //_screenManager.LoadScreen(_personnage, new FadeTransition(GraphicsDevice, Color.Black));
+                    
                     if(randomMap == 1)
                     {
                         tabMap[0] = 1;
                         _screenManager.LoadScreen(_map1, new FadeTransition(GraphicsDevice, Color.Black));
-                        
+                      
+
                     }
                     if (randomMap == 2)
                     {
                     tabMap[1] = 2;
                     _screenManager.LoadScreen(_map2, new FadeTransition(GraphicsDevice, Color.Black));
+
                     }
                 if (randomMap == 3)
                 {
