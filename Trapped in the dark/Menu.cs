@@ -32,6 +32,7 @@ public class Menu : GameScreen
     private Rectangle _recSonBas;
     private Rectangle _recSonMoyen;
     private Rectangle _recSonHaut;
+    private Texture2D _carreHover;
 
     private Texture2D _rectangleHover;
     private Texture2D _rectangleHover2;
@@ -108,7 +109,7 @@ public class Menu : GameScreen
         
         _recCroixControles = new Rectangle((GraphicsDevice.DisplayMode.Width) - 1414, 120,55,55);
 
-        _recSonNull = new Rectangle(717, 455, 27, 34);
+        _recSonNull = new Rectangle(0, 0, 27, 34);
         _recSonBas = new Rectangle(810, 455, 40, 34);
         _recSonMoyen = new Rectangle(913, 455, 47, 34);
         _recSonHaut = new Rectangle(1005, 455, 55, 50);
@@ -145,6 +146,8 @@ public class Menu : GameScreen
         _options = Content.Load<Texture2D>("Option");
 
         _controles = Content.Load<Texture2D>("Controles");
+
+        _carreHover = Content.Load<Texture2D>("Carre3");
 
         base.LoadContent();
     }
@@ -375,6 +378,14 @@ public class Menu : GameScreen
             {
                 _spriteBatch.DrawString(_font, "X", new Vector2((GraphicsDevice.DisplayMode.Width) - 833, 364), Microsoft.Xna.Framework.Color.Black);
             } 
+
+
+            if(_parametresEtat == true)
+            {
+                if (_rSouris.Intersects(_recSonNull)){
+                    _spriteBatch.Draw(_carreHover, new Vector2(0, 0), Microsoft.Xna.Framework.Color.White);
+                }
+            }
             _spriteBatch.End();
 
         }
