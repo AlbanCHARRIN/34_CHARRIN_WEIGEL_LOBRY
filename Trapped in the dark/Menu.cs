@@ -32,7 +32,8 @@ public class Menu : GameScreen
     private Rectangle _recSonBas;
     private Rectangle _recSonMoyen;
     private Rectangle _recSonHaut;
-     
+    private int _sonEtat;
+    private Texture2D _carreHover;
 
     private Texture2D _rectangleHover;
     private Texture2D _rectangleHover2;
@@ -146,6 +147,8 @@ public class Menu : GameScreen
         _options = Content.Load<Texture2D>("Option");
 
         _controles = Content.Load<Texture2D>("Controles");
+
+        _carreHover = Content.Load<Texture2D>("Carre3");
 
         base.LoadContent();
     }
@@ -291,7 +294,7 @@ public class Menu : GameScreen
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
                     MediaPlayer.Volume = 0f;
-                    
+                    _sonEtat = 1;
                 }
             }
         }
@@ -302,7 +305,7 @@ public class Menu : GameScreen
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
                     MediaPlayer.Volume = 0.25f;
-                    
+                    _sonEtat = 2;
                 }
             }
         }
@@ -313,7 +316,7 @@ public class Menu : GameScreen
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
                     MediaPlayer.Volume = 0.75f;
-                    
+                    _sonEtat = 3;
                 }
             }
         }
@@ -324,7 +327,7 @@ public class Menu : GameScreen
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
                     MediaPlayer.Volume = 1f;
-                    
+                    _sonEtat = 4;
                 }
             }
         }
@@ -378,9 +381,15 @@ public class Menu : GameScreen
                 {
                     _spriteBatch.DrawString(_font, "X", new Vector2(928, 364), Microsoft.Xna.Framework.Color.Black);
                 }
-                if
+                if (_sonEtat == 1)
+                    _spriteBatch.Draw(_carreHover, new Vector2(701,445), Microsoft.Xna.Framework.Color.White);
+                if (_sonEtat == 2)
+                    _spriteBatch.Draw(_carreHover, new Vector2(800, 445), Microsoft.Xna.Framework.Color.White);
+                if (_sonEtat == 3)
+                    _spriteBatch.Draw(_carreHover, new Vector2(907, 445), Microsoft.Xna.Framework.Color.White);
+                if (_sonEtat == 4)
+                    _spriteBatch.Draw(_carreHover, new Vector2(1002, 445), Microsoft.Xna.Framework.Color.White);
 
-                
             }
                 
                 
