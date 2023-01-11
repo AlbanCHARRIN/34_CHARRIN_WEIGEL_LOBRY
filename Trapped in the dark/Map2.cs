@@ -570,7 +570,7 @@ public class Map2 : GameScreen
                 }
                 else if (piqueTime == 120)
                 {
-                    MediaPlayer.Play(piqueSword);
+                    //MediaPlayer.Play(piqueSword);
                     _piege[i].Play("piqueOuvert");
                     if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
                         compteurBlue = 10;
@@ -707,7 +707,7 @@ public class Map2 : GameScreen
         else if (vieRed <= 0 || _timer == 0)
         {
             _coeurRed.Play("zeroVie");
-            _myGame.Etat = Game1.Etats.Quit;
+            //_myGame.Etat = Game1.Etats.Quit;
         }
         else if (vieRed >= 3)
         {

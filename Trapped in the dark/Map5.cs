@@ -707,7 +707,7 @@ public class Map5 : GameScreen
         else if (vieRed <= 0 || _timer == 0)
         {
             _coeurRed.Play("zeroVie");
-            _myGame.Etat = Game1.Etats.Quit;
+            //_myGame.Etat = Game1.Etats.Quit;
         }
         else if (vieRed >= 3)
         {
