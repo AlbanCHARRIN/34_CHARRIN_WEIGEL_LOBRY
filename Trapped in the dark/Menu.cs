@@ -195,7 +195,7 @@ public class Menu : GameScreen
 
         if (_rSouris.Intersects(_recBoutonJouer))
         {
-            MediaPlayer.Play(_sonRect);
+            
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
                 MediaPlayer.Play(_sonRect);
@@ -207,6 +207,7 @@ public class Menu : GameScreen
 
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
+                MediaPlayer.Play(_sonRect);
                 _controlesEtat = true;
 
             }
@@ -218,6 +219,7 @@ public class Menu : GameScreen
 
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
+                    MediaPlayer.Play(_sonRect);
                     _controlesEtat = false;
 
                 }
@@ -228,6 +230,7 @@ public class Menu : GameScreen
 
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
+                MediaPlayer.Play(_sonRect);
                 _parametresEtat = true;
 
             }
@@ -239,6 +242,7 @@ public class Menu : GameScreen
 
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
+                    MediaPlayer.Play(_sonRect);
                     _parametresEtat = false;
                 }
             }
@@ -249,7 +253,7 @@ public class Menu : GameScreen
             {
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
-
+                    MediaPlayer.Play(_sonRect);
                     if (_pleinEcranEtat == true)
                     {
                         _fenetreEtat = true;

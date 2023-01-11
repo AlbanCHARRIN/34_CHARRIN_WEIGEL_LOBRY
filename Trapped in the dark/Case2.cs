@@ -9,8 +9,8 @@ namespace Trapped_in_the_dark
     internal class Case2
     {
         private const int uneCase = 3;
-        public const int dimensionx = 10 * uneCase;
-        public const int dimensiony = 10 * uneCase;
+        public const int dimensionX = 10 * uneCase;
+        public const int dimensionY = 10 * uneCase;
 
 
         private int[,] tableau;
@@ -41,21 +41,21 @@ namespace Trapped_in_the_dark
 
         public static int[,] GenerateurDuTileset()
         {
-            int[,] tileset = new int[dimensionx, dimensiony];
+            int[,] tileset = new int[dimensionX, dimensionY];
 
-            for (int i = 0; i < dimensionx; i++)
+            for (int i = 0; i < dimensionX; i++)
             {
-                for (int j = 0; j < dimensiony; j++)
+                for (int j = 0; j < dimensionY; j++)
                 {
                     tileset[i, j] = 0;
                 }
             }
-            for (int i = 0; i < dimensiony; i++)
+            for (int i = 0; i < dimensionY; i++)
             {
                 tileset[i, 0] = 1;
                 tileset[0, i] = 1;
-                tileset[i, dimensiony - 1] = 1;
-                tileset[dimensionx - 1, i] = 1;
+                tileset[i, dimensionY - 1] = 1;
+                tileset[dimensionX - 1, i] = 1;
             }
 
             return tileset;
@@ -64,12 +64,12 @@ namespace Trapped_in_the_dark
 
         public static int[,] GenerateTheWall(int[,] tileset)
         {
-            int wall = dimensionx + dimensiony;
+            int wall = dimensionX + dimensionY;
             Random rand = new Random();
-            for (int k = 0; k < dimensionx * dimensiony; k++)
+            for (int k = 0; k < dimensionX * dimensionY; k++)
             {
-                int positionXWall = rand.Next(1, dimensionx - 1);
-                int positionYWall = rand.Next(1, dimensiony - 1);
+                int positionXWall = rand.Next(1, dimensionX - 1);
+                int positionYWall = rand.Next(1, dimensionY - 1);
                 tileset[positionXWall, positionYWall] = 0;
 
                 for (int i = 0; i < wall; i++)
@@ -113,9 +113,9 @@ namespace Trapped_in_the_dark
 
             }
 
-            for (int i = 0; i < dimensionx; i++)
+            for (int i = 0; i < dimensionX; i++)
             {
-                for (int j = 0; j < dimensiony; j++)
+                for (int j = 0; j < dimensionY; j++)
                 {
                     if (tileset[i, j] == 1)
                         tileset[i, j] = rand.Next(8, 13);
