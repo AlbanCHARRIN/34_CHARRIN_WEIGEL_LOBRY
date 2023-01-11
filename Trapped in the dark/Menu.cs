@@ -382,9 +382,14 @@ public class Menu : GameScreen
                     _spriteBatch.DrawString(_font, "X", new Vector2(928, 364), Microsoft.Xna.Framework.Color.Black);
                 }
                 if (_sonEtat == 1)
-                    _spriteBatch.Draw(_carreHover, new Vector2(600,0), Microsoft.Xna.Framework.Color.White);
+                    _spriteBatch.Draw(_carreHover, new Vector2(701,445), Microsoft.Xna.Framework.Color.White);
+                if (_sonEtat == 2)
+                    _spriteBatch.Draw(_carreHover, new Vector2(800, 445), Microsoft.Xna.Framework.Color.White);
+                if (_sonEtat == 3)
+                    _spriteBatch.Draw(_carreHover, new Vector2(907, 445), Microsoft.Xna.Framework.Color.White);
+                if (_sonEtat == 4)
+                    _spriteBatch.Draw(_carreHover, new Vector2(1002, 445), Microsoft.Xna.Framework.Color.White);
 
-                
             }
                 
                 
