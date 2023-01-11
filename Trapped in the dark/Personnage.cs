@@ -333,23 +333,23 @@ public class Personnage : GameScreen
                 if (piqueTime == 60)
                 {
                     _piege[i].Play("piqueOuverture");
-                    vieActuelleBlue = false;   
+                    if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
+                        compteurBlue = 10;
                 }
                 else if (piqueTime == 120)
                 {
                     _piege[i].Play("piqueOuvert");
-                    vieActuelleBlue = false;
+                    if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
+                        compteurBlue = 10;
                 }
                 else if (piqueTime == 180)
                 {
                     _piege[i].Play("piqueFermeture");
-                    vieActuelleBlue = true;
                 }
                 else if (piqueTime >= 240)
                 {
                     _piege[i].Play("piqueFerme");
                     piqueTime = 0;
-                    vieActuelleBlue = true;
 
                 }
 
@@ -368,6 +368,36 @@ public class Personnage : GameScreen
             }
         }
 
+        //Gestion de la vie
+        if (compteurRed <= 0)
+        {
+            vieActuelleRed = false;
+            accelerationRed = 1;
+        }
+        else
+        {
+            if (vieActuelleRed == false)
+            {
+                vieActuelleRed = true;
+                vieRed--;
+            }
+            compteurRed--;
+        }
+
+        if (compteurBlue == 0)
+        {
+            vieActuelleBlue = false;
+            accelerationBlue = 1;
+        }
+        else
+        {
+            if (vieActuelleBlue == false)
+            {
+                vieActuelleBlue = true;
+                vieBlue--;
+            }
+            compteurBlue--;
+        }
 
         //coeur Rouge
         if (vieRed == 3)
@@ -574,10 +604,7 @@ public class Personnage : GameScreen
                 }
             }
 
-            if (IsCollision(tx, ty, piege) && compteurBlue == 0)
-            {
-                compteurBlue = 10;
-            }
+           
 
         }
 
@@ -599,10 +626,7 @@ public class Personnage : GameScreen
                     positionPersoBlueX = 10;
                 }
             }
-            if (IsCollision(tx, ty, piege) && compteurBlue == 0)
-            {
-                compteurBlue = 10;
-            }
+            
         }
 
         else if (keyboardState.IsKeyDown(Keys.Z))
@@ -646,10 +670,7 @@ public class Personnage : GameScreen
                     positionPersoBlueX = 0;
                 }
             }
-            if (IsCollision(tx, ty, piege) && compteurBlue == 0)
-            {
-                compteurBlue = 10;
-            }
+           
         }
         else
         {
@@ -676,10 +697,7 @@ public class Personnage : GameScreen
                 }
                 _directioncollisionBlue = "idle";
             }
-            if (IsCollision(tx, ty, piege) && compteurBlue == 0)
-            {
-                compteurBlue = 10;
-            }
+            
         }
 
 
@@ -718,35 +736,7 @@ public class Personnage : GameScreen
         _positionFondBlue = _positionPersoBlue + new Vector2(-_fondNoirBlue.Width / 2 + 10, -_fondNoirBlue.Height / 2 + 10);
 
 
-        if (compteurRed <= 0)
-        {
-            vieActuelleRed = false;
-            accelerationRed = 1;
-        }
-        else
-        {
-            if (vieActuelleRed == false)
-            {
-                vieActuelleRed = true;
-                vieRed--;
-            }
-            compteurRed--;
-        }
-
-        if (compteurBlue == 0)
-        {
-            vieActuelleBlue = false;
-            accelerationBlue = 1;
-        }
-        else
-        {
-            if (vieActuelleBlue == false)
-            {
-                vieActuelleBlue = true;
-                vieBlue--;
-            }
-            compteurBlue--;
-        }
+        
 
         piqueTime++;
         _positionCoeurRed = _positionPersoRed + new Vector2(0, -20);
