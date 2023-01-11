@@ -25,6 +25,7 @@ public class Personnage : GameScreen
     public TiledMapTileLayer Obstacle;
     public TiledMapTileLayer piege;
     public TiledMapTileset _tileset;
+    public TiledMapTileset _arrive;
 
     // Timer
     private int _timer;
@@ -1073,6 +1074,9 @@ public class Personnage : GameScreen
         _tiledMapRenderer.Update(gameTime);
         _timer++;
         trapTime++;
+
+
+        if (IsCollision((ushort)_positionPersoBlue.X,(ushort) _positionPersoBlue.Y)
     }
     public override void Draw(GameTime gameTime)
     {
