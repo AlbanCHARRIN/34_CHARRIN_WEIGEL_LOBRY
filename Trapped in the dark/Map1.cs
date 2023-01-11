@@ -13,7 +13,7 @@ using Trapped_in_the_dark;
 
 public class Map1 : GameScreen
 {
-    private Game _myGame;
+    private Game1 _myGame;
     private SpriteBatch _spriteBatch { get; set; }
     // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est
     // défini dans Game1
@@ -107,7 +107,7 @@ public class Map1 : GameScreen
     private Rectangle _rSouris;
 
 
-    public Map1(Game game) : base(game)
+    public Map1(Game1 game) : base(game)
     {
         _myGame = game;
     }
@@ -760,7 +760,7 @@ public class Map1 : GameScreen
         ushort redy = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
         if ( IsCollision(redx,redy, Arrivee) && IsCollision(bluex,bluey, Arrivee))
         {
-            //Change de scène choucroute
+            _myGame.Etat = Game1.Etats.Play;
         }
 
         if (keyboardState.IsKeyDown(Keys.P))

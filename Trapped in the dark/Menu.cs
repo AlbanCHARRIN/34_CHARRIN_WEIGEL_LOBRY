@@ -108,10 +108,10 @@ public class Menu : GameScreen
         
         _recCroixControles = new Rectangle(346, 120,55,55);
 
-        _recSonNull = new Rectangle(0, 0, 50, 50);
-        _recSonBas = new Rectangle(100, 100, 50, 50);
-        _recSonMoyen = new Rectangle(100, 100, 50, 50);
-        _recSonHaut = new Rectangle(100, 100, 50, 50);
+        _recSonNull = new Rectangle(717, 455, 27, 34);
+        _recSonBas = new Rectangle(810, 455, 40, 34);
+        _recSonMoyen = new Rectangle(100, 455, 50, 34);
+        _recSonHaut = new Rectangle(100, 455, 50, 50);
 
         _screenManager = new ScreenManager(); 
 
@@ -284,7 +284,41 @@ public class Menu : GameScreen
             {
                 if (_mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    MediaPlayer.Volume = 0f;
+                    //MediaPlayer.Volume = 0f;
+                    _myGame.Etat = Game1.Etats.Play;
+                }
+            }
+        }
+        if (_parametresEtat)
+        {
+            if (_rSouris.Intersects(_recSonBas))
+            {
+                if (_mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    //MediaPlayer.Volume = 0f;
+                    _myGame.Etat = Game1.Etats.Play;
+                }
+            }
+        }
+        if (_parametresEtat)
+        {
+            if (_rSouris.Intersects(_recSonMoyen))
+            {
+                if (_mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    //MediaPlayer.Volume = 0f;
+                    _myGame.Etat = Game1.Etats.Play;
+                }
+            }
+        }
+        if (_parametresEtat)
+        {
+            if (_rSouris.Intersects(_recSonHaut))
+            {
+                if (_mouseState.LeftButton == ButtonState.Pressed)
+                {
+                    //MediaPlayer.Volume = 0f;
+                    _myGame.Etat = Game1.Etats.Play;
                 }
             }
         }
