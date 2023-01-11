@@ -14,7 +14,7 @@ using Trapped_in_the_dark;
 
 public class Personnage : GameScreen
 {
-    private Game _myGame;
+    private Game1 _myGame;
     private SpriteBatch _spriteBatch { get; set; }
     // pour récupérer une référence à l’objet game pour avoir accès à tout ce qui est
     // défini dans Game1
@@ -25,7 +25,7 @@ public class Personnage : GameScreen
     public TiledMapTileLayer Obstacle;
     public TiledMapTileLayer piege;
     public TiledMapTileset _tileset;
-    public TiledMapTileset _arrive;
+    public TiledMapTileLayer _arrivee;
 
     // Timer
     private int _timer;
@@ -127,7 +127,7 @@ public class Personnage : GameScreen
     private Rectangle _rSouris;
 
 
-    public Personnage(Game game) : base(game)
+    public Personnage(Game1 game) : base(game)
     {
         _myGame = game;
     }
@@ -147,6 +147,8 @@ public class Personnage : GameScreen
         GraphicsDevice.BlendState = BlendState.AlphaBlend;
 
         Obstacle = _tiledMap.GetLayer<TiledMapTileLayer>("Obstacle");
+
+        _arrivee = _tiledMap.GetLayer<TiledMapTileLayer>("Arrivee");
 
         //Timer
         _timer = 0;
@@ -1076,7 +1078,11 @@ public class Personnage : GameScreen
         trapTime++;
 
 
-        if (IsCollision((ushort)_positionPersoBlue.X,(ushort) _positionPersoBlue.Y)
+        if (IsCollision((ushort)(_positionPersoBlue.X / _tiledMap.TileWidth), (ushort)(_positionPersoBlue.Y / _tiledMap.TileHeight), _arrivee) || IsCollision((ushort)(_positionPersoRed.X / _tiledMap.TileWidth), (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight), _arrivee))
+        {
+            _myGame.Etat = Game1.Etats.Quit;
+        }
+
     }
     public override void Draw(GameTime gameTime)
     {
@@ -1101,7 +1107,7 @@ public class Personnage : GameScreen
         _spriteBatch.Draw(_persoRed, _positionPersoRed);
         _spriteBatch.Draw(_persoBlue, _positionPersoBlue);
         _spriteBatch.Draw(_coeurBlue, _positionCoeurBlue);
-        _spriteBatch.Draw(_fondNoirBlue, _positionFondBlue, Microsoft.Xna.Framework.Color.White);
+        //_spriteBatch.Draw(_fondNoirBlue, _positionFondBlue, Microsoft.Xna.Framework.Color.White);
 
 
 
