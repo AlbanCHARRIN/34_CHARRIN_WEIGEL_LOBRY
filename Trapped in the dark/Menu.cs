@@ -212,7 +212,7 @@ public class Menu : GameScreen
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
                 
-                _myGame.Etat = Game1.Etats.Play;
+                _myGame.Etat = Game1.Etats.Map1;
             }
         }
         if (_rSouris.Intersects(_recBoutonControles))

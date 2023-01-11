@@ -34,7 +34,13 @@ namespace Trapped_in_the_dark
         private int randomMap;
         private int[] tabMap;
         Random random = new Random();
-        int test = 0;
+        bool map1 = true;
+        bool map2 = true;
+        bool map3 = true;
+        bool map4 = true;
+        bool map5 = true;
+        bool map6 = true;
+
 
         public GraphicsDeviceManager _graphics;
         public int[,] _tableauMur;
@@ -43,7 +49,7 @@ namespace Trapped_in_the_dark
 
         //Map
 
-        public enum Etats { Menu, Controls, Play, Quit };
+        public enum Etats { Menu, Controls, Play, Quit, Map1, Map2, Map3, Map4, Map5, Map6 };
 
         private Etats etat;
 
@@ -135,104 +141,34 @@ namespace Trapped_in_the_dark
             KeyboardState keyboardState = Keyboard.GetState();
 
             MouseState _mouseState = Mouse.GetState();
-            
-
-
-
-
-
-
-
-            
-                
-                
-                if (this.Etat == Etats.Play)
-                {
-
-                    if (randomMap == 1)
-                    {
-                        Console.WriteLine("Map1");
-                        tabMap[0] = 1;
-                        _screenManager.LoadScreen(_map1, new FadeTransition(GraphicsDevice, Color.Black));
-                        Thread.Sleep(400);
-
-                        test = 1;
-
-                    }
-                    if (randomMap == 2)
-                    {
-                        Console.WriteLine("Map2");
-                        tabMap[1] = 2;
-                        _screenManager.LoadScreen(_map2, new FadeTransition(GraphicsDevice, Color.Black));
-                        Thread.Sleep(400);
-
-                        test = 1;
-
-                    }
-                    if (randomMap == 3)
-                    {
-                        Console.WriteLine("Map3");
-                        tabMap[2] = 3;
-                        _screenManager.LoadScreen(_map3, new FadeTransition(GraphicsDevice, Color.Black));
-                        Thread.Sleep(400);
-
-                        test = 1;
-                    }
-                    if (randomMap == 4)
-                    {
-                        Console.WriteLine("Map4");
-                        tabMap[3] = 4;
-                        _screenManager.LoadScreen(_map4, new FadeTransition(GraphicsDevice, Color.Black));
-                        Thread.Sleep(400);
-
-                        test = 1;
-                    }
-                    if (randomMap == 5)
-                    {
-                        Console.WriteLine("Map5");
-                        tabMap[4] = 5;
-                        _screenManager.LoadScreen(_map5, new FadeTransition(GraphicsDevice, Color.Black));
-                        Thread.Sleep(400);
-
-                        test = 1;
-                    }
-                    if (randomMap == 6)
-                    {
-                        Console.WriteLine("Map6");
-                        tabMap[5] = 6;
-                        _screenManager.LoadScreen(_map6, new FadeTransition(GraphicsDevice, Color.Black));
-                        Thread.Sleep(400);
-
-                        test = 1;
-                    }
-
-
-                    if (this.Etat == Etats.Quit)
-                        Exit();
-
-                    Console.Write(tabMap[0]);
-                    Console.Write(tabMap[1]);
-                    Console.Write(tabMap[2]);
-                    Console.Write(tabMap[3]);
-                    Console.Write(tabMap[4]);
-                    Console.Write(tabMap[5]);
-
-                }
-            
-            if ( test == 1 && !(tabMap[0] == 1 && tabMap[1] == 2 && tabMap[2] == 3 && tabMap[3] == 4 && tabMap[4] == 5 && tabMap[5] == 6))
-                randomMap = random.Next(1, 7);
-            if (tabMap[0] == 1 && tabMap[1] == 2 && tabMap[2] == 3 && tabMap[3] == 4 && tabMap[4] == 5 && tabMap[5] == 6)
-                test = 0;
-
 
             if (_mouseState.LeftButton == ButtonState.Pressed)
             {
+                if (this.Etat == Etats.Map1)
+                {
 
-                    if (this.Etat == Etats.Quit)
-                        Exit();
+                    _screenManager.LoadScreen(_map1, new FadeTransition(GraphicsDevice, Color.Black));
 
+
+
+                }
+               
             }
-                    if (this.Option == Options.PleinEcran)
+            if (test == true)
+                if (this.Etat == Etats.Map2)
+                {
+
+                _screenManager.LoadScreen(_map2, new FadeTransition(GraphicsDevice, Color.Black));
+                    test= false;
+
+
+                }
+            if (this.Etat == Etats.Quit)
+                Exit();
+
+
+
+            if (this.Option == Options.PleinEcran)
             {
                 _graphics.IsFullScreen = true;
                 _graphics.ApplyChanges();
@@ -271,7 +207,7 @@ namespace Trapped_in_the_dark
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Salmon);
-            
+
 
             // TODO: Add your drawing code here
 
