@@ -281,6 +281,11 @@ namespace Trapped_in_the_dark
                 _screenManager.LoadScreen(_personnage, new FadeTransition(GraphicsDevice,
                 Color.Black));
             }
+            else if (keyboardState.IsKeyDown(Keys.F7))
+            {
+                _screenManager.LoadScreen(_personnage, new FadeTransition(GraphicsDevice,
+                Color.Black));
+            }
 
             base.Update(gameTime);
         }
