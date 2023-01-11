@@ -83,9 +83,9 @@ public class Pause : GameScreen
        
 
         _recBoutonJouer = new Rectangle(1160, 210, 340, 40);
-        _recBoutonQuitter = new Rectangle(1160, 800, 300, 50);
-        _recBoutonControles = new Rectangle((GraphicsDevice.DisplayMode.Width / 2) - 210, 620, 425, 50);
-        _recBoutonParametres = new Rectangle((GraphicsDevice.DisplayMode.Width) - 200, 0, 200, 160);
+        _recBoutonQuitter = new Rectangle(1220, 690, 250, 50);
+        _recBoutonControles = new Rectangle(1168, 350, 335, 50);
+        _recBoutonParametres = new Rectangle(1216, 510, 235, 50);
 
         _recCroixParametres = new Rectangle(1048, 350, 40, 45);
         _recCroixPleinEcran = new Rectangle(928, 390, 38, 30);
@@ -321,17 +321,20 @@ public class Pause : GameScreen
             //dessine des contours autours des textes
             if (_rSouris.Intersects(_recBoutonQuitter))
             {
-                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 695), Microsoft.Xna.Framework.Color.White);
+                _spriteBatch.Draw(_rectangleHover, new Vector2(1138, 660), Microsoft.Xna.Framework.Color.White);
             }
             if (_rSouris.Intersects(_recBoutonJouer))
             {
-                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 495), Microsoft.Xna.Framework.Color.White);
+                _spriteBatch.Draw(_rectangleHover, new Vector2(1130, 180), Microsoft.Xna.Framework.Color.White);
             }
             if (_rSouris.Intersects(_recBoutonControles))
             {
-                _spriteBatch.Draw(_rectangleHover2, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 245, 595), Microsoft.Xna.Framework.Color.White);
+                _spriteBatch.Draw(_rectangleHover, new Vector2(1134, 325), Microsoft.Xna.Framework.Color.White);
             }
-
+            if (_rSouris.Intersects(_recBoutonParametres))
+            {
+                _spriteBatch.Draw(_rectangleHover, new Vector2(1134, 485), Microsoft.Xna.Framework.Color.White);
+            }
 
             if (_controlesEtat == true)
             {

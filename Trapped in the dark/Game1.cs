@@ -140,28 +140,6 @@ namespace Trapped_in_the_dark
 
 
 
-            while (test == 1 )
-            {
-                Console.WriteLine("Rentre Boucle");
-               
-
-                if (tabMap[randomMap - 1] != 0)
-                {
-                    Console.WriteLine("Rentre Random");
-                    randomMap = random.Next(1, 7);
-
-                }
-                else if (tabMap[randomMap - 1] == 0)
-                {
-                    test = 0;
-                    Console.WriteLine("Sort boucle");
-                    Console.WriteLine(randomMap);
-                    
-                }
-                
-                   
-
-            }
 
 
 
