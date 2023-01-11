@@ -29,6 +29,7 @@ namespace Trapped_in_the_dark
         private Map4 _map4;
         private Map5 _map5;
         private Map6 _map6;
+        private Song _sonMusique;
 
         private int randomMap;
         private int[] tabMap;
@@ -100,7 +101,6 @@ namespace Trapped_in_the_dark
             _graphics.ApplyChanges();
 
 
-
             randomMap = random.Next(1, 7);
             tabMap = new int[6] { 0, 0, 0, 0, 0, 0 };
             Console.WriteLine(randomMap);
@@ -117,6 +117,7 @@ namespace Trapped_in_the_dark
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             _screenManager.LoadScreen(_menu, new FadeTransition(GraphicsDevice, Color.Black));
+            _sonMusique = Content.Load<Song>("Myuu-HoldOn");
             // TODO: use this.Content to load your game content here
 
         }
@@ -134,7 +135,7 @@ namespace Trapped_in_the_dark
             KeyboardState keyboardState = Keyboard.GetState();
 
             MouseState _mouseState = Mouse.GetState();
-
+            
 
 
 
@@ -288,6 +289,7 @@ namespace Trapped_in_the_dark
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Salmon);
+            
 
             // TODO: Add your drawing code here
 
