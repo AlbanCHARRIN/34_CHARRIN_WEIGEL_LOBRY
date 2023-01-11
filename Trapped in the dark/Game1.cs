@@ -31,8 +31,8 @@ namespace Trapped_in_the_dark
 
         public GraphicsDeviceManager _graphics;
         public int[,] _tableauMur;
-        public int dimensionx = Case2.dimensionx;
-        public int dimensiony = Case2.dimensiony;
+        public int dimensionx = Case2.dimensionX;
+        public int dimensiony = Case2.dimensionY;
 
         //Map
 
