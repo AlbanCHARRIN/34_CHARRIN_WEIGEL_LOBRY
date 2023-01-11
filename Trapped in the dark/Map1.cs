@@ -141,7 +141,7 @@ public class Map1 : GameScreen
         _directioncollisonRed = "idle";
         _directioncollisionBlue = "idle";
         //tileMap
-        _tiledMap = Content.Load<TiledMap>("Map1");
+        _tiledMap = Content.Load<TiledMap>("Map");
         _tiledMapRenderer = new TiledMapRenderer(GraphicsDevice, _tiledMap);
 
         GraphicsDevice.BlendState = BlendState.AlphaBlend;
