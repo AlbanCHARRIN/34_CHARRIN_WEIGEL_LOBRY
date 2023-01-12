@@ -29,6 +29,7 @@ namespace Trapped_in_the_dark
         private Map4 _map4;
         private Map5 _map5;
         private Map6 _map6;
+        private GameOver, _gameOver
         private Song _sonMusique;
 
       
@@ -47,7 +48,7 @@ namespace Trapped_in_the_dark
 
         //Map
 
-        public enum Etats { Menu, Controls, Play, Quit, Map1, Map2, Map3, Map4, Map5, Map6 };
+        public enum Etats { Menu, Controls, Play, Quit, Map1, Map2, Map3, Map4, Map5, Map6, GameOver };
 
         private Etats etat;
 
@@ -91,6 +92,7 @@ namespace Trapped_in_the_dark
             _map4 = new Map4(this);
             _map5 = new Map5(this);
             _map6 = new Map6(this);
+            _gameOver = new GameOver(this)
         }
 
         protected override void Initialize()
