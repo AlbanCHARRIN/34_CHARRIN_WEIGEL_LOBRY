@@ -122,6 +122,7 @@ public class Map4 : GameScreen
     private MouseState _mouseState;
     private Rectangle _rSouris;
 
+    private SpriteFont _font;
 
     public Map4(Game1 game) : base(game)
     {
@@ -130,7 +131,7 @@ public class Map4 : GameScreen
     public override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+        _font = Content.Load<SpriteFont>("PixelFont");
 
         // colision
 
@@ -1061,7 +1062,7 @@ public class Map4 : GameScreen
         _spriteBatch.Draw(_fondNoirBlue, _positionFondBlue, Microsoft.Xna.Framework.Color.White);
 
 
-
+        _spriteBatch.DrawString(_font, $"{_timer}", new Vector2(0, 0), Microsoft.Xna.Framework.Color.White);
 
         _spriteBatch.End();
     }

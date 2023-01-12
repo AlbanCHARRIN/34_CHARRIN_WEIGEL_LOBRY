@@ -173,7 +173,7 @@ public class Menu : GameScreen
 
         if(_musiqueEtat == 0)
         {
-            MediaPlayer.Play(_sonMenu);
+            //MediaPlayer.Play(_sonMenu);
             _musiqueEtat++;
         }
 

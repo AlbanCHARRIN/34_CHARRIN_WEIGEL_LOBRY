@@ -121,7 +121,7 @@ public class Map2 : GameScreen
     private MouseState _mouseState;
     private Rectangle _rSouris;
 
-
+    private SpriteFont _font;
     public Map2(Game1 game) : base(game)
     {
         _myGame = game;
@@ -129,11 +129,11 @@ public class Map2 : GameScreen
     public override void LoadContent()
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
-        private SpriteFont _font;
+        _font = Content.Load<SpriteFont>("PixelFont");
 
-    // colision
+        // colision
 
-    _directioncollisonRed = "idle";
+        _directioncollisonRed = "idle";
         _directioncollisionBlue = "idle";
         //tileMap
         _tiledMap = Content.Load<TiledMap>("Map2");
