@@ -29,7 +29,7 @@ namespace Trapped_in_the_dark
         private Map4 _map4;
         private Map5 _map5;
         private Map6 _map6;
-        private GameOver, _gameOver
+        private GameOver _gameOver;
         private Song _sonMusique;
 
       
@@ -38,7 +38,8 @@ namespace Trapped_in_the_dark
         bool map3 = true;
         bool map4 = true;
         bool map5 = true;
-        bool map6 = true;
+        bool menu = true;
+        bool gameOver = true;
 
 
         public GraphicsDeviceManager _graphics;
@@ -92,7 +93,7 @@ namespace Trapped_in_the_dark
             _map4 = new Map4(this);
             _map5 = new Map5(this);
             _map6 = new Map6(this);
-            _gameOver = new GameOver(this)
+            _gameOver = new GameOver(this);
         }
 
         protected override void Initialize()
@@ -203,6 +204,16 @@ namespace Trapped_in_the_dark
                 Exit();
 
 
+            if (gameOver== true)
+            {
+                if (this.Etat == Etats.GameOver)
+                {
+
+                    _screenManager.LoadScreen(_gameOver, new FadeTransition(GraphicsDevice, Color.Black));
+                    gameOver = false;
+                }
+            }
+           
 
             if (this.Option == Options.PleinEcran)
             {
@@ -214,28 +225,8 @@ namespace Trapped_in_the_dark
             _graphics.ApplyChanges();
 
 
-            if (keyboardState.IsKeyDown(Keys.F2))
-            {
-                _screenManager.LoadScreen(_menu, new FadeTransition(GraphicsDevice,
-                Color.Black));
-            }
 
-            else if (keyboardState.IsKeyDown(Keys.F3))
-            {
-                _screenManager.LoadScreen(_map1, new FadeTransition(GraphicsDevice,
-                Color.Black));
-            }
-
-            else if (keyboardState.IsKeyDown(Keys.F4))
-            {
-                _screenManager.LoadScreen(_personnage, new FadeTransition(GraphicsDevice,
-                Color.Black));
-            }
-            else if (keyboardState.IsKeyDown(Keys.F7))
-            {
-                _screenManager.LoadScreen(_pause, new FadeTransition(GraphicsDevice,
-                Color.Black));
-            }
+            
 
             base.Update(gameTime);
         }

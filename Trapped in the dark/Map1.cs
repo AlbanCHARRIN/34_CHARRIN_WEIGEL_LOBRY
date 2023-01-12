@@ -112,10 +112,10 @@ public class Map1 : GameScreen
 
     // écran
     private ScreenManager _screenManager;
-   
+
 
     //gestion de pause
-    
+    private SpriteFont _font;
 
     //gestion des touches
     private MouseState _mouseState;
@@ -131,6 +131,7 @@ public class Map1 : GameScreen
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+        _font = Content.Load<SpriteFont>("PixelFont");
 
         // colision
 
@@ -145,6 +146,7 @@ public class Map1 : GameScreen
         Obstacle = _tiledMap.GetLayer<TiledMapTileLayer>("Obstacle");
 
         _arrivee = _tiledMap.GetLayer<TiledMapTileLayer>("Arrivee");
+
 
 
         //Timer
@@ -566,7 +568,7 @@ public class Map1 : GameScreen
                 }
                 else if (piqueTime == 120)
                 {
-                    MediaPlayer.Play(piqueSword);
+                    //MediaPlayer.Play(piqueSword);
                     _piege[i].Play("piqueOuvert");
                     if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
                         compteurBlue = 10;
@@ -703,7 +705,7 @@ public class Map1 : GameScreen
         else if (vieRed <= 0 || _timer == 0)
         {
             _coeurRed.Play("zeroVie");
-            _myGame.Etat = Game1.Etats.Quit;
+            _myGame.Etat = Game1.Etats.GameOver;
         }
         else if (vieRed >= 3)
         {
@@ -726,6 +728,7 @@ public class Map1 : GameScreen
         else if (vieBlue == 0)
         {
             _coeurBlue.Play("zeroVie");
+            _myGame.Etat = Game1.Etats.GameOver;
         }
 
         //Joueur Rouge
@@ -1069,9 +1072,10 @@ public class Map1 : GameScreen
         _spriteBatch.Draw(_coeurBlue, _positionCoeurBlue);
         _spriteBatch.Draw(_fondNoirBlue, _positionFondBlue, Microsoft.Xna.Framework.Color.White);
 
+       
 
+        _spriteBatch.DrawString(_font, $"{_timer}", new Vector2(0, 0), Microsoft.Xna.Framework.Color.White);
 
-        
 
         _spriteBatch.End();
     }
@@ -1121,6 +1125,7 @@ public class Map1 : GameScreen
             return recul;
         }
 
+     
 
     }
 

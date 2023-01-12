@@ -299,12 +299,7 @@ public class Map4 : GameScreen
         _screenManager = new ScreenManager();
         _myGame.Components.Add(_screenManager);
 
-        _pause = Content.Load<Texture2D>("Pause");
-        _rectangleHover = Content.Load<Texture2D>("Carre");
-
-        _recBoutonReprendre = new Rectangle(2000, 515, 245, 50);
-        _recBoutonQuitter = new Rectangle(2000, 720, 300, 50);
-        _recBoutonControles = new Rectangle(2000, 620, 425, 50);
+    
 
         base.LoadContent();
     }
@@ -703,7 +698,7 @@ public class Map4 : GameScreen
         else if (vieRed <= 0 || _timer == 0)
         {
             _coeurRed.Play("zeroVie");
-            _myGame.Etat = Game1.Etats.Quit;
+            _myGame.Etat = Game1.Etats.GameOver;
         }
         else if (vieRed >= 3)
         {
@@ -726,6 +721,7 @@ public class Map4 : GameScreen
         else if (vieBlue == 0)
         {
             _coeurBlue.Play("zeroVie");
+            _myGame.Etat = Game1.Etats.GameOver;
         }
 
         //Joueur Rouge
@@ -1022,54 +1018,7 @@ public class Map4 : GameScreen
 
 
 
-        if (keyboardState.IsKeyDown(Keys.P))
-        {
-            _pauseEtat = 1;
-        }
-        if (_pauseEtat == 1)
-        {
-            _recBoutonReprendre.X = 500;
-            _recBoutonReprendre.Y = 500;
-
-            _recBoutonOptions.X = 500;
-            _recBoutonOptions.Y = 500;
-
-            _recBoutonQuitter.X = 500;
-            _recBoutonQuitter.Y = 500;
-
-            _recBoutonControles.X = 500;
-            _recBoutonControles.Y = 500;
-
-
-        }
-
-        if (_rSouris.Intersects(_recBoutonReprendre))
-            if (_mouseState.LeftButton == ButtonState.Pressed)
-            {
-
-                _pauseEtat = 0;
-            }
-        if (_rSouris.Intersects(_recBoutonQuitter))
-            if (_mouseState.LeftButton == ButtonState.Pressed)
-            {
-
-                _myGame.Exit();
-            }
-
-        if (_pauseEtat == 0)
-        {
-            _recBoutonReprendre.X = 2000;
-            _recBoutonReprendre.Y = 2000;
-
-            _recBoutonOptions.X = 2000;
-            _recBoutonOptions.Y = 2000;
-
-            _recBoutonQuitter.X = 2000;
-            _recBoutonQuitter.Y = 2000;
-
-            _recBoutonControles.X = 2000;
-            _recBoutonControles.Y = 2000;
-        }
+        
 
         _tiledMapRenderer.Update(gameTime);
         _timer--;
@@ -1113,27 +1062,6 @@ public class Map4 : GameScreen
 
 
 
-        if (_pauseEtat == 1)
-        {
-            _spriteBatch.Draw(_pause, new Vector2(0, 0), Microsoft.Xna.Framework.Color.White);
-
-            if (_rSouris.Intersects(_recBoutonQuitter))
-            {
-                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 695), Microsoft.Xna.Framework.Color.White);
-            }
-            if (_rSouris.Intersects(_recBoutonReprendre))
-            {
-                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 200, 495), Microsoft.Xna.Framework.Color.White);
-            }
-            if (_rSouris.Intersects(_recBoutonControles))
-            {
-                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 245, 595), Microsoft.Xna.Framework.Color.White);
-            }
-            if (_rSouris.Intersects(_recBoutonOptions))
-            {
-                _spriteBatch.Draw(_rectangleHover, new Vector2((GraphicsDevice.DisplayMode.Width / 2) - 245, 595), Microsoft.Xna.Framework.Color.White);
-            }
-        }
 
         _spriteBatch.End();
     }
