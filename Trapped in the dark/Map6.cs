@@ -432,7 +432,7 @@ public class Map6 : GameScreen
                     _piege[i].Play("chrono");
                     if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
                     {
-                        //MediaPlayer.Play(coeurajouter);
+                        MediaPlayer.Play(coeurajouter);
                         _timer += 20;
                         _colisionChrono[i] = true;
                         _piege[i].Play("stop");
@@ -483,7 +483,7 @@ public class Map6 : GameScreen
                     }
                     else if (serpentTime >= 36)
                     {
-                        //MediaPlayer.Play(snakeHissing);
+                        MediaPlayer.Play(snakeHissing);
                         _piege[i].Play("serpentMoving");
                         if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
                             compteurBlue = 10;
@@ -606,7 +606,7 @@ public class Map6 : GameScreen
                 }
                 else if (piqueTime == 120)
                 {
-                    //MediaPlayer.Play(piqueSword);
+                    MediaPlayer.Play(piqueSword);
                     _piege[i].Play("piqueOuvert");
                     if (CollisionAvecUnPersonnage(_positionPiege[i], _positionPersoBlue) != new Vector2(0, 0))
                         compteurBlue = 10;
@@ -743,7 +743,7 @@ public class Map6 : GameScreen
         else if (vieRed <= 0 || _timer == 0)
         {
             _coeurRed.Play("zeroVie");
-            //_myGame.Etat = Game1.Etats.Quit;
+            _myGame.Etat = Game1.Etats.Quit;
         }
         else if (vieRed >= 3)
         {
@@ -1122,7 +1122,7 @@ public class Map6 : GameScreen
         ushort ry = (ushort)(_positionPersoRed.Y / _tiledMap.TileHeight);
         if (IsCollision(bx, by, _arrivee) && IsCollision(rx, ry, _arrivee))
         {
-            _myGame.Etat = Game1.Etats.Quit;
+            _myGame.Etat = Game1.Etats.Play;
         }
 
     }

@@ -31,7 +31,7 @@ namespace Trapped_in_the_dark
         private Map6 _map6;
         private Song _sonMusique;
 
-      
+      ;
         bool map1 = true;
         bool map2 = true;
         bool map3 = true;
@@ -195,13 +195,10 @@ namespace Trapped_in_the_dark
 
 
                 }
+           
 
-            if (_mouseState.LeftButton == ButtonState.Pressed)
-            {
-                if (this.Etat == Etats.Quit)
-                    Exit();
-
-            }
+            if (this.Etat == Etats.Quit)
+                Exit();
 
 
 
@@ -223,7 +220,7 @@ namespace Trapped_in_the_dark
 
             else if (keyboardState.IsKeyDown(Keys.F3))
             {
-                _screenManager.LoadScreen(_map6, new FadeTransition(GraphicsDevice,
+                _screenManager.LoadScreen(_map1, new FadeTransition(GraphicsDevice,
                 Color.Black));
             }
 
