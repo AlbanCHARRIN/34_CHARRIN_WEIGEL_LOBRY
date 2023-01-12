@@ -116,47 +116,7 @@ public class Map4 : GameScreen
 
 
     //gestion de pause
-    private Texture2D _imagePause;
-    private Texture2D _parametres;
-    private Vector2 _positionBoutonParametres;
-    private Rectangle _recBoutonParametres;
-    private Rectangle _recCroixParametres;
-    private bool _parametresEtat;
-
-
-    private Rectangle _recSonNull;
-    private Rectangle _recSonBas;
-    private Rectangle _recSonMoyen;
-    private Rectangle _recSonHaut;
-    private int _sonEtat;
-    private Texture2D _carreHover;
-
-    private Texture2D _rectangleHover;
-    private Texture2D _rectangleHover2;
-
-    private SpriteFont _font;
-
-    private Texture2D _options;
-
-
-    private Vector2 _positionBoutonJouer;
-    private Rectangle _recBoutonJouer;
-
-    private Vector2 _positionBoutonControles;
-    private Rectangle _recBoutonControles;
-    private Texture2D _controles;
-    private bool _controlesEtat;
-
-    private Rectangle _recCroixPleinEcran;
-    private bool _pleinEcranEtat;
-    private bool _fenetreEtat;
-
-    private Rectangle _recCroixControles;
-
-    private Vector2 _positionBoutonQuitter;
-    private Rectangle _recBoutonQuitter;
-
-    private int _pauseEtat;
+   
 
     //gestion des touches
     private MouseState _mouseState;

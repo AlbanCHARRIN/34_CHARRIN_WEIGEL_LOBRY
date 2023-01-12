@@ -31,7 +31,7 @@ namespace Trapped_in_the_dark
         private Map6 _map6;
         private Song _sonMusique;
 
-      ;
+      
         bool map1 = true;
         bool map2 = true;
         bool map3 = true;
